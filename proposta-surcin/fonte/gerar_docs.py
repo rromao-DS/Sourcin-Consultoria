@@ -11,7 +11,7 @@ from docx.oxml import OxmlElement
 SAIDA = sys.argv[1] if len(sys.argv) > 1 else "."
 AZUL = RGBColor(0x1F, 0x3A, 0x5F)
 CINZA = RGBColor(0x59, 0x59, 0x59)
-VERSAO = "Versão 3 · 13/10/2026 · reunião, briefing e anotações cruzados · uso interno até revisão do Renato"
+VERSAO = "Versão 4 · 13/10/2026 · dados reconferidos com a transcrição · uso interno até revisão do Renato"
 
 
 def novo_doc(titulo, subtitulo):
@@ -144,9 +144,9 @@ def diagnostico():
 
     h(d, "1. Resumo executivo")
     par(d, "A Surcin é uma assessoria empresarial pequena que já tem processos desenhados, mas ainda depende da "
-           "Thamires como fonte de conhecimento, decisão e revisão. Depois de quebrar no fim de 2023 por crescer sem "
-           "estrutura, ela reconstruiu a operação a partir de 2024 com passo a passos, checklists e rotinas no Trello, "
-           "e recuperou cerca de 90% dos clientes (00:11; briefing, seção 3).")
+           "Thamires como fonte de conhecimento, decisão e revisão. Depois de uma quebra causada por crescer sem "
+           "estrutura, ela reconstruiu a operação com passo a passos, checklists e rotinas no Trello, "
+           "e recuperou cerca de 90% dos clientes (00:06 a 00:11; o ano da reconstrução está na seção 8).")
     par(d, "O gargalo atual não é falta de processo, é falta de eficiência, de controle e de autonomia. Em 2026 os "
            "sistemas novos (Domínio, Veri, Conta Azul) não foram implantados de fato, e um erro de parametrização de "
            "ISS gerou imposto pago errado, retificações, multa, um impacto de cerca de R$ 10 mil e a perda de um "
@@ -161,16 +161,16 @@ def diagnostico():
     h(d, "2. A empresa")
     tabela(d, ["Item", "O que as fontes dizem", "Fonte"], [
         ["Fundação", "Constituída em 2021; dedicação integral da Thamires desde janeiro de 2023; atuação remota", "[BRIEFING] seção 2"],
-        ["Serviços", "Contabilidade, apurações fiscais, DP/eSocial, BPO financeiro, abertura/alteração/baixa de empresas, regularizações, MEI, IRPF, parcelamentos, contratos e jurídico empresarial; revenda de certificado digital", "[BRIEFING] seção 2; [REUNIÃO] 00:52"],
+        ["Serviços", "Contabilidade, apurações fiscais, DP/eSocial, financeiro (gestão financeira dos clientes), abertura/alteração/baixa de empresas, regularizações, MEI, IRPF, parcelamentos, contratos e jurídico empresarial; revenda de certificado digital", "[BRIEFING] seção 2; [REUNIÃO] 00:52"],
         ["Proposta de valor", "Gestão do empresário de ponta a ponta: contabilidade, financeiro e jurídico consultivo", "[REUNIÃO] 00:05"],
         ["Estratégia de longo prazo", "Especialização gradual no segmento pet/veterinário, sem abandonar os demais", "[BRIEFING] seção 2"],
         ["Estrutura societária", "Três CNPJs: contabilidade, financeiro e jurídico", "[REUNIÃO] 01:02"],
         ["Carteira fiscal/contábil", "Cerca de 40 a 45 empresas; o fiscal do mês passado cobriu 44", "[REUNIÃO] 01:55, 02:00; [BRIEFING] seção 3"],
-        ["Carteira de BPO financeiro", "13 a 15 clientes externos (16 contando as três empresas da própria Thamires)", "[REUNIÃO] 01:02; [BRIEFING] 9.1"],
+        ["Clientes do financeiro", "A Vitória cuida de 12 clientes (00:38). Na contagem do Trello ela citou 11, 13 e 16, este último incluindo as três empresas dela (01:02). Número exato a confirmar", "[REUNIÃO] 00:38, 01:02"],
         ["Departamento Pessoal", "Cerca de 25 vidas, em 4 ou 5 clientes com funcionários", "[REUNIÃO] 00:40"],
         ["Jurídico", "Cerca de 20 processos legados em fase final; contratos e societário; sem receita recorrente hoje", "[REUNIÃO] 00:43, 01:45"],
         ["Situação financeira", "Pronampe garante caixa até novembro; dezembro apertado; pagamento começa em fevereiro", "[REUNIÃO] 00:31, 01:33"],
-        ["Decisões já tomadas", "Sem contratações até o fim do ano; tráfego pago pausado (cerca de R$ 1 mil/mês em anúncios); social media mantida; conciliação semanal; comunicação com clientes de contabilidade só pelo aplicativo da Veri a partir de novembro", "[REUNIÃO] 00:30, 01:16, 01:31, 02:12"],
+        ["Decisões já tomadas", "Sem contratações até o fim do ano; tráfego pago pausado (valor investido em anúncios a confirmar); social media mantida; conciliação semanal; comunicação com clientes de contabilidade só pelo aplicativo da Veri a partir de novembro", "[REUNIÃO] 00:30, 01:16, 01:31, 02:12"],
     ], [3.3, 9.7, 3])
 
     h(d, "3. Pessoas")
@@ -180,11 +180,10 @@ def diagnostico():
         ["Vitória", "Financeiro: pagamentos (terças e sextas), notas, conciliação no Conta Azul, preparação dos fechamentos", "Férias em outubro, retorno em 28/10; a partir de novembro assume o financeiro integralmente", "00:13, 01:34; briefing 5"],
         ["Tamara", "Em outubro acumula DP, conciliação e notas; a partir de novembro, DP", "[DIVERGÊNCIA] sobre as notas a partir de novembro (seção 8)", "00:41; briefing 5"],
         ["Alana", "Estagiária do jurídico e do societário, dois dias por semana, paga por hora", "Permanência em reavaliação", "00:42, 01:40, 02:18"],
-        ["Joyce", "Contabilidade terceirizada e responsabilidade técnica, segundo o briefing", "[DIVERGÊNCIA] com a reunião (seção 8)", "briefing 2 e 5"],
-        ["Flora e parceiros", "Conteúdo e campanhas; parceiros jurídicos para demandas fora do foco", "Tráfego pago pausado", "briefing 5"],
+        ["Apoio externo", "Social media e gestora de tráfego", "Social media mantida; campanhas de tráfego canceladas", "00:37, 02:12"],
     ], [2.3, 6.2, 5, 2.5])
-    par(d, "Saídas recentes: Jonathan em junho e Dani, responsável pelo fiscal, no fim de agosto (briefing, seção 3; "
-           "reunião, 00:30).")
+    par(d, "Saída recente: Dani, que cuidava da contabilidade e do fiscal e emitia notas, saiu depois do erro de agosto. "
+           "A Thamires absorveu o setor e hoje não há ninguém na contabilidade (00:30, 00:40, 02:00).")
 
     h(d, "4. Ferramentas e uso real")
     tabela(d, ["Ferramenta", "Uso atual", "Fonte"], [
@@ -195,7 +194,7 @@ def diagnostico():
         ["Veri", "Aplicativo do cliente (guias, certidões, documentos) e modelos de contrato; adoção real a confirmar", "01:15 a 01:17; briefing 6"],
         ["Domínio", "Contábil, fiscal e folha. Parametrização com erro desde a migração; o fiscal está sendo feito direto no portal da Receita", "01:17; briefing 6"],
         ["CITAX", "Em avaliação para captura e apuração fiscal", "briefing 6"],
-        ["Conta Azul", "Dados financeiros dos clientes de BPO, conciliação; emissão de nota pela conciliação não configurada", "00:40, 01:20; briefing 6"],
+        ["Conta Azul", "Dados financeiros dos clientes do financeiro, conciliação; emissão de nota pela conciliação não configurada", "00:40, 01:20; briefing 6"],
         ["Jusbrasil", "IA jurídica e modelos; monitoramento de processos não configurado", "01:43"],
         ["Canva e PowerPoint", "Propostas comerciais (Canva) e apresentações de fechamento mensal (PowerPoint)", "01:22; briefing 6"],
         ["Claude e Lovable", "Testes da Thamires no fechamento financeiro (5 h no primeiro, 1 a 2 h nos últimos), em conta ligada ao e-mail antigo (RT). Plano: ambiente novo da Surcin (Claude Team)", "00:33, 00:59; briefing 12"],
@@ -208,13 +207,12 @@ def diagnostico():
         ["3", "Implantação de novo cliente (contábil e financeiro)", "Júlia e Vitória", "Checklists prontos, a atualizar"],
         ["4", "Abertura, alteração e baixa de empresas", "Júlia, Alana, Thamires", "Checklist no Trello; abertura em Campinas gravada, sem refinar"],
         ["5", "Fiscal mensal: captura, conferência de cadastro e tributação, apuração, guia, envio, evidência", "Thamires e Júlia", "Maior risco: erros de parâmetro (ISS, regime, Fator R)"],
-        ["6", "Recebimento e conferência do trabalho contábil terceirizado", "A definir", "Citado no briefing; fluxo não documentado"],
-        ["7", "Pedidos de pagamento e pagamentos dos clientes de BPO", "Vitória", "Pedidos chegam por WhatsApp; risco de guia do cliente errado"],
-        ["8", "Emissão de notas fiscais", "Tamara e Vitória", "Feita por fora do Conta Azul"],
-        ["9", "Conciliação e fechamento mensal com reunião de resultado", "Vitória e Thamires", "Conciliação passando a semanal; mais de 10 reuniões na semana do fechamento; promessa de formato mais interativo"],
-        ["10", "Folha, admissões, rescisões, eSocial", "Tamara", "Volume baixo; pendências antigas"],
-        ["11", "Acompanhamento de processos jurídicos", "Alana e Thamires", "Revisão manual"],
-        ["12", "Rotinas transversais: EFD-Reinf, IRPF, parcelamentos", "A definir", "Citadas no briefing"],
+        ["6", "Pedidos de pagamento e pagamentos dos clientes do financeiro", "Vitória", "Pedidos chegam por WhatsApp; risco de guia do cliente errado"],
+        ["7", "Emissão de notas fiscais", "Tamara e Vitória", "Feita por fora do Conta Azul"],
+        ["8", "Conciliação e fechamento mensal com reunião de resultado", "Vitória e Thamires", "Conciliação passando a semanal; mais de 10 reuniões na semana do fechamento; promessa de formato mais interativo"],
+        ["9", "Folha, admissões, rescisões, eSocial", "Tamara", "Volume baixo; pendências antigas"],
+        ["10", "Acompanhamento de processos jurídicos", "Alana e Thamires", "Revisão manual"],
+        ["11", "Rotinas transversais: EFD-Reinf, IRPF, parcelamentos", "A definir", "Citadas no briefing"],
     ], [0.8, 6.4, 3.3, 5.5])
 
     h(d, "6. Dores e riscos")
@@ -225,7 +223,7 @@ def diagnostico():
         ["Guia de um cliente salva na pasta de outro, encontrada pelo Financeiro na hora de pagar", "Documentos e pagamentos", "briefing 4.2"],
         ["Trello marcado como concluído sem documento, ou documento sem cartão atualizado", "Controle", "briefing 4.3"],
         ["Fechamento financeiro concentrado no fim do mês e reuniões de resultado atrasadas", "Financeiro", "01:31"],
-        ["Escalar sem contratar: Vitória passar de 15 para 30 clientes", "Financeiro", "00:46, 01:25"],
+        ["Escalar sem contratar: a Vitória atende 12 clientes; a Thamires fala em 20 (00:38) e em dobrar \"de 15 para 30\" (01:25)", "Financeiro", "00:38, 01:25"],
         ["Avaliar desempenho individual e criar premiação por pontos, com revisão trabalhista", "Pessoas", "00:46, 02:21; briefing 10"],
         ["Ter tempo para estudar até 13/12", "Direção", "00:36; briefing 1"],
     ], [10, 3, 3])
@@ -243,15 +241,14 @@ def diagnostico():
 
     h(d, "8. Divergências entre as fontes")
     tabela(d, ["Tema", "Reunião (prevalece)", "Outra fonte", "Como tratamos"], [
-        ["Contabilidade", "\"Hoje eu não tenho ninguém na contabilidade, eu que tô tendo que fazer tudo\" (00:30)", "Briefing: execução contábil terceirizada com a Joyce, que tem a responsabilidade técnica", "Provável divisão: contábil terceirizado e fiscal interno. Confirmar na quinta"],
         ["Tamara a partir de novembro", "\"Vai ficar exclusiva com o departamento pessoal\" (00:41)", "Briefing: DP e emissão de notas dos clientes contábeis", "Usamos só DP; confirmar quem emite notas"],
         ["Retomada do tráfego pago", "Combinado começar em 15/12 para colher em janeiro (02:16)", "Briefing: retomada em janeiro de 2027. Gemini: \"pausar em dezembro\"", "Usamos 15/12; confirmar"],
         ["Contratação", "\"Provavelmente eu vou contratar um contador\" em janeiro (00:32, 01:49)", "Briefing: reavaliar em janeiro caso a distribuição não funcione", "Tratada como decisão em aberto"],
         ["Novo domínio", "Contas novas no domínio da Surcin (00:59, 02:10)", "Gemini: \"novo domínio RT\". Briefing: RT é a conta antiga", "Gemini errou; novo ambiente é Surcin"],
         ["Fiscal feito pela Thamires", "44 clientes em 3 dias, 3 a 4 horas por dia (02:00)", "Gemini: \"3 horas fracionadas\"", "Vale a reunião"],
         ["Tempo do fechamento com IA", "De 5 h para 1 a 2 h (00:34)", "Gemini: 1 h 30", "Usamos 1 a 2 h"],
-        ["Clientes de BPO", "12, 15 e 16 em trechos diferentes", "Briefing: 14 a 15", "13 a 15 externos"],
-        ["Ano da quebra e da reconstrução", "Ambígua: \"no final de 2023, eu quebrei\" (00:06) e \"em 2023 foi o ano que eu comecei a me reconstruir\" (00:11)", "Briefing: quebra no fim de 2023, reconstrução em 2024. Gemini: quebra no fim de 2023", "Usamos quebra no fim de 2023 e reconstrução a partir de 2024; confirmar"],
+        ["Clientes do financeiro", "12 (00:38); 11, 13 e 16 na contagem do Trello (01:02); \"de 15 para 30\" (01:25)", "Briefing: 14 a 15", "Usamos \"cerca de 12 a 16\"; confirmar"],
+        ["Ano da quebra e da reconstrução", "Ambígua: \"no final de 2023, eu quebrei\" (00:06) e \"em 2023 foi o ano que eu comecei a me reconstruir\" (00:11)", "Briefing: quebra no fim de 2023, reconstrução em 2024. Gemini: quebra no fim de 2023", "Não citamos ano nos documentos; confirmar"],
     ], [2.6, 4.8, 4.8, 3.8])
 
     h(d, "9. Leitura do consultor")
@@ -267,7 +264,7 @@ def diagnostico():
     h(d, "10. Perguntas para quinta-feira")
     blocos = {
         "Confirmar divergências": [
-            "A contabilidade é executada pela Joyce? O que fica com a Surcin (fiscal, conferência, entrega)?",
+            "Quantos clientes o financeiro atende hoje, sem contar as três empresas da Thamires?",
             "A partir de novembro, quem emite as notas dos clientes contábeis: Tamara ou Vitória?",
             "O tráfego pago volta em 15/12 ou em janeiro?",
             "A contratação de um(a) contador(a) em janeiro está decidida ou depende do teste de novembro e dezembro?",
@@ -323,14 +320,13 @@ def estrutura():
     org_bloco(d, [
         "Thamires · direção, técnica contábil e jurídica, fiscal, comercial, reuniões de fechamento",
         "    ├── Júlia · secretária: atendimento, implantação de clientes, apoio no fiscal",
-        "    ├── Vitória · financeiro (BPO): pagamentos, notas, conciliação, preparação do fechamento",
+        "    ├── Vitória · financeiro: pagamentos, notas, conciliação, preparação do fechamento",
         "    ├── Tamara · DP + apoio no financeiro e notas (só DP a partir de novembro)",
-        "    ├── Alana · estagiária do jurídico (quarta e sexta)",
-        "    └── Joyce · contabilidade terceirizada e responsabilidade técnica [segundo o briefing; confirmar]",
+        "    └── Alana · estagiária do jurídico (quarta e sexta)",
     ])
     par(d, "Pontos de atenção que ela mesma levantou:")
     lista(d, [
-        "Fiscal executado pela Thamires desde a saída da responsável, em agosto; o papel da contabilidade terceirizada precisa ser confirmado.",
+        "Contabilidade e fiscal executados pela Thamires desde a saída da Dani, em agosto.",
         "Todas as dúvidas e revisões sobem para a Thamires.",
         "A Júlia acumula atendimento, distribuição de demandas, implantação, comercial e parte do fiscal.",
         "A Tamara alterna entre três áreas diferentes (até outubro).",
@@ -341,11 +337,11 @@ def estrutura():
     par(d, "Desenho discutido na reunião (01:38 a 01:51), organizado por fluxo do cliente: entrada, operação e revisão técnica.")
     org_bloco(d, [
         "Thamires · direção, estratégia, relacionamento com clientes-chave, jurídico consultivo",
-        "    ├── Revisão técnica contábil · contabilidade terceirizada e/ou contador(a) a contratar em 2027 [decisão dela]",
+        "    ├── Revisão técnica contábil · contador(a) que ela pensa contratar em 2027 [decisão dela]",
         "    │       └── Contabilidade e fiscal (operação)",
         "    ├── Entrada e relacionamento · Júlia",
         "    │       comercial, implantação de clientes, atendimento e triagem",
-        "    ├── Financeiro (BPO) · Vitória",
+        "    ├── Financeiro · Vitória",
         "    ├── Departamento Pessoal · Tamara [avaliar se absorve apoio ao societário]",
         "    └── Jurídico · processos legados [decisão dela: ela citou absorver com o monitoramento do Jusbrasil]",
     ])
@@ -427,7 +423,7 @@ def metodologia():
     h(d, "2. Etapas do método")
     lista(d, [
         ("A · Coleta do que existe. ", "Passo a passos da pasta Geral, quadros do Trello, checklists, planilha de cadastro de clientes e gravações de processos."),
-        ("B · Inventário e priorização. ", "Lista dos 12 processos identificados (seção 3), pontuados de 1 a 5 em dor, volume, risco (multa, erro, sigilo) e facilidade de melhoria."),
+        ("B · Inventário e priorização. ", "Lista dos 11 processos identificados (seção 3), pontuados de 1 a 5 em dor, volume, risco (multa, erro, sigilo) e facilidade de melhoria."),
         ("C · Entrevistas com executores. ", "Roteiro da seção 4, uma conversa por pessoa, acompanhando a tarefa sendo feita sempre que possível."),
         ("D · Fluxo atual (AS-IS). ", "Diagrama em raias (uma por pessoa ou área), com passos, decisões, sistemas e esperas, salvo no OneDrive da Surcin."),
         ("E · Validação. ", "Revisão com quem executa e com a Thamires."),
@@ -448,7 +444,6 @@ def metodologia():
         ["Comercial (lead a contrato)", "Média", "Baixo agora", "Baixo", "3"],
         ["Abertura de empresa", "Baixa", "Eventual", "Médio", "3"],
         ["Acompanhamento de processos jurídicos", "Baixa", "20 processos", "Alto (prazos)", "3"],
-        ["Conferência do contábil terceirizado", "A confirmar", "Mensal", "Médio", "2"],
         ["EFD-Reinf, IRPF e parcelamentos", "Baixa", "Anual e mensal", "Médio", "3"],
         ["Pendências antigas de DP", "Baixa", "Pontual", "Médio", "Fora do mapeamento"],
     ], [5.2, 1.8, 3.2, 2.6, 3.2])
@@ -518,8 +513,8 @@ def proposta():
              "consultor, com 20% de contingência. Aguardam confirmação do Renato antes do envio.")
 
     h(d, "1. O que entendemos")
-    par(d, "A Surcin oferece contabilidade, fiscal, DP, BPO financeiro, societário e jurídico empresarial, com cerca de "
-           "40 a 45 empresas na carteira fiscal, 13 a 15 clientes de BPO e uma equipe enxuta. A empresa já tem processos "
+    par(d, "A Surcin oferece contabilidade, fiscal, DP, financeiro, societário e jurídico empresarial, com cerca de "
+           "40 a 45 empresas na carteira fiscal, cerca de 12 a 16 clientes no financeiro e uma equipe enxuta. A empresa já tem processos "
            "desenhados, padrão de pastas e rotinas no Trello, mas a Thamires continua sendo a fonte única de "
            "conhecimento, decisão e revisão, e os erros recentes vieram de parâmetros fiscais errados e de controles "
            "que dependem de atenção humana.")
@@ -532,7 +527,7 @@ def proposta():
     lista(d, [
         "Reduzir já os riscos mais caros (guia do cliente errado, tarefa concluída sem evidência, dúvidas repetidas) com controles que não exigem software.",
         "Tirar a Thamires do centro da operação: papéis claros, critérios de revisão e escalonamento só para exceções.",
-        "Tornar visíveis os fluxos, gargalos e dependências entre pessoas, sistemas e a contabilidade terceirizada.",
+        "Tornar visíveis os fluxos, gargalos e dependências entre pessoas e sistemas.",
         "Entregar o plano de automação priorizado por valor, risco, esforço e dependência externa, com custo recorrente estimado.",
         "Preparar a operação para a retomada comercial e para as decisões de contratação de janeiro de 2027.",
     ])
@@ -550,8 +545,8 @@ def proposta():
 
     h(d, "4. Fase 1 · Diagnóstico, estrutura e plano: duas opções")
     tabela(d, ["Entregável", "Essencial", "Completa (recomendada)"], [
-        ["Entrevistas (cerca de 1 h cada)", "Até 4 pessoas: Thamires, Júlia, Vitória, Tamara", "Até 5 pessoas (inclui Alana ou a contabilidade terceirizada)"],
-        ["Processos atuais mapeados e validados", "Até 5", "Até 8, entre os 12 identificados"],
+        ["Entrevistas (cerca de 1 h cada)", "Até 4 pessoas: Thamires, Júlia, Vitória, Tamara", "Até 5 pessoas (inclui a Alana)"],
+        ["Processos atuais mapeados e validados", "Até 5", "Até 8, entre os 11 identificados"],
         ["Gargalos e matriz de dependências", "Sim", "Sim"],
         ["Inventário de ferramentas, contas, licenças e acessos", "Sim", "Sim"],
         ["Contenção imediata: 3 controles manuais implantados com a equipe", "Não", "Sim, até 15/11"],
@@ -717,8 +712,9 @@ def roteiro():
     lista(d, [
         "A Surcin espera mais do que consultoria: pede proposta modular com implantação, desenvolvimento, licenças e manutenção separados, e ganhos ainda em outubro e novembro.",
         "Para atender sem prometer implantação completa: a proposta agora tem contenção imediata (3 controles manuais) na Completa, módulos da Fase 2 com ordem de grandeza e respostas às perguntas da seção 16 do briefing.",
-        "Fatos novos: fundação em 2021, contabilidade terceirizada com a Joyce (segundo o briefing), plataforma Nestzap, CITAX em avaliação, saída do Jonathan em junho, detalhes do erro de ISS e de outros erros fiscais.",
-        "Quatro divergências a confirmar com ela: Joyce, notas da Tamara, data do tráfego pago e contratação em janeiro (doc 01, seção 8).",
+        "Fatos novos do briefing: fundação em 2021, plataforma Nestzap, CITAX em avaliação, detalhes do erro de ISS e de outros erros fiscais.",
+        "Divergências a confirmar com ela: notas da Tamara, data do tráfego pago, contratação em janeiro, número de clientes do financeiro e ano da reconstrução (doc 01, seção 8).",
+        "Versão 4 (13/10): retirados BPO, Joyce e contabilidade terceirizada, que não fazem parte do projeto, e conferidos de novo os números contra a transcrição.",
         "O preço não mudou; a contenção cabe nas 81 h da Completa.",
     ])
 
@@ -729,10 +725,9 @@ def roteiro():
         ["3", "Parcelamento", "Ela tem caixa até novembro e você disse que valores são conversáveis (02:07). Considerar a Completa em 4 vezes até janeiro"],
         ["4", "Contenção dentro das 81 h", "Absorvida pela contingência; se preferir cobrar à parte, some cerca de 4 h (R$ 700)"],
         ["5", "Piloto antes de 13/12", "Não cabe nas 10 h/semana junto com a Completa. Alternativa: trocar os fluxos otimizados por um piloto (ex.: especialista de dúvidas do financeiro)"],
-        ["6", "Joyce", "Você também atende a Joyce, que o briefing aponta como contabilidade terceirizada da Surcin. Combine confidencialidade entre os dois trabalhos"],
-        ["7", "Horários das entrevistas", "A equipe trabalha em horário comercial; confirmar antes das 10h30 ou no almoço"],
-        ["8", "Contato na proposta", "Renato Romão, R2 Tech Consultoria; e-mail r2techconsultoria@gmail.com (do convite da reunião, confirmar); falta o telefone"],
-        ["9", "Exclusividade no seu emprego", "Verificar antes de assinar"],
+        ["6", "Horários das entrevistas", "A equipe trabalha em horário comercial; confirmar antes das 10h30 ou no almoço"],
+        ["7", "Contato na proposta", "Renato Romão, R2 Tech Consultoria; e-mail r2techconsultoria@gmail.com (do convite da reunião, confirmar); falta o telefone"],
+        ["8", "Exclusividade no seu emprego", "Verificar antes de assinar"],
     ], [0.8, 4.5, 10.7])
 
     h(d, "3. Plano até quinta")

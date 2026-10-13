@@ -74,7 +74,7 @@ caixa(s, 2.5, 13.5, 29, 1.2, "Renato Romão · R2 Tech Consultoria · 15 de outu
 s = slide_titulo("O que eu entendi", "\"Eu tenho um processo. Ele só não está eficiente.\"")
 caixa(s, 1.8, 4.8, 9.6, 11.5, ["A Surcin hoje",
                                "• 40 a 45 empresas no fiscal",
-                               "• 13 a 15 clientes de BPO financeiro",
+                               "• Cerca de 12 a 16 clientes no financeiro",
                                "• DP com ~25 vidas",
                                "• ~20 processos jurídicos legados",
                                "• Júlia, Vitória, Tamara e Alana",
@@ -114,7 +114,7 @@ for i, (t, d) in enumerate(ctrl):
 # 4 · Estrutura organizacional
 s = slide_titulo("Estrutura organizacional", "Hipótese para validarmos juntas: organizar pelo caminho do cliente")
 caixa(s, 12.4, 4.5, 9, 1.8, ["Direção · Thamires"], 16, BRANCO, True, fundo=AZUL)
-areas = [("Revisão técnica", "Terceirizada e/ou contador(a)"), ("Entrada e relacionamento", "Júlia"),
+areas = [("Revisão técnica", "Contador(a) em 2027 [decisão dela]"), ("Entrada e relacionamento", "Júlia"),
          ("Financeiro", "Vitória"), ("Departamento Pessoal", "Tamara"), ("Jurídico", "Legado: a decidir")]
 for i, (a, p) in enumerate(areas):
     caixa(s, 1.8 + i * 6.1, 7.6, 5.7, 2.6, [a, p], 13, AZUL, fundo=CLARO)
@@ -123,12 +123,11 @@ caixa(s, 1.8, 11.3, 30, 5, ["Entregável: organograma atual e proposto, papéis,
       15, CINZA)
 
 # 5 · Processos
-s = slide_titulo("Processos identificados", "12 processos; a prioridade inicial é onde há mais risco e mais tempo gasto")
+s = slide_titulo("Processos identificados", "11 processos; a prioridade inicial é onde há mais risco e mais tempo gasto")
 caixa(s, 1.8, 4.8, 14.5, 11.5, ["Prioridade 1",
                                 "• Fiscal mensal (44 clientes, risco de multa)",
                                 "• Conciliação e fechamento financeiro",
                                 "", "Prioridade 2",
-                                "• Conferência do contábil terceirizado",
                                 "• Implantação de novos clientes",
                                 "• Atendimento e triagem",
                                 "• Emissão de notas"], 15, BRANCO, fundo=AZUL)
@@ -195,7 +194,7 @@ caixa(s, 1.8, 4.5, 30, 11, ["1. Escolha da opção e aceite da proposta",
                             "2. Acordo de confidencialidade",
                             "3. Kick-off na semana de 19/10, com a Júlia como ponto focal",
                             "", "Para confirmar hoje:",
-                            "• A contabilidade é executada pela Joyce?",
+                            "• Quantos clientes o financeiro atende hoje?",
                             "• Quem emite as notas a partir de novembro?",
                             "• A equipe pode conversar antes das 10h30 ou no almoço?",
                             "• Tráfego volta em 15/12 ou em janeiro?",
