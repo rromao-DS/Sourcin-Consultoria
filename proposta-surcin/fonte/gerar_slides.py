@@ -56,7 +56,7 @@ def slide_titulo(titulo, subtitulo=None):
     caixa(s, 1.8, 1.3, 30, 2, titulo, 30, AZUL, True)
     if subtitulo:
         caixa(s, 1.8, 3.2, 30, 1.2, subtitulo, 16, CINZA)
-    caixa(s, 1.8, 17.6, 30, 0.8, "Surcin Consultoria · Proposta de consultoria · Confidencial", 9, CINZA)
+    caixa(s, 1.8, 17.6, 30, 0.8, "Surcin · Proposta de consultoria · Confidencial", 9, CINZA)
     return s
 
 
@@ -67,21 +67,32 @@ bg.fill.solid()
 bg.fill.fore_color.rgb = AZUL
 bg.line.fill.background()
 caixa(s, 2.5, 5.5, 29, 2.5, "Organização, estrutura e processos", 40, BRANCO, True)
-caixa(s, 2.5, 8.3, 29, 1.5, "Proposta de consultoria para a Surcin Consultoria", 22, BRANCO)
-caixa(s, 2.5, 13.5, 29, 1.2, "Renato [sobrenome] · 15 de outubro de 2026", 16, BRANCO)
+caixa(s, 2.5, 8.3, 29, 1.5, "Proposta de consultoria para a Surcin", 22, BRANCO)
+caixa(s, 2.5, 13.5, 29, 1.2, "Renato [sobrenome] · R2 Tech Consulting · 15 de outubro de 2026", 16, BRANCO)
 
 # 2 · O que eu entendi
-s = slide_titulo("O que eu entendi", "Nossa reunião de 2h30 já é o início do diagnóstico")
-caixa(s, 1.8, 5, 14.5, 10.5, ["Áreas", "Departamento Pessoal", "Financeiro", "Contabilidade", "Vendas",
-                              "", "Ferramentas", "Conta Azul · Domínio · Veri · Jusbrasil", "OneDrive · Trello · NetsApp"],
-      16, AZUL, fundo=CLARO)
-caixa(s, 17.5, 5, 14.5, 10.5, ["Principais dores", "1. [PREENCHER com a transcrição]",
-                               "2. [PREENCHER]", "3. [PREENCHER]", "",
-                               "Objetivo: organizar e automatizar os processos do escritório"],
-      16, AZUL, fundo=AMARELO)
+s = slide_titulo("O que eu entendi", "\"Eu tenho um processo. Ele só não está eficiente.\"")
+caixa(s, 1.8, 4.8, 9.6, 11.5, ["A Surcin hoje",
+                               "• ~40 clientes de contabilidade",
+                               "• 12 a 16 clientes de financeiro",
+                               "• DP com ~25 vidas",
+                               "• ~20 processos jurídicos legados",
+                               "• Júlia, Vitória, Tamara e Alana",
+                               "• Trello, OneDrive, Veri, Domínio, Conta Azul"], 14, AZUL, fundo=CLARO)
+caixa(s, 12.1, 4.8, 9.6, 11.5, ["O que dói",
+                                "• Tudo passa por você",
+                                "• Contabilidade sem responsável técnico",
+                                "• Erro de agosto no Domínio: multa e cliente perdido",
+                                "• Fechamento financeiro concentrado no fim do mês",
+                                "• Sem métricas para premiar a equipe"], 14, AZUL, fundo=AMARELO)
+caixa(s, 22.4, 4.8, 9.6, 11.5, ["O que você quer",
+                                "• Equipe com autonomia",
+                                "• Escalar com as mesmas pessoas",
+                                "• Tempo para a prova de 13/12",
+                                "• Entrar em 2027 pronta para contratar e vender"], 14, BRANCO, fundo=AZUL)
 
 # 3 · Como vamos trabalhar
-s = slide_titulo("Como vamos trabalhar", "Entender antes de automatizar. Cada etapa termina com uma entrega e uma decisão sua.")
+s = slide_titulo("Como vamos trabalhar", "Partir do que você já construiu. Entender antes de automatizar.")
 etapas = [("0", "Reunião inicial e diagnóstico preliminar", "Concluída, sem custo"),
           ("1", "Mapeamento dos processos atuais", "Nesta proposta"),
           ("2", "Estrutura organizacional", "Nesta proposta"),
@@ -94,41 +105,60 @@ for i, (n, nome, st) in enumerate(etapas):
     caixa(s, x, 6, 5.7, 7, [f"Etapa {n}", nome, "", st], 15, txt, fundo=cor)
 
 # 4 · Estrutura organizacional
-s = slide_titulo("Estrutura organizacional", "Exemplo do entregável · hipótese inicial para validarmos juntas")
-caixa(s, 12.4, 4.8, 9, 1.8, ["Direção · Thamires"], 16, BRANCO, True, fundo=AZUL)
-areas = ["Departamento Pessoal", "Contabilidade e Fiscal", "Financeiro", "Comercial / Vendas", "Apoio adm. [?]"]
-for i, a in enumerate(areas):
-    caixa(s, 1.8 + i * 6.1, 8.2, 5.7, 2.4, [a, "Responsável: ?"], 13, AZUL, fundo=CLARO)
-caixa(s, 1.8, 11.8, 30, 4.5, ["Entregável da Etapa 2: organograma atual e proposto, papéis e responsabilidades por área, "
-                              "matriz RACI (quem executa, aprova, é consultado e informado) e as dependências da Direção."],
+s = slide_titulo("Estrutura organizacional", "Hipótese para validarmos juntas: organizar pelo caminho do cliente")
+caixa(s, 12.4, 4.5, 9, 1.8, ["Direção · Thamires"], 16, BRANCO, True, fundo=AZUL)
+areas = [("Revisão técnica", "Contador(a) em 2027"), ("Entrada e relacionamento", "Júlia"),
+         ("Financeiro", "Vitória"), ("Departamento Pessoal", "Tamara"), ("Jurídico", "Legado: a decidir")]
+for i, (a, p) in enumerate(areas):
+    caixa(s, 1.8 + i * 6.1, 7.6, 5.7, 2.6, [a, p], 13, AZUL, fundo=CLARO)
+caixa(s, 1.8, 11.3, 30, 5, ["Entregável: organograma atual e proposto, papéis, responsabilidades e indicadores por função.",
+                            "É a base para delegar revisões, receber o(a) contador(a) e criar a remuneração por pontos."],
       15, CINZA)
 
-# 5 · Mapeamento de processos
-s = slide_titulo("Mapeamento de processos", "Quatro passos, sempre ouvindo quem executa")
-passos = [("Ouvir", "Entrevistas de 45 a 60 min com a equipe: insumos, passos, sistemas, esperas"),
-          ("Desenhar", "Fluxo atual em raias, validado por quem faz"),
-          ("Encontrar gargalos", "Esperas, retrabalho, aprovações concentradas, dependências"),
-          ("Otimizar", "Simplificar primeiro, depois listar automações com esforço e ganho")]
-for i, (t, d) in enumerate(passos):
-    caixa(s, 1.8 + i * 7.6, 5.5, 7.2, 8, [f"{i + 1}. {t}", "", d], 15, AZUL, fundo=CLARO)
+# 5 · Processos
+s = slide_titulo("Processos identificados", "11 processos; a prioridade inicial é onde há mais risco e mais tempo gasto")
+caixa(s, 1.8, 4.8, 14.5, 11.5, ["Prioridade 1",
+                                "• Fiscal mensal (44 clientes, risco de multa)",
+                                "• Conciliação e fechamento financeiro",
+                                "", "Prioridade 2",
+                                "• Implantação de novos clientes",
+                                "• Atendimento e triagem",
+                                "• Emissão de notas"], 15, BRANCO, fundo=AZUL)
+caixa(s, 17.5, 4.8, 14.5, 11.5, ["Prioridade 3",
+                                 "• Pagamentos dos clientes do financeiro",
+                                 "• Folha e DP",
+                                 "• Comercial",
+                                 "• Abertura de empresa",
+                                 "• Acompanhamento jurídico",
+                                 "", "Escolha final na primeira semana, com você."], 15, AZUL, fundo=CLARO)
 
 # 6 · Duas opções
 s = slide_titulo("Duas opções de escopo", "Você escolhe o tamanho; a Essencial pode virar Completa depois")
-caixa(s, 1.8, 5, 14.5, 10.8, ["Essencial · 4 a 5 semanas",
-                              "• Entrevistas com até 4 pessoas",
+caixa(s, 1.8, 5, 14.5, 10.8, ["Essencial · 19/10 a ~22/11",
+                              "• Entrevistas com 4 pessoas",
                               "• Até 5 processos mapeados",
                               "• Gargalos e dependências",
                               "• Organograma e matriz de responsabilidades",
                               "• Lista priorizada de automações"], 15, AZUL, fundo=CLARO)
-caixa(s, 17.5, 5, 14.5, 10.8, ["Completa (recomendada) · 8 a 9 semanas",
+caixa(s, 17.5, 5, 14.5, 10.8, ["Completa (recomendada) · 19/10 a 18/12",
                                "• Entrevistas com até 5 pessoas",
                                "• Até 8 processos mapeados",
                                "• Gargalos e dependências",
-                               "• Organograma atual e proposto, papéis e responsabilidades",
+                               "• Organograma, papéis e indicadores",
                                "• 5 fluxos otimizados",
-                               "• Plano de automação com esforço estimado"], 15, BRANCO, fundo=AZUL)
+                               "• Plano de automação com esforço e custo"], 15, BRANCO, fundo=AZUL)
 
-# 7 · Investimento
+# 7 · Cronograma
+s = slide_titulo("Cronograma", "Cerca de 7 horas suas no total, sem reuniões na semana dos fechamentos nem na semana da prova")
+marcos = [("19/10", "Kick-off e entrevistas"), ("26/10", "Entrevistas com Tamara e Vitória"),
+          ("15/11", "Entrega do mapeamento"), ("29/11", "Estrutura organizacional"),
+          ("13/12", "Sua prova (sem reuniões)"), ("18/12", "Apresentação final")]
+for i, (dt, t) in enumerate(marcos):
+    fundo = AMARELO if dt == "13/12" else (AZUL if dt in ("15/11", "18/12") else CLARO)
+    cor = BRANCO if fundo == AZUL else AZUL
+    caixa(s, 1.8 + i * 5.05, 6, 4.75, 5.5, [dt, t], 15, cor, fundo=fundo)
+
+# 8 · Investimento
 s = slide_titulo("Investimento", "Preço fechado. A implementação é orçada depois, por pacotes.")
 precos = [("Essencial", "R$ 7.800", "50% no aceite, 50% na entrega"),
           ("Completa (recomendada)", "R$ 14.800", "30% no aceite, 35% no mapeamento, 35% na entrega final")]
@@ -137,18 +167,19 @@ for i, (t, v, d) in enumerate(precos):
     cor = BRANCO if i == 1 else AZUL
     caixa(s, 1.8 + i * 15.6, 5.3, 14.6, 6.5, [t, v, d], 20, cor, True, fundo=fundo)
 caixa(s, 1.8, 12.6, 30, 4, ["A reunião inicial e esta proposta não foram cobradas.",
-                            "Fora do escopo: desenvolvimento de automações, integrações, suporte contínuo e licenças."],
+                            "Fora do escopo: automações, correção do Domínio, migração de contas, programa de bonificação e licenças."],
       14, CINZA)
 
-# 8 · Próximos passos
+# 9 · Próximos passos
 s = slide_titulo("Próximos passos")
-caixa(s, 1.8, 4.5, 30, 10, ["1. Escolha da opção e aceite da proposta",
+caixa(s, 1.8, 4.5, 30, 11, ["1. Escolha da opção e aceite da proposta",
                             "2. Acordo de confidencialidade",
-                            "3. Kick-off e agenda das entrevistas com a equipe",
-                            "", "Perguntas para hoje:",
-                            "• Quantas pessoas trabalham em cada área?",
-                            "• Qual dor, se resolvida primeiro, mais mudaria o seu dia a dia?",
-                            "• A equipe pode conversar antes das 10h, no almoço ou após 19h30?"], 18, AZUL)
+                            "3. Kick-off na semana de 19/10, com a Júlia como ponto focal",
+                            "", "Para confirmar hoje:",
+                            "• Quantos clientes há em cada serviço?",
+                            "• Qual processo, resolvido primeiro, mais devolve seu tempo?",
+                            "• A equipe pode conversar antes das 10h30 ou no almoço?",
+                            "• Quem vai corrigir a configuração do Domínio?"], 18, AZUL)
 
 prs.save(f"{SAIDA}/06-apresentacao-proposta.pptx")
 print("ok")

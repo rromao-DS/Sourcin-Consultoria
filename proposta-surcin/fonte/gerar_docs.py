@@ -11,7 +11,7 @@ from docx.oxml import OxmlElement
 SAIDA = sys.argv[1] if len(sys.argv) > 1 else "."
 AZUL = RGBColor(0x1F, 0x3A, 0x5F)
 CINZA = RGBColor(0x59, 0x59, 0x59)
-VERSAO = "Versão preliminar · 13/10/2026 · uso interno até revisão do Renato"
+VERSAO = "Versão 2 · 13/10/2026 · atualizada com a transcrição da reunião · uso interno até revisão do Renato"
 
 
 def novo_doc(titulo, subtitulo):
@@ -44,7 +44,7 @@ def novo_doc(titulo, subtitulo):
     r.font.size = Pt(9)
     r.font.color.rgb = CINZA
     rodape = d.sections[0].footer.paragraphs[0]
-    rodape.text = "Surcin Consultoria · Proposta de consultoria em organização e processos · Confidencial"
+    rodape.text = "Surcin · Proposta de consultoria em organização e processos · Confidencial"
     rodape.alignment = WD_ALIGN_PARAGRAPH.CENTER
     rodape.runs[0].font.size = Pt(8)
     rodape.runs[0].font.color.rgb = CINZA
@@ -124,163 +124,163 @@ def aviso(d, texto):
     d.add_paragraph()
 
 
-LEGENDA = ("Legenda usada neste documento: [FATO] confirmado na reunião ou no briefing; "
-           "[HIPÓTESE] inferência do consultor, a validar; [PREENCHER] completar com a "
-           "transcrição ou a gravação da reunião de 12/10/2026.")
+LEGENDA = ("Legenda: [FATO] dito pela Thamires na reunião de 12/10/2026 (o minuto da gravação aparece entre "
+           "parênteses); [HIPÓTESE] leitura do consultor, a validar; [CONFIRMAR] número ou nome que apareceu "
+           "de forma ambígua na transcrição automática.")
+
+CONSULTOR = "Renato [sobrenome] · R2 Tech Consulting [confirmar marca] · [e-mail] · [telefone]"
 
 
 # ---------------------------------------------------------------------------
 # 01 · Diagnóstico preliminar
 # ---------------------------------------------------------------------------
 def diagnostico():
-    d = novo_doc("Diagnóstico preliminar", "Surcin Consultoria · leitura da reunião de descoberta")
-    aviso(d, "Este documento foi montado antes da chegada da transcrição. Tudo que não está marcado "
-             "como [FATO] precisa ser conferido com a gravação antes de ir para a Thamires. "
-             "Nenhum número, processo ou volume da empresa foi inventado: os campos vazios estão "
-             "marcados como [PREENCHER].")
+    d = novo_doc("Diagnóstico preliminar", "Surcin · leitura da reunião de descoberta de 12/10/2026")
+    aviso(d, "Fonte: transcrição automática da reunião de 12/10/2026 (2h38). Transcrições automáticas trocam "
+             "nomes e números; os pontos marcados [CONFIRMAR] devem ser conferidos com a gravação ou com a "
+             "Thamires. Nada aqui foi acrescentado além do que ela disse.")
     par(d, LEGENDA, italico=True)
 
-    h(d, "1. O que já foi feito")
-    par(d, "Em 12/10/2026 foi realizada a reunião de descoberta com a Thamires, com duração de cerca "
-           "de 2h30. Nela, a cliente apresentou a empresa de ponta a ponta. Por isso, essa reunião é "
-           "tratada como a primeira parte do diagnóstico, e não como uma conversa comercial prévia.")
-    par(d, "O que ainda falta para fechar o diagnóstico: ouvir os funcionários que executam as tarefas, "
-           "entender os insumos (inputs) de cada rotina, de onde vêm, quem os produz e quem depende deles.")
+    h(d, "1. Resumo executivo")
+    par(d, "A Surcin é um escritório pequeno que já tem processos desenhados, mas ainda depende da Thamires "
+           "para quase tudo. Ela reconstruiu a empresa a partir de 2023 com passo a passos, checklists e "
+           "rotinas no Trello, e recuperou cerca de 90% dos clientes que havia perdido (00:11). O gargalo "
+           "atual não é falta de processo, é falta de eficiência e de autonomia da equipe: ela revisa e "
+           "corrige tudo, e um erro de configuração no Domínio em agosto gerou imposto pago errado, multa, "
+           "um prejuízo de cerca de R$ 10 mil e a perda de um cliente (00:26 a 00:29).")
+    par(d, "Ela tem prazo pessoal e financeiro: uma prova de certificação em 13/12/2026, caixa garantido por um "
+           "Pronampe até novembro e a meta de entrar em janeiro com a casa arrumada para contratar um contador "
+           "e voltar a investir em vendas (00:31 a 00:37, 02:14).")
+    par(d, "Frase dela que resume o objetivo: \"Hoje eu sinto que eu tenho um processo. Esse processo ele só não "
+           "tá eficiente. Se eu melhorar isso, eu consigo escalar com as mesmas pessoas.\" (01:14)", italico=True)
 
-    h(d, "2. Perfil da empresa")
-    tabela(d, ["Item", "Situação", "Fonte"], [
-        ["Responsável / decisora", "Thamires, contadora e advogada de formação, dona do escritório", "[FATO] briefing"],
-        ["Tipo de negócio", "Escritório próprio com serviços contábeis [confirmar se presta serviços jurídicos também]", "[FATO] / [PREENCHER]"],
-        ["Áreas identificadas", "Departamento Pessoal, Financeiro, Contabilidade, Vendas", "[FATO] briefing"],
-        ["Objetivo declarado", "Organizar e automatizar os processos da empresa", "[FATO] briefing"],
-        ["Número de funcionários e por área", "", "[PREENCHER]"],
-        ["Número de clientes atendidos", "", "[PREENCHER]"],
-        ["Volume mensal (folhas, lançamentos, guias, contratos)", "", "[PREENCHER]"],
-        ["Faturamento ou porte (se ela citou)", "", "[PREENCHER]"],
-    ], [4.5, 8, 3.5])
+    h(d, "2. A empresa")
+    tabela(d, ["Item", "O que foi dito", "Fonte"], [
+        ["Proposta de valor", "Fazer a gestão do empresário de ponta a ponta: contabilidade, financeiro (onde ela mais se encontra) e jurídico consultivo e preventivo", "[FATO] 00:05"],
+        ["Estrutura societária", "Três CNPJs: contabilidade, financeiro e jurídico, separados por questão tributária", "[FATO] 01:02"],
+        ["Clientes de contabilidade", "Cerca de 40; o fiscal do mês passado cobriu 44 clientes", "[FATO] 01:55 e 02:00"],
+        ["Clientes de financeiro (BPO)", "Entre 12 e 16, conforme o trecho; Vitória cuida de todos", "[FATO] 00:38, 00:46, 01:02 [CONFIRMAR]"],
+        ["Departamento Pessoal", "Cerca de 25 vidas; 4 ou 5 clientes com funcionários; a maioria dos clientes é PJ", "[FATO] 00:40"],
+        ["Jurídico", "Cerca de 20 processos em andamento, herdados de uma sociedade desfeita, em fase final; contratos e societário (abertura de empresas). Hoje não gera receita recorrente", "[FATO] 00:43, 01:45"],
+        ["Outros serviços", "Revenda de certificado digital, imposto de renda (pontual), parcerias com outras contabilidades, clientes do Lucro Presumido", "[FATO] 00:52 a 00:53"],
+        ["Situação financeira", "Prejuízo de agosto; Pronampe garante caixa até novembro; dezembro apertado; pagamento começa em fevereiro", "[FATO] 00:31, 01:33"],
+        ["Decisões já tomadas", "Não contratar até o fim do ano; contratar em janeiro um contador experiente no Domínio; tráfego pago pausado (cerca de R$ 1 mil em anúncios), social media mantida", "[FATO] 00:30, 01:49, 02:12"],
+    ], [3.5, 9.5, 3])
 
-    h(d, "3. Ferramentas citadas")
-    par(d, "As ferramentas abaixo foram mencionadas na reunião. A finalidade e o uso efetivo de cada uma "
-           "ainda precisam ser confirmados.")
-    tabela(d, ["Ferramenta", "Uso provável", "Área", "Status"], [
-        ["Conta Azul", "Gestão financeira / ERP [HIPÓTESE]", "Financeiro", "[PREENCHER] uso real e quem acessa"],
-        ["Domínio", "Sistema contábil e fiscal / folha [HIPÓTESE]", "Contabilidade, DP", "[PREENCHER]"],
-        ["Veri (veri.com.br)", "[PREENCHER] finalidade", "[PREENCHER]", "[PREENCHER]"],
-        ["Jusbrasil", "Pesquisa jurídica / acompanhamento de processos [HIPÓTESE]", "[PREENCHER]", "[PREENCHER]"],
-        ["Microsoft OneDrive", "Armazenamento e compartilhamento de arquivos [HIPÓTESE]", "Todas", "[PREENCHER] organização das pastas"],
-        ["Trello", "Gestão de tarefas [HIPÓTESE]", "[PREENCHER]", "[PREENCHER] quem usa e como"],
-        ["NetsApp", "[PREENCHER] finalidade", "[PREENCHER]", "[PREENCHER]"],
-    ], [3, 5.5, 3, 4.5])
+    h(d, "3. Equipe atual")
+    tabela(d, ["Pessoa", "Função hoje", "Observações dela", "Fonte"], [
+        ["Thamires", "Direção, técnica contábil e jurídica, fiscal (absorveu após a saída da contadora), reuniões de fechamento, comercial", "Tudo passa por ela; revisa o trabalho de todos", "00:18, 00:30"],
+        ["Júlia", "Secretária e braço direito: atendimento, WhatsApp, agenda, Trello, implantação de novos clientes, propostas no Canva, envio de impostos, apoio no fiscal (confere notas e XML)", "Vê a empresa inteira; candidata a supervisora em 2027, condicionado a graduação", "00:15 a 00:19, 01:04, 01:35"],
+        ["Vitória", "Financeiro operacional: pagamentos (terças e sextas), emissão de notas, conciliação no Conta Azul, preparação do fechamento", "Muito boa quando o processo está desenhado; ainda precisa de ajuda na classificação de despesas. De férias até 28/10 [CONFIRMAR]", "00:13 a 00:15, 01:21, 01:34"],
+        ["Tamara", "Hoje divide DP (folha), conciliações e emissão de notas; a partir de novembro, só DP", "Sem experiência anterior; está gostando do DP", "00:39 a 00:41, 02:05"],
+        ["Alana", "Estagiária do jurídico: processos em andamento e apoio no societário", "Trabalha só quarta e sexta, paga por hora; tudo precisa de revisão; a permanência está em reavaliação", "00:42 a 00:43, 01:40 a 01:42, 02:18"],
+    ], [2.3, 6, 5.2, 2.5])
+    par(d, "A contadora contratada para assumir a contabilidade saiu depois do erro de agosto. Desde então a área "
+           "não tem responsável além da Thamires (00:30).")
 
-    h(d, "4. Necessidades, dores e expectativas")
-    par(d, "Preencher com a transcrição. Para cada dor, registrar a frase da cliente (ou o minuto da "
-           "gravação), a área afetada e o impacto que ela descreveu.")
-    tabela(d, ["#", "Dor ou necessidade (palavras da cliente)", "Área", "Impacto citado", "Minuto na gravação"],
-           [[str(i), "[PREENCHER]", "", "", ""] for i in range(1, 7)], [0.8, 6.5, 2.5, 3.5, 2.7])
-    par(d, "Expectativas a registrar: o que ela considera sucesso, em que prazo espera ver resultado, "
-           "se mencionou orçamento, e se quer autonomia da equipe ou um serviço gerenciado.")
+    h(d, "4. Ferramentas e uso real")
+    tabela(d, ["Ferramenta", "Uso descrito na reunião", "Fonte"], [
+        ["Trello", "Principal ferramenta de gestão: rotinas diárias e mensais por pessoa, pendências, checklists de novo cliente e de abertura de empresa. Ela atribui ao Trello a queda nos erros", "01:03 a 01:07"],
+        ["OneDrive / Office", "Nuvem organizada por frente de serviço, com padrão de pastas por cliente; pasta Geral com acessos, passo a passos e modelos. Toda a equipe trabalha na nuvem", "00:52 a 00:54, 01:03"],
+        ["Google Agenda", "Agenda central da operação, controlada pela Júlia", "00:51"],
+        ["Veri", "Suporte à contabilidade: aplicativo do cliente com impostos, certidões e documentos, modelos de contrato. A partir de novembro a comunicação com clientes de contabilidade será só pelo aplicativo", "01:15 a 01:17"],
+        ["Domínio", "Sistema contábil e fiscal. Configuração errada desde a migração; hoje o fiscal é feito direto no portal da Receita", "01:17"],
+        ["Conta Azul", "Operação dos clientes do financeiro: conciliação bancária, extratos, plano de contas personalizado. A emissão de nota a partir da conciliação ainda não foi configurada", "01:20, 00:40"],
+        ["Plataforma de atendimento (WhatsApp)", "Número único com vários usuários; a Júlia recebe e distribui as conversas para a equipe [CONFIRMAR se é o NetsApp citado no briefing]", "01:54 a 01:55"],
+        ["Jusbrasil", "IA jurídica e modelos de petição; o monitoramento automático dos processos ainda não foi configurado", "01:43 a 01:44"],
+        ["Canva", "Modelos de proposta comercial preenchidos pela Júlia", "01:22"],
+        ["Claude e Lovable", "Usados pela Thamires para o fechamento financeiro: o primeiro levou 5 horas, os últimos de 1 a 2 horas, refinando o prompt a cada mês", "00:33 a 00:35"],
+        ["ChatGPT", "Usado pela Júlia no atendimento", "01:55"],
+    ], [3.5, 10, 2.5])
+    par(d, "Ela quer recriar as contas (e-mail, nuvem, Trello, Claude, Lovable) do zero no novo domínio da Surcin, "
+           "porque o pacote antigo vai expirar (00:59 a 01:00, 02:10).")
 
-    h(d, "5. Leitura preliminar do consultor")
-    par(d, "Observações que se apoiam apenas no que já se sabe e que servem como hipóteses de trabalho:")
+    h(d, "5. Processos que já existem")
+    par(d, "Processos citados com algum nível de documentação (passo a passo, checklist ou rotina no Trello):")
+    tabela(d, ["#", "Processo", "Quem executa", "Situação descrita"], [
+        ["1", "Atendimento e triagem de demandas", "Júlia", "Funciona, mas concentra tudo nela"],
+        ["2", "Comercial: primeiro atendimento, checklist, proposta, reunião", "Júlia e Thamires", "Checklist e modelos prontos"],
+        ["3", "Implantação de novo cliente de contabilidade", "Júlia", "Checklist pronto; precisa de atualização"],
+        ["4", "Implantação de novo cliente de financeiro", "Júlia e Vitória", "Checklist pronto; inclui planilha, Trello e Conta Azul"],
+        ["5", "Abertura de empresa (societário)", "Júlia, Alana, Thamires", "Checklist no Trello; abertura em Campinas gravada, sem refinar"],
+        ["6", "Fiscal mensal: XML, apuração, guia, recibos, envio ao cliente", "Thamires e Júlia", "Feito fora do Domínio; maior risco (erro de agosto)"],
+        ["7", "Pagamentos dos clientes do financeiro (terças e sextas)", "Vitória", "Informações de pagamentos fixos desorganizadas em parte dos clientes"],
+        ["8", "Emissão de notas fiscais", "Tamara e Vitória", "Feita por fora do Conta Azul"],
+        ["9", "Conciliação e fechamento mensal com reunião de resultado", "Vitória e Thamires", "Conciliação concentrada no fim do mês; cerca de 15 reuniões de 1 a 2 h na primeira semana"],
+        ["10", "Folha e rotinas de DP", "Tamara", "Volume baixo; pendências antigas a organizar"],
+        ["11", "Acompanhamento de processos jurídicos", "Alana e Thamires", "Revisão manual de todos os processos"],
+    ], [0.8, 6.2, 3.5, 5.5])
+
+    h(d, "6. Dores, objetivos e expectativas")
+    tabela(d, ["Dor ou objetivo (palavras dela)", "Área", "Fonte"], [
+        ["\"Tudo tá centralizado em mim. Eu não tenho o direito de ficar doente.\"", "Gestão", "00:18"],
+        ["Revisar e corrigir tudo; dúvidas simples da equipe chegam a ela", "Todas", "00:15, 00:39, 01:27"],
+        ["Erro de configuração no Domínio: imposto recolhido errado, multa, cerca de R$ 10 mil e um cliente perdido", "Contabilidade", "00:26 a 00:29"],
+        ["Contabilidade sem responsável desde a saída da contadora", "Contabilidade", "00:30"],
+        ["Fechamento financeiro lento: conciliação no fim do mês, reuniões só na segunda ou terceira semana", "Financeiro", "01:31 a 01:32"],
+        ["Escalar sem contratar: Vitória passar de 15 para 30 clientes", "Financeiro", "00:46, 01:25"],
+        ["Ter tempo para estudar para a prova de 13/12", "Pessoal", "00:36, 02:14"],
+        ["Equipe com mais autonomia", "Gestão", "00:44"],
+        ["Avaliar a produtividade individual e criar uma remuneração variável por pontos", "Pessoas", "00:46, 01:57, 02:21"],
+        ["Retomar o comercial (tráfego pago, possível agente de WhatsApp/CRM), sem atendimento robotizado", "Vendas", "00:45, 01:55"],
+        ["Ter um assistente de dúvidas por setor", "Todas", "00:39"],
+        ["Estruturar no futuro uma consultoria jurídica para os clientes", "Jurídico", "01:45"],
+    ], [10, 3, 3])
+    par(d, "Disponibilidade dela: esta semana está cheia; a partir de 19/10 pretende estudar de manhã e trabalhar à "
+           "tarde, com tempo para o projeto. A primeira semana de cada mês concentra as reuniões de fechamento "
+           "(02:15 a 02:17).")
+
+    h(d, "7. Leitura do consultor")
     lista(d, [
-        ("[HIPÓTESE] Muitas ferramentas para um escritório pequeno. ",
-         "Sete sistemas citados indicam risco de informação duplicada e retrabalho entre eles. A confirmar no inventário."),
-        ("[HIPÓTESE] Dependência da dona. ",
-         "Uma empresária com dupla formação tende a concentrar decisões e conhecimento técnico. A confirmar nas entrevistas."),
-        ("[HIPÓTESE] Responsabilidades pouco formalizadas. ",
-         "O pedido de organizar a empresa sugere que papéis e fluxos não estão escritos. Por isso a estrutura organizacional entra na proposta."),
-        ("[HIPÓTESE] Dados sensíveis. ",
-         "DP trata dados pessoais e o escritório tem sigilo profissional. Qualquer automação passa por LGPD e acesso mínimo."),
-        ("[HIPÓTESE] Domínio com integração limitada. ",
-         "Não prometer automação dentro do Domínio antes de verificar o que ele permite exportar ou integrar."),
+        ("[HIPÓTESE] O ponto de partida é bom. ", "Há documentação, padrão de pastas e rotinas no Trello. O mapeamento parte do que existe e não do zero, o que reduz esforço."),
+        ("[HIPÓTESE] O maior risco está no fiscal. ", "Sem contador, com o Domínio mal configurado e com execução manual, é onde um erro custa mais caro. A correção da configuração exige o suporte do Domínio ou um especialista no sistema."),
+        ("[HIPÓTESE] A Júlia é ponto único de falha. ", "Ela recebe, distribui e acompanha tudo. Formalizar o papel dela e um substituto é tão importante quanto promovê-la."),
+        ("[HIPÓTESE] A remuneração variável depende de papéis claros. ", "Sem descrição de função e entregas medíveis, um programa de pontos vira discussão. A estrutura organizacional é o pré-requisito."),
+        ("[HIPÓTESE] Há ganhos rápidos sem automação. ", "Configurar a emissão de nota pelo Conta Azul, o monitoramento de processos no Jusbrasil e a conciliação semanal resolvem parte das dores antes de qualquer desenvolvimento."),
+        ("[HIPÓTESE] Custo de IA precisa entrar na conta. ", "O uso do Claude por várias pessoas tem limites e custo; quem usa e para quê deve sair do plano de automação."),
     ])
 
-    h(d, "6. Lacunas e perguntas objetivas")
-    par(d, "Use esta lista para conferir a gravação. O que a gravação não responder vira pergunta para a "
-           "Thamires na apresentação de quinta ou na primeira entrevista.")
+    h(d, "8. Perguntas que ainda faltam responder")
     blocos = {
-        "Empresa e pessoas": [
-            "Quantas pessoas trabalham hoje no escritório e em qual área está cada uma?",
-            "Quem é responsável por cada área? Existe alguém além da Thamires que toma decisões?",
-            "Há funcionários terceirizados, estagiários ou parceiros externos (ex.: advogados, correspondentes)?",
-            "Quantos clientes o escritório atende hoje, e de que tipo (MEI, Simples, Lucro Presumido, pessoa física)?",
+        "Números e prioridades": [
+            "Quantos clientes há hoje em cada serviço (contabilidade, financeiro, DP, jurídico)?",
+            "Qual processo, se resolvido primeiro, mais devolveria tempo a você: fiscal, fechamento financeiro ou implantação de clientes?",
+            "Quais passo a passos estão atualizados e quais precisam de revisão?",
         ],
-        "Departamento Pessoal": [
-            "Quantas folhas de pagamento são processadas por mês?",
-            "Como chegam as informações de admissão, férias e rescisão dos clientes (e-mail, WhatsApp, planilha, sistema)?",
-            "Quais etapas da folha são feitas no Domínio e quais são manuais?",
+        "Equipe e agenda": [
+            "A equipe pode participar de entrevistas antes das 10h30, no almoço ou após as 19h30?",
+            "A Júlia pode ser a ponto focal do projeto? Quantas horas por semana ela pode dedicar?",
+            "A Vitória volta de férias em 28/10?",
+            "A Alana continua em 2027? O contador que você pretende contratar entraria no desenho da estrutura?",
         ],
-        "Financeiro": [
-            "O Conta Azul é usado para o financeiro do próprio escritório, dos clientes ou de ambos?",
-            "Como é feita a cobrança dos honorários e quem acompanha a inadimplência?",
-            "Quem concilia as contas e com que frequência?",
+        "Sistemas": [
+            "Qual é o nome da plataforma de atendimento do WhatsApp? É o NetsApp?",
+            "Quem vai corrigir a configuração do Domínio, e até quando?",
+            "Quando será a migração das contas para o novo domínio da Surcin, e quem cuida dela?",
+            "Você prefere ficar no Microsoft ou migrar para o Google?",
         ],
-        "Contabilidade": [
-            "Como os clientes enviam documentos (notas, extratos, comprovantes) e com que atraso costumam enviar?",
-            "Quais obrigações e prazos mensais mais geram retrabalho ou multa?",
-            "Quanto do lançamento é importado automaticamente e quanto é digitado?",
-        ],
-        "Vendas": [
-            "Como chegam os novos clientes hoje (indicação, internet, parceiros)?",
-            "Existe proposta padrão, contrato padrão e processo de entrada (onboarding) do cliente?",
-            "Quem faz o atendimento comercial e acompanha os orçamentos enviados?",
-        ],
-        "Ferramentas e dados": [
-            "Para que serve o Veri e o NetsApp no dia a dia, e quem usa?",
-            "Quem tem acesso de administrador a cada sistema?",
-            "Como estão organizadas as pastas no OneDrive? Há padrão de nomes?",
-            "O Trello é usado por toda a equipe ou só por algumas pessoas?",
-        ],
-        "Expectativas e condições": [
-            "Qual é a dor que, se resolvida primeiro, mais mudaria o dia a dia dela?",
-            "Em quanto tempo ela espera ver o primeiro resultado?",
-            "Ela tem uma faixa de investimento em mente para esta etapa?",
-            "A equipe pode participar de entrevistas fora do horário comercial (antes das 10h ou após 19h30) ou em horário de almoço?",
-            "Ela prefere que a equipe aprenda a manter as melhorias ou que o consultor mantenha?",
+        "Investimento": [
+            "Qual faixa de investimento cabe agora, considerando o caixa até dezembro?",
+            "Há orçamento separado para ferramentas (licenças do Claude, API de WhatsApp)?",
         ],
     }
     for titulo, perguntas in blocos.items():
         h(d, titulo, 3)
-        lista(d, perguntas, numerada=False)
+        lista(d, perguntas)
 
-    h(d, "7. Próximos passos do diagnóstico")
+    h(d, "9. Materiais a receber")
     lista(d, [
-        "Conferir a transcrição e a gravação e preencher os campos [PREENCHER].",
-        "Apresentar a proposta na quinta-feira, 15/10/2026, e validar as lacunas principais com a Thamires.",
-        "Após o aceite: entrevistas com os funcionários de cada área para levantar os insumos de cada tarefa.",
-        "Consolidar o mapeamento e a proposta de estrutura organizacional (Etapas 1 e 2 da proposta).",
-    ], numerada=True)
+        "Gravação da reunião, apresentação e resumo da trajetória que ela ficou de enviar por e-mail (00:04, 02:36).",
+        "Acesso de leitura ao Trello, à pasta Geral do OneDrive e aos passo a passos, via Júlia (02:09).",
+    ])
     d.save(f"{SAIDA}/01-diagnostico-preliminar.docx")
 
 
 # ---------------------------------------------------------------------------
-# 02 · Estrutura organizacional (hipótese inicial)
+# 02 · Estrutura organizacional
 # ---------------------------------------------------------------------------
-def estrutura():
-    d = novo_doc("Estrutura organizacional", "Hipótese inicial para validação · organograma, áreas, papéis e responsabilidades")
-    aviso(d, "Este é um ponto de partida para conversa, não uma recomendação final. Ainda não se sabe "
-             "quantas pessoas trabalham no escritório nem como as tarefas estão divididas hoje. A versão "
-             "recomendada só sai depois das entrevistas com os funcionários (Etapas 1 e 2 da proposta).")
-
-    h(d, "1. É viável recomendar uma estrutura agora?")
-    par(d, "Sim, como hipótese. O que já se sabe (quatro áreas e uma sócia que concentra a direção) permite "
-           "desenhar um modelo de referência e mostrar à Thamires como ficará o resultado. Não é possível, "
-           "ainda, dizer quem deve ocupar cada papel, nem se alguma área precisa de mais ou menos pessoas.")
-    par(d, "Recomendação para quinta-feira: mostrar o modelo abaixo como exemplo do entregável e pedir que "
-           "ela corrija em voz alta. As correções dela já são dados de diagnóstico.")
-
-    h(d, "2. Organograma de referência")
-    par(d, "Modelo funcional simples, adequado a escritórios de pequeno porte. Os nomes das áreas vêm da "
-           "reunião; a camada de coordenação e o apoio administrativo são [HIPÓTESE].")
-    org = [
-        "Direção · Thamires (sócia, responsável técnica contábil e jurídica)",
-        "    ├── Departamento Pessoal · responsável: [PREENCHER]",
-        "    ├── Contabilidade e Fiscal · responsável: [PREENCHER]",
-        "    ├── Financeiro (do próprio escritório) · responsável: [PREENCHER]",
-        "    ├── Comercial / Vendas · responsável: [PREENCHER]",
-        "    └── Apoio administrativo e atendimento [HIPÓTESE: confirmar se existe]",
-    ]
-    for linha in org:
+def org_bloco(d, linhas):
+    for linha in linhas:
         p = d.add_paragraph()
         r = p.add_run(linha)
         r.font.name = "Consolas"
@@ -288,61 +288,101 @@ def estrutura():
         p.paragraph_format.space_after = Pt(0)
     d.add_paragraph()
 
-    h(d, "3. Missão e responsabilidades de cada área")
-    tabela(d, ["Área", "Missão (proposta)", "Responsabilidades típicas [HIPÓTESE]", "Sistemas citados"], [
-        ["Direção", "Definir prioridades, aprovar e responder tecnicamente",
-         "Aprovação de entregas críticas, relacionamento com clientes-chave, decisões de preço e contratação", "Todos (consulta)"],
-        ["Departamento Pessoal", "Garantir folha e obrigações trabalhistas no prazo",
-         "Admissões, folha, férias, rescisões, encargos, atendimento a dúvidas trabalhistas dos clientes", "Domínio [confirmar]"],
-        ["Contabilidade e Fiscal", "Manter escrituração e obrigações dos clientes em dia",
-         "Recebimento de documentos, lançamentos, apuração de impostos, obrigações acessórias, balanços", "Domínio [confirmar]"],
-        ["Financeiro", "Manter o caixa do escritório saudável",
-         "Faturamento de honorários, cobrança, contas a pagar, conciliação, relatórios para a Direção", "Conta Azul [confirmar]"],
-        ["Comercial / Vendas", "Trazer e integrar novos clientes",
-         "Atendimento a interessados, propostas, contratos, onboarding do cliente", "[PREENCHER]"],
-    ], [3, 3.8, 6.2, 3])
 
-    h(d, "4. Papéis transversais sugeridos")
-    par(d, "Em equipes pequenas, uma mesma pessoa acumula papéis. Formalizá-los evita que tarefas fiquem sem dono.")
+def estrutura():
+    d = novo_doc("Estrutura organizacional", "Estrutura atual e hipótese de estrutura proposta · para validação")
+    aviso(d, "A estrutura atual vem do que a Thamires descreveu em 12/10/2026. A estrutura proposta reúne as ideias "
+             "discutidas na reunião e é uma hipótese: a versão recomendada sai depois das entrevistas com a equipe "
+             "(Etapa 2 da proposta).")
+
+    h(d, "1. Estrutura atual (como é)")
+    org_bloco(d, [
+        "Thamires · direção, técnica contábil e jurídica, fiscal, comercial, reuniões de fechamento",
+        "    ├── Júlia · secretária: atendimento, implantação de clientes, apoio no fiscal",
+        "    ├── Vitória · financeiro (BPO): pagamentos, notas, conciliação, preparação do fechamento",
+        "    ├── Tamara · DP + apoio no financeiro e notas (só DP a partir de novembro)",
+        "    └── Alana · estagiária do jurídico (quarta e sexta)",
+    ])
+    par(d, "Pontos de atenção que ela mesma levantou:")
     lista(d, [
-        ("Dono do processo: ", "responde pelo resultado de um fluxo de ponta a ponta (ex.: folha mensal), mesmo que outras pessoas executem partes."),
-        ("Ponto focal do cliente: ", "pessoa única de contato para cada cliente, que recebe e distribui as demandas."),
-        ("Responsável por ferramentas: ", "mantém acessos, padrões de pastas no OneDrive e quadros do Trello."),
-        ("Guardião de dados (LGPD): ", "controla quem acessa dados pessoais e documentos sigilosos."),
+        "Contabilidade e fiscal sem responsável técnico além da Thamires desde a saída da contadora.",
+        "Todas as dúvidas e revisões sobem para a Thamires.",
+        "A Júlia acumula atendimento, distribuição de demandas, implantação, comercial e parte do fiscal.",
+        "A Tamara alterna entre três áreas diferentes (até outubro).",
+        "O jurídico consome revisão da Thamires e não gera receita recorrente.",
     ])
 
-    h(d, "5. Matriz de responsabilidades (modelo RACI)")
-    par(d, "R = executa · A = aprova e responde · C = é consultado · I = é informado. "
-           "Exemplo de preenchimento; a matriz real será construída nas entrevistas.")
-    tabela(d, ["Atividade (exemplo)", "Direção", "DP", "Contábil", "Financeiro", "Comercial"], [
-        ["Fechar folha mensal de um cliente", "I", "R/A", "C", "I", "-"],
-        ["Apurar impostos do mês", "A", "C", "R", "I", "-"],
-        ["Faturar e cobrar honorários", "A", "-", "-", "R", "I"],
-        ["Enviar proposta a novo cliente", "A", "C", "C", "C", "R"],
-        ["Cadastrar novo cliente nos sistemas", "I", "R", "R", "R", "A"],
-    ], [5.5, 2, 1.8, 2, 2.2, 2.3])
+    h(d, "2. Hipótese de estrutura proposta (como poderia ser)")
+    par(d, "Desenho discutido na reunião (01:38 a 01:51), organizado por fluxo do cliente: entrada, operação e revisão técnica.")
+    org_bloco(d, [
+        "Thamires · direção, estratégia, relacionamento com clientes-chave, jurídico consultivo",
+        "    ├── Revisão técnica contábil · contador(a) sênior a contratar em 2027 [decisão dela]",
+        "    │       └── Contabilidade e fiscal (operação)",
+        "    ├── Entrada e relacionamento · Júlia",
+        "    │       comercial, implantação de clientes, atendimento e triagem",
+        "    ├── Financeiro (BPO) · Vitória",
+        "    ├── Departamento Pessoal · Tamara [avaliar se absorve apoio ao societário]",
+        "    └── Jurídico · processos legados [avaliar: manter estágio ou absorver com monitoramento no Jusbrasil]",
+    ])
+    par(d, "Racional: a área que mais cresce com novos clientes é a de entrada e suporte, não a operação; Vitória e "
+           "Tamara podem atender mais clientes com processos claros; a revisão técnica deixa de depender da "
+           "Thamires quando houver um(a) contador(a) sênior (01:38 a 01:40, 02:04).", italico=True)
 
-    h(d, "6. O que precisamos confirmar para fechar a estrutura")
+    h(d, "3. Papéis e responsabilidades (proposta inicial)")
+    tabela(d, ["Papel", "Missão", "Responsabilidades principais", "Entregas que podem virar indicador"], [
+        ["Direção (Thamires)", "Definir prioridades e responder tecnicamente", "Decisões de preço e contratação, clientes-chave, aprovação de exceções", "Reuniões de resultado realizadas no prazo"],
+        ["Revisão técnica contábil (a contratar)", "Garantir a qualidade técnica da contabilidade e do fiscal", "Revisão das apurações, configuração do Domínio, resposta a dúvidas técnicas", "Obrigações entregues no prazo, sem multa"],
+        ["Entrada e relacionamento (Júlia)", "Trazer, implantar e atender clientes", "Primeiro atendimento, proposta, contrato, implantação, triagem das demandas", "Tempo de implantação, demandas distribuídas no dia"],
+        ["Financeiro (Vitória)", "Manter o financeiro dos clientes em dia", "Pagamentos, notas, conciliação semanal, preparação do fechamento", "Clientes conciliados até o dia 1º, fechamentos entregues na 1ª semana"],
+        ["Departamento Pessoal (Tamara)", "Garantir folha e obrigações trabalhistas", "Folha até o 5º dia útil, admissões, rescisões, pendências antigas", "Folhas no prazo, pendências zeradas"],
+        ["Jurídico (Alana ou Thamires)", "Não perder prazos dos processos legados", "Acompanhamento, petições simples, apoio ao societário", "Prazos cumpridos"],
+    ], [3.2, 3.5, 5.3, 4])
+
+    h(d, "4. Papéis transversais")
     lista(d, [
-        "Quantas pessoas existem e quais tarefas cada uma executa de fato hoje.",
-        "Se há alguém, além da Thamires, com autonomia para aprovar entregas.",
-        "Se o Financeiro cuida só do escritório ou também presta serviço financeiro a clientes.",
-        "Se existe atendimento/recepção separado e quem responde aos clientes no WhatsApp e e-mail.",
-        "Se Vendas é uma função de alguém ou se a própria Thamires vende.",
+        ("Substituto da Júlia na triagem: ", "evita que a entrada de demandas pare quando ela não está."),
+        ("Dono de cada processo: ", "uma pessoa responde pelo resultado de ponta a ponta, mesmo que outras executem partes."),
+        ("Responsável por ferramentas e acessos: ", "Trello, OneDrive, migração para o novo domínio, licenças de IA."),
+        ("Guardião de dados (LGPD): ", "controla acesso a dados pessoais da folha e a documentos sigilosos."),
+    ])
+
+    h(d, "5. Matriz de responsabilidades (exemplo com os processos reais)")
+    par(d, "R = executa · A = aprova e responde · C = é consultado · I = é informado. A matriz final sai das entrevistas.")
+    tabela(d, ["Processo", "Thamires", "Júlia", "Vitória", "Tamara", "Revisor contábil"], [
+        ["Implantação de novo cliente", "I", "R/A", "C", "C", "C"],
+        ["Fiscal mensal e envio das guias", "A (hoje R)", "R (envio)", "-", "-", "R (futuro)"],
+        ["Conciliação e fechamento financeiro", "A (reunião)", "I", "R", "-", "-"],
+        ["Emissão de notas", "I", "I", "R/A", "C", "-"],
+        ["Folha mensal", "I", "I", "-", "R/A", "C"],
+        ["Proposta a novo cliente", "A", "R", "C", "C", "-"],
+    ], [5, 2.2, 2, 2, 2, 2.8])
+
+    h(d, "6. Ligação com a remuneração variável")
+    par(d, "A Thamires quer um programa de pontos por produtividade (00:46, 02:21). A estrutura entrega a base que ele "
+           "precisa: papéis, entregas e indicadores por função. O desenho do programa (pesos, metas e valores) é uma "
+           "decisão dela e pode ser orçado à parte.")
+
+    h(d, "7. O que precisamos confirmar nas entrevistas")
+    lista(d, [
+        "Quanto tempo cada pessoa gasta hoje em cada rotina.",
+        "Se a Júlia quer e pode assumir comercial e implantação, e quem a substitui na triagem.",
+        "Se a Tamara tem capacidade para apoiar o societário depois de novembro.",
+        "O que a Thamires quer manter consigo e o que delega ao(à) futuro(a) contador(a).",
+        "O futuro do estágio jurídico.",
     ], numerada=True)
 
-    h(d, "7. Entregável final desta frente (Etapa 2 da proposta)")
+    h(d, "8. Entregável final desta frente")
     lista(d, [
-        "Organograma atual (como é) e organograma proposto (como deve ser).",
-        "Descrição de papéis por área: missão, responsabilidades, entregas e indicadores simples.",
-        "Matriz RACI das atividades principais.",
-        "Lista de sobreposições, lacunas de responsabilidade e dependências da Direção.",
+        "Organograma atual e proposto, validados com a Thamires.",
+        "Descrição de cada papel: missão, responsabilidades, entregas e indicadores.",
+        "Matriz de responsabilidades dos processos principais.",
+        "Lista de sobreposições, lacunas e dependências da direção, com plano de transição.",
     ])
     d.save(f"{SAIDA}/02-estrutura-organizacional-hipotese.docx")
 
 
 # ---------------------------------------------------------------------------
-# 03 · Metodologia de mapeamento de fluxos
+# 03 · Metodologia de mapeamento
 # ---------------------------------------------------------------------------
 def metodologia():
     d = novo_doc("Metodologia de mapeamento de processos",
@@ -350,36 +390,41 @@ def metodologia():
 
     h(d, "1. Princípios")
     lista(d, [
-        ("Entender antes de automatizar. ", "Nenhuma automação é proposta antes de o processo atual estar desenhado e validado por quem o executa."),
-        ("Ouvir quem faz. ", "A Thamires conhece o negócio; os funcionários conhecem os detalhes. As duas visões são necessárias."),
-        ("Começar pelo que dói mais. ", "Mapeamento detalhado apenas dos processos prioritários; os demais ficam em nível macro."),
-        ("Sigilo e LGPD. ", "Documentos de clientes são vistos apenas como exemplo, com acesso mínimo e acordo de confidencialidade."),
-        ("Respeitar a rotina da equipe. ", "Entrevistas curtas (45 a 60 min), agendadas fora dos picos de fechamento."),
+        ("Partir do que já existe. ", "A Surcin já tem passo a passos, checklists e rotinas no Trello. O mapeamento começa por eles, e as entrevistas confirmam o que acontece de fato."),
+        ("Entender antes de automatizar. ", "Nenhuma automação é proposta antes de o processo atual estar desenhado e validado por quem executa."),
+        ("Ouvir quem faz. ", "A Thamires conhece o negócio; Júlia, Vitória e Tamara conhecem os detalhes do dia a dia."),
+        ("Respeitar a agenda. ", "Nada de entrevistas na primeira semana do mês (fechamentos) nem perto do dia 20 (impostos); conversas curtas, de cerca de 1 hora."),
+        ("Sigilo e LGPD. ", "Documentos de clientes vistos só como exemplo, com acesso mínimo e acordo de confidencialidade."),
     ])
 
     h(d, "2. Etapas do método")
-    etapas = [
-        ("Etapa A · Inventário de processos (macro). ",
-         "Listar todos os processos por área, com frequência, responsável e sistema. Resultado: cadeia de valor do escritório em uma página."),
-        ("Etapa B · Priorização. ",
-         "Pontuar cada processo de 1 a 5 em quatro critérios: dor relatada, volume/frequência, risco (multa, erro, sigilo) e facilidade de melhoria. Os de maior nota seguem para o mapeamento detalhado."),
-        ("Etapa C · Entrevistas com executores. ",
-         "Roteiro padrão (seção 3) para entender passos, insumos, saídas, tempo gasto e exceções. Sempre que possível, acompanhar a tarefa sendo feita."),
-        ("Etapa D · Desenho do fluxo atual (AS-IS). ",
-         "Diagrama em raias (uma raia por pessoa ou área), mostrando passos, decisões, sistemas e esperas. Ferramenta sugerida: draw.io ou Miro, salvos no OneDrive da cliente."),
-        ("Etapa E · Validação. ",
-         "O fluxo desenhado é revisado com quem executa e com a Thamires. Só fluxos validados seguem para análise."),
-        ("Etapa F · Análise de gargalos e dependências. ",
-         "Identificar esperas, retrabalho, digitação duplicada, aprovações concentradas e pontos únicos de falha. Montar a matriz de dependências entre pessoas e áreas."),
-        ("Etapa G · Fluxo otimizado (TO-BE). ",
-         "Primeiro simplificar (eliminar, padronizar, reorganizar responsabilidades), depois automatizar. Cada mudança indica ganho esperado e esforço."),
-        ("Etapa H · Backlog de automação. ",
-         "Lista priorizada das oportunidades, com estimativa de esforço em pacotes P, M ou G. Essa lista é a base da proposta de implementação, que é separada."),
-    ]
-    lista(d, etapas, numerada=False)
+    lista(d, [
+        ("A · Coleta do que existe. ", "Passo a passos da pasta Geral, quadros do Trello, checklists, planilha de cadastro de clientes e gravações de processos."),
+        ("B · Inventário e priorização. ", "Lista dos 11 processos identificados (seção 3), pontuados de 1 a 5 em dor, volume, risco (multa, erro, sigilo) e facilidade de melhoria."),
+        ("C · Entrevistas com executores. ", "Roteiro da seção 4, uma conversa por pessoa, acompanhando a tarefa sendo feita sempre que possível."),
+        ("D · Fluxo atual (AS-IS). ", "Diagrama em raias (uma por pessoa ou área), com passos, decisões, sistemas e esperas, salvo no OneDrive da Surcin."),
+        ("E · Validação. ", "Revisão com quem executa e com a Thamires."),
+        ("F · Gargalos e dependências. ", "Esperas, retrabalho, digitação duplicada, revisões concentradas na Thamires e pontos únicos de falha, em uma matriz pessoa × pessoa."),
+        ("G · Fluxo otimizado (TO-BE). ", "Primeiro simplificar e configurar o que as ferramentas já fazem; depois automatizar."),
+        ("H · Plano de automação. ", "Lista priorizada, com esforço estimado em pacotes e indicação de quem usa cada ferramenta de IA e a que custo."),
+    ])
 
-    h(d, "3. Roteiro de entrevista com funcionários")
-    par(d, "Duração: 45 a 60 minutos por pessoa. Uma entrevista por processo prioritário ou por pessoa-chave.")
+    h(d, "3. Processos identificados e prioridade inicial")
+    tabela(d, ["Processo", "Dor", "Volume", "Risco", "Prioridade inicial [HIPÓTESE]"], [
+        ["Fiscal mensal", "Alta", "44 clientes/mês", "Alto (multa)", "1"],
+        ["Conciliação e fechamento financeiro", "Alta", "12 a 16 clientes/mês", "Médio", "1"],
+        ["Implantação de novo cliente (contábil e financeiro)", "Média", "Cresce com vendas", "Médio", "2"],
+        ["Atendimento e triagem de demandas", "Alta", "Diário", "Médio", "2"],
+        ["Emissão de notas", "Média", "Recorrente", "Médio", "2"],
+        ["Pagamentos dos clientes do financeiro", "Média", "2x por semana", "Médio", "3"],
+        ["Folha e DP", "Baixa", "25 vidas", "Médio", "3"],
+        ["Comercial (lead a contrato)", "Média", "Baixo agora", "Baixo", "3"],
+        ["Abertura de empresa", "Baixa", "Eventual", "Médio", "3"],
+        ["Acompanhamento de processos jurídicos", "Baixa", "20 processos", "Alto (prazos)", "3"],
+        ["Pendências antigas de DP", "Baixa", "Pontual", "Médio", "Fora do mapeamento"],
+    ], [5.2, 1.8, 3.2, 2.6, 3.2])
+
+    h(d, "4. Roteiro de entrevista")
     lista(d, [
         "Quais são as suas tarefas em um mês típico? Quais são diárias, semanais e mensais?",
         "Para esta tarefa, o que você precisa receber para começar? De quem e por qual canal?",
@@ -388,53 +433,43 @@ def metodologia():
         "Quanto tempo leva, em média? E no pior mês?",
         "Onde você costuma esperar por alguém ou por um documento?",
         "O que você digita mais de uma vez em lugares diferentes?",
+        "Que dúvidas você leva para a Thamires com mais frequência?",
         "O que dá errado com mais frequência? O que acontece quando dá errado?",
-        "Quem precisa aprovar algo antes de você seguir?",
         "Se você pudesse mudar uma coisa nesta tarefa, o que seria?",
     ], numerada=True)
 
-    h(d, "4. Ficha de registro de cada processo")
+    h(d, "5. Ficha de registro de cada processo")
     tabela(d, ["Campo", "O que registrar"], [
-        ["Nome e área", "Ex.: Admissão de funcionário de cliente · DP"],
+        ["Nome e área", "Ex.: Fiscal mensal · Contabilidade"],
         ["Dono do processo", "Quem responde pelo resultado"],
-        ["Gatilho", "O que inicia o processo (pedido do cliente, data do mês etc.)"],
-        ["Insumos", "Documentos e informações necessárias, origem e canal"],
+        ["Gatilho e prazo", "O que inicia o processo e a data-limite (ex.: guias até o dia 20)"],
+        ["Insumos", "Documentos e informações, origem e canal (Veri, WhatsApp, portal)"],
         ["Passos e responsáveis", "Sequência, quem faz, em que sistema"],
         ["Saídas", "O que é entregue, para quem, formato e prazo"],
         ["Volume e tempo", "Quantas vezes por mês e quanto tempo por execução"],
-        ["Sistemas", "Domínio, Conta Azul, Trello, OneDrive, planilhas, WhatsApp etc."],
+        ["Documentação existente", "Passo a passo, checklist do Trello, gravação"],
         ["Problemas", "Esperas, retrabalho, erros, multas, reclamações"],
         ["Dados sensíveis", "Há dados pessoais ou sigilosos? Quem acessa?"],
     ], [4, 12])
 
-    h(d, "5. Como identificamos gargalos e dependências")
-    tabela(d, ["Sinal", "Como aparece", "Tipo de melhoria provável"], [
-        ["Espera", "Tarefa parada aguardando documento ou aprovação", "Prazos combinados, lembretes automáticos, checklist de envio"],
-        ["Retrabalho", "Mesmo dado digitado em dois sistemas", "Integração ou importação; padronização"],
-        ["Aprovação concentrada", "Tudo depende da Thamires", "Delegação com regras claras (estrutura organizacional)"],
-        ["Ponto único de falha", "Só uma pessoa sabe fazer", "Documentação do procedimento e treinamento cruzado"],
-        ["Erro recorrente", "Correções e multas frequentes", "Validações, checklists, conferência automática"],
-        ["Comunicação dispersa", "Pedidos por WhatsApp, e-mail e telefone", "Canal único de entrada e quadro de demandas"],
+    h(d, "6. Sinais de gargalo e tipo de melhoria")
+    tabela(d, ["Sinal", "Exemplo da Surcin", "Melhoria provável"], [
+        ["Revisão concentrada", "Tudo passa pela Thamires", "Critérios de revisão, papel de revisor técnico, assistente de dúvidas"],
+        ["Trabalho acumulado no fim do mês", "Conciliação feita só no fechamento", "Conciliação semanal, calendário de rotinas"],
+        ["Recurso da ferramenta não usado", "Nota emitida por fora do Conta Azul; monitoramento do Jusbrasil desligado", "Configuração antes de automação"],
+        ["Ponto único de falha", "Júlia na triagem; Thamires no fiscal", "Substituto definido e passo a passo atualizado"],
+        ["Instrução repetida", "Prompt do fechamento refeito a cada mês", "Transformar em rotina padronizada (skill) com revisão"],
+        ["Comunicação dispersa", "WhatsApp, e-mail e aplicativo da Veri", "Canal único por tipo de demanda"],
     ], [3.5, 6, 6.5])
-    par(d, "Matriz de dependências: tabela pessoa × pessoa (ou área × área) indicando quem depende de quem "
-           "para quais entregas. As células com mais dependências mostram onde a operação trava.")
 
-    h(d, "6. Critérios para propor uma automação")
+    h(d, "7. Critérios para propor uma automação")
     lista(d, [
-        "O processo está validado e simplificado antes de ser automatizado.",
-        "Há volume ou risco suficiente para justificar o esforço (horas economizadas × custo da hora da equipe).",
-        "Os sistemas envolvidos permitem exportação, importação ou integração (verificado, não suposto).",
+        "O processo está validado e simplificado.",
+        "Há volume ou risco que justifique o esforço (horas economizadas × custo da hora da equipe).",
+        "Os sistemas permitem integração (verificado, não suposto); o Domínio só depois de corrigida a configuração.",
         "Existe alguém da equipe responsável por operar e acompanhar a automação.",
+        "O custo recorrente de ferramentas (licenças de IA, API do WhatsApp) cabe no orçamento.",
         "O tratamento de dados pessoais está de acordo com a LGPD.",
-    ])
-
-    h(d, "7. Entregáveis do mapeamento")
-    lista(d, [
-        "Inventário macro de processos por área e matriz de priorização.",
-        "Fluxos AS-IS dos processos prioritários, validados.",
-        "Matriz de dependências e lista de gargalos com evidências.",
-        "Fluxos TO-BE dos processos prioritários.",
-        "Backlog de oportunidades de automação, priorizado e estimado em pacotes.",
     ])
     d.save(f"{SAIDA}/03-metodologia-mapeamento-processos.docx")
 
@@ -443,65 +478,68 @@ def metodologia():
 # 04 · Proposta comercial
 # ---------------------------------------------------------------------------
 def proposta():
-    d = novo_doc("Proposta de consultoria", "Organização, estrutura e processos · Surcin Consultoria")
-    aviso(d, "Valores e prazos calculados com taxa de referência de R$ 180/h e capacidade de 10 h/semana "
-             "do consultor, com 20% de contingência. Ambos aguardam confirmação do Renato antes do envio.")
+    d = novo_doc("Proposta de consultoria", "Organização, estrutura e processos · Surcin")
+    aviso(d, "Valores calculados com taxa de referência de cerca de R$ 180/h e capacidade de 10 h/semana do "
+             "consultor, com 20% de contingência. Aguardam confirmação do Renato antes do envio.")
 
-    h(d, "1. Contexto")
-    par(d, "A Surcin Consultoria, liderada pela Thamires, deseja organizar e automatizar os processos do "
-           "escritório, que hoje se dividem em Departamento Pessoal, Financeiro, Contabilidade e Vendas, "
-           "com apoio de ferramentas como Conta Azul, Domínio, Veri, Jusbrasil, OneDrive, Trello e NetsApp.")
-    par(d, "Na reunião de descoberta de 12/10/2026, a Thamires apresentou a empresa em detalhe. Essa conversa "
-           "já é a primeira parte do diagnóstico. O próximo passo é ouvir a equipe que executa as tarefas e "
-           "entender os insumos de cada rotina, para então propor estrutura, fluxos e automações com segurança.")
-    par(d, "[PREENCHER com 2 ou 3 dores citadas pela Thamires, nas palavras dela, a partir da transcrição.]", italico=True)
+    h(d, "1. O que entendemos")
+    par(d, "A Surcin oferece contabilidade, financeiro (BPO) e jurídico para empresários, com cerca de 40 clientes de "
+           "contabilidade, um grupo de clientes de financeiro e uma equipe enxuta: Júlia na entrada e no atendimento, "
+           "Vitória no financeiro, Tamara no Departamento Pessoal e Alana no jurídico.")
+    par(d, "A empresa já tem processos desenhados, padrão de pastas e rotinas no Trello. O que falta é eficiência e "
+           "autonomia: hoje tudo passa pela Thamires, a contabilidade está sem responsável técnico e um erro de "
+           "configuração em agosto custou multa e um cliente. O objetivo é escalar com a mesma equipe, liberar tempo "
+           "da Thamires até a prova de 13/12 e entrar em 2027 pronta para contratar e voltar a vender.")
 
     h(d, "2. Objetivos")
     lista(d, [
-        "Dar clareza sobre quem faz o quê: estrutura organizacional, papéis e responsabilidades.",
-        "Tornar visíveis os fluxos de trabalho, seus gargalos e as dependências entre pessoas e áreas.",
-        "Propor fluxos otimizados e uma lista priorizada de automações, com esforço e ganho estimados.",
-        "Preparar a implementação de forma segura, por pacotes, com escopo e preço definidos antes.",
+        "Tirar a Thamires do centro da operação: papéis claros, revisões com critério e dúvidas resolvidas sem ela.",
+        "Tornar visíveis os fluxos, gargalos e dependências entre as pessoas.",
+        "Redesenhar os processos que mais pesam (fiscal, fechamento financeiro, implantação de clientes, triagem).",
+        "Entregar um plano de automação priorizado, com esforço e custo, pronto para orçar a implementação.",
+        "Preparar a estrutura para receber um(a) contador(a) em 2027 e para um programa de remuneração variável.",
     ])
 
     h(d, "3. Abordagem em etapas")
-    par(d, "O trabalho segue uma sequência simples: primeiro entender como a empresa funciona hoje, depois "
-           "organizar quem faz o quê e, só então, redesenhar fluxos e planejar automações. A implementação "
-           "das automações não faz parte desta proposta: ela será orçada com base no que o mapeamento revelar.")
     tabela(d, ["Etapa", "O que é", "Situação"], [
-        ["0 · Reunião inicial e diagnóstico preliminar", "Conversa de 2h30 com a Thamires sobre toda a empresa; leitura apresentada nesta reunião", "Concluída, sem custo"],
-        ["1 · Mapeamento dos processos atuais", "Entrevistas com a equipe, insumos e saídas de cada tarefa, gargalos e dependências entre pessoas e áreas", "Nesta proposta"],
-        ["2 · Estrutura organizacional", "Organograma atual e proposto, áreas, papéis e matriz de responsabilidades", "Nesta proposta"],
-        ["3 · Fluxos otimizados e plano de automação", "Redesenho dos processos prioritários e lista de automações com esforço estimado", "Nesta proposta (opção Completa)"],
-        ["4 · Implementação e acompanhamento", "Execução das melhorias em pacotes e ajustes mensais", "Proposta futura, após a Etapa 3"],
+        ["0 · Reunião inicial e diagnóstico preliminar", "Reunião de 12/10/2026 e esta leitura", "Concluída, sem custo"],
+        ["1 · Mapeamento dos processos atuais", "Coleta dos passo a passos existentes, entrevistas com a equipe, fluxos atuais, gargalos e dependências", "Nesta proposta"],
+        ["2 · Estrutura organizacional", "Organograma atual e proposto, papéis, responsabilidades e indicadores por função", "Nesta proposta"],
+        ["3 · Fluxos otimizados e plano de automação", "Redesenho dos processos prioritários e lista de automações com esforço e custo", "Nesta proposta (opção Completa)"],
+        ["4 · Implementação e acompanhamento", "Execução das melhorias em pacotes e ajustes mensais", "Proposta futura, a partir de 2027 ou antes, se fizer sentido"],
     ], [4.5, 8, 3.5])
 
     h(d, "4. Escopo e entregáveis: duas opções")
-    par(d, "A Thamires escolhe o tamanho do escopo. A opção Essencial pode ser ampliada depois para a Completa por aditivo.")
     tabela(d, ["Entregável", "Essencial", "Completa (recomendada)"], [
-        ["Entrevistas com a equipe (cerca de 1 h cada)", "Até 4 pessoas", "Até 5 pessoas"],
-        ["Processos atuais mapeados e validados", "Até 5", "Até 8"],
+        ["Entrevistas (cerca de 1 h cada)", "Até 4 pessoas: Thamires, Júlia, Vitória, Tamara", "Até 5 pessoas (inclui Alana ou outra pessoa indicada)"],
+        ["Processos atuais mapeados e validados", "Até 5", "Até 8, entre os 11 identificados"],
         ["Gargalos e matriz de dependências", "Sim", "Sim"],
-        ["Inventário das ferramentas e uso real", "Sim", "Sim"],
-        ["Estrutura organizacional", "Organograma e matriz de responsabilidades", "Organograma atual e proposto, matriz de responsabilidades e descrição de papéis"],
+        ["Inventário das ferramentas e recursos não usados", "Sim", "Sim"],
+        ["Estrutura organizacional", "Organograma e matriz de responsabilidades", "Organograma atual e proposto, descrição de papéis e indicadores por função"],
         ["Fluxos otimizados", "Não", "5 processos prioritários"],
-        ["Plano de automação", "Lista priorizada, sem estimativa", "Lista priorizada com esforço estimado, base para orçar a implementação"],
+        ["Plano de automação", "Lista priorizada, sem estimativa", "Lista priorizada com esforço e custo recorrente estimados"],
         ["Relatório e apresentação executiva", "Sim", "Sim"],
     ], [5.5, 4.5, 6])
+    par(d, "Processos candidatos: fiscal mensal, conciliação e fechamento financeiro, implantação de novos clientes, "
+           "atendimento e triagem, emissão de notas, pagamentos, folha, comercial, abertura de empresa e "
+           "acompanhamento jurídico. A escolha final é feita com a Thamires na primeira semana.")
 
     h(d, "5. Fora do escopo desta proposta")
     lista(d, [
         "Desenvolvimento, configuração ou integração de automações e sistemas.",
-        "Migração de dados entre sistemas.",
+        "Correção da configuração do Domínio (exige o suporte do sistema ou um especialista).",
+        "Migração das contas para o novo domínio de e-mail da Surcin.",
+        "Desenho do programa de remuneração variável (pesos, metas e valores); a estrutura entrega a base de papéis e indicadores.",
+        "Recrutamento e seleção, inclusive do(a) contador(a).",
         "Suporte contínuo, plantão ou atendimento de urgência.",
         "Licenças, assinaturas e custos de ferramentas (sempre por conta da cliente).",
-        "Consultoria contábil, fiscal, trabalhista ou jurídica sobre o conteúdo das obrigações.",
-        "Recrutamento, avaliação de desempenho ou definição de salários.",
+        "Serviços contábeis, fiscais, trabalhistas ou jurídicos.",
     ])
 
     h(d, "6. Esforço estimado")
-    par(d, "As horas foram estimadas antes de definir o preço. Premissas: 2 h por entrevista (1 h de conversa e "
-           "1 h de preparação e registro), 2 h por processo mapeado, 2 h por processo redesenhado e 20% de contingência.")
+    par(d, "Premissas: 2 h por entrevista (1 h de conversa e 1 h de preparação e registro), 2 h por processo mapeado, "
+           "2 h por processo redesenhado e 20% de contingência. A documentação existente compensa o tempo de "
+           "leitura dos materiais.")
     tabela(d, ["Atividade", "Essencial", "Completa"], [
         ["Entrevistas com a equipe", "8", "10"],
         ["Mapeamento dos processos atuais", "10", "16"],
@@ -521,120 +559,118 @@ def proposta():
         ["**Completa (recomendada)**", "**R$ 14.800**", "30% no aceite, 35% na entrega do mapeamento, 35% na entrega final"],
         ["Hora avulsa (fora do escopo, sob aprovação prévia)", "R$ 220/h", "Mensal, conforme horas aprovadas"],
     ], [6, 4, 6])
-    par(d, "A reunião inicial de 2h30 e a preparação desta proposta não são cobradas.")
-    par(d, "Referência para a etapa seguinte (não contratada agora): a implementação será orçada em pacotes de "
-           "preço fechado, de acordo com o plano de automação. Como ordem de grandeza, pacotes pequenos ficam "
-           "entre R$ 1.500 e R$ 2.800 e pacotes médios entre R$ 3.500 e R$ 6.500. O acompanhamento mensal, se "
-           "desejado, parte de R$ 900 por mês com franquia de 4 horas.")
-    par(d, "Despesas de deslocamento, se houver encontros presenciais, e custos de ferramentas são repassados à parte, "
-           "mediante aprovação.")
+    par(d, "A reunião inicial de 12/10/2026 e a preparação desta proposta não são cobradas.")
+    par(d, "Referência para a etapa seguinte (não contratada agora): a implementação será orçada em pacotes de preço "
+           "fechado. Como ordem de grandeza, pacotes pequenos ficam entre R$ 1.500 e R$ 2.800 e médios entre "
+           "R$ 3.500 e R$ 6.500. O acompanhamento mensal, se desejado, parte de R$ 900 por mês com 4 horas.")
 
-    h(d, "8. Cronograma")
-    par(d, "O consultor dedica cerca de 10 horas por semana ao projeto, fora do horário comercial. Os prazos "
-           "contam a partir do aceite e dependem da disponibilidade da equipe para entrevistas e validações. "
-           "Essencial: 4 a 5 semanas. Completa: 8 a 9 semanas.")
-    tabela(d, ["Semana (Completa)", "Atividades", "Marco"], [
-        ["1", "Kick-off, agendamento e início das entrevistas", "Kick-off com a Thamires"],
-        ["2 e 3", "Entrevistas, inventário de ferramentas e mapeamento dos processos atuais", ""],
-        ["4", "Validação dos fluxos, gargalos e dependências", "Entrega do mapeamento"],
-        ["5 e 6", "Estrutura organizacional: organogramas, papéis e matriz de responsabilidades", ""],
-        ["7 e 8", "Fluxos otimizados e plano de automação com esforço estimado", ""],
-        ["9", "Relatório final e apresentação executiva", "Entrega final e proposta de implementação"],
-    ], [3, 8, 5])
-    par(d, "Na opção Essencial, as semanas 1 a 4 se mantêm e a semana 5 concentra estrutura organizacional, "
-           "plano de automação e apresentação.")
+    h(d, "8. Cronograma (opção Completa, com aceite até 16/10/2026)")
+    par(d, "Cerca de 10 horas por semana do consultor, fora do horário comercial. O calendário respeita as férias da "
+           "Vitória (retorno em 28/10), a semana de fechamentos no início de cada mês e a prova da Thamires em 13/12.")
+    tabela(d, ["Semana", "Atividades", "Participação da Surcin"], [
+        ["19 a 25/10", "Kick-off, coleta dos passo a passos e do Trello, escolha dos processos, entrevistas com Thamires e Júlia", "Thamires 2 h, Júlia 1 h"],
+        ["26/10 a 01/11", "Entrevistas com Tamara e Vitória (após o retorno), desenho dos fluxos atuais", "Tamara 1 h, Vitória 1 h"],
+        ["02 a 08/11", "Desenho dos fluxos atuais (sem reuniões: semana de fechamentos)", "Nenhuma"],
+        ["09 a 15/11", "Validação, gargalos e dependências; entrega do mapeamento", "Equipe 1 h, Thamires 1 h"],
+        ["16 a 29/11", "Estrutura organizacional: organogramas, papéis, indicadores", "Thamires 1 h"],
+        ["30/11 a 13/12", "Fluxos otimizados e plano de automação (trabalho do consultor; sem reuniões na semana da prova)", "Validação por escrito"],
+        ["14 a 18/12", "Apresentação final e proposta de implementação", "Thamires 2 h"],
+    ], [2.8, 9, 4.2])
+    par(d, "Opção Essencial: de 19/10 a cerca de 22/11, com entrega única no fim.")
+
     h(d, "9. Responsabilidades")
     h(d, "Do consultor", 3)
     lista(d, [
         "Conduzir entrevistas, análises e reuniões nas datas combinadas.",
-        "Entregar os documentos descritos em cada etapa, em formato editável.",
-        "Manter sigilo absoluto sobre dados da empresa e de seus clientes, com acordo de confidencialidade.",
-        "Avisar com antecedência qualquer risco de atraso ou necessidade de mudança de escopo.",
+        "Entregar os documentos de cada etapa em formato editável, no OneDrive da Surcin.",
+        "Manter sigilo sobre dados da empresa e de seus clientes, com acordo de confidencialidade.",
+        "Avisar com antecedência qualquer risco de atraso ou mudança de escopo.",
         "Responder mensagens em até 1 dia útil.",
     ])
     h(d, "Da cliente", 3)
     lista(d, [
-        "Indicar um ponto focal e liberar a equipe para entrevistas de cerca de 1 hora, de preferência antes das 10h, no almoço ou após 19h30.",
-        "Disponibilizar exemplos de documentos, planilhas e acessos de consulta necessários, com dados protegidos quando possível.",
-        "Responder dúvidas em até 2 dias úteis e validar entregas em até 5 dias úteis após o envio.",
-        "Tomar as decisões de priorização ao final de cada etapa.",
-        "Arcar com licenças e ferramentas que decidir adotar.",
+        "Indicar a Júlia (ou outra pessoa) como ponto focal para acessos e agenda.",
+        "Liberar acesso de leitura ao Trello, à pasta Geral do OneDrive e aos passo a passos.",
+        "Liberar a equipe para entrevistas de cerca de 1 hora, de preferência antes das 10h30, no almoço ou após as 19h30.",
+        "Responder dúvidas em até 2 dias úteis e validar entregas em até 5 dias úteis.",
+        "Tomar as decisões de priorização ao fim de cada etapa.",
     ])
 
     h(d, "10. Condições gerais")
     lista(d, [
-        "Reuniões em janelas fora do horário comercial do consultor: antes das 10h, no almoço ou após 19h30, preferencialmente online.",
-        "Atrasos causados por falta de retorno ou de acesso deslocam o cronograma pelo mesmo período.",
+        "Reuniões preferencialmente online, nas janelas acima.",
+        "Atrasos por falta de retorno ou de acesso deslocam o cronograma pelo mesmo período; pausas de mais de 10 dias reagendam o projeto.",
         "Mudanças de escopo são orçadas à parte e só executadas após aprovação por escrito.",
-        "Pausas de mais de 10 dias por parte da cliente reagendam o cronograma.",
-        "Os documentos produzidos passam a ser da cliente após a quitação da etapa correspondente.",
+        "Os documentos produzidos passam a ser da cliente após a quitação de cada parcela correspondente.",
         "Validade desta proposta: 15 dias a partir de 15/10/2026.",
     ])
 
     h(d, "11. Próximos passos")
     lista(d, [
-        "Escolha da opção (Essencial ou Completa) e aceite da proposta.",
+        "Escolha da opção (Essencial ou Completa) e aceite.",
         "Assinatura do acordo de confidencialidade.",
-        "Agendamento do kick-off e das entrevistas com a equipe.",
+        "Kick-off na semana de 19/10 e agenda das entrevistas.",
     ], numerada=True)
-    par(d, "\nRenato [sobrenome] · Consultor · [e-mail] · [telefone]")
+    par(d, "\n" + CONSULTOR)
     d.save(f"{SAIDA}/04-proposta-comercial.docx")
 
 
 # ---------------------------------------------------------------------------
-# 05 · Roteiro da apresentação + pendências do Renato
+# 05 · Roteiro + decisões
 # ---------------------------------------------------------------------------
 def roteiro():
     d = novo_doc("Roteiro da apresentação e decisões pendentes",
                  "Preparação para quinta-feira, 15/10/2026 · documento interno do Renato")
 
-    h(d, "1. Decisões e revisões que só você pode fazer")
-    tabela(d, ["#", "Decisão", "Padrão adotado nos documentos"], [
-        ["1", "Taxa-piso da sua hora", "R$ 180/h para cálculo; R$ 220/h para hora avulsa"],
+    h(d, "1. O que mudou com a transcrição")
+    lista(d, [
+        "A equipe é de 4 pessoas além da Thamires (Júlia, Vitória, Tamara e a estagiária Alana), e não há contador.",
+        "Os processos já estão em boa parte documentados no Trello e no OneDrive: o projeto parte do que existe.",
+        "As dores concretas são centralização, risco no fiscal (erro de agosto), fechamento financeiro lento e falta de métricas para a remuneração variável.",
+        "O cronograma agora tem datas reais: Vitória volta em 28/10, prova da Thamires em 13/12, meta de terminar antes de janeiro.",
+        "O preço não mudou: 4 a 5 entrevistas e 8 processos cabem nas opções Essencial e Completa.",
+    ])
+
+    h(d, "2. Decisões e revisões que só você pode fazer")
+    tabela(d, ["#", "Decisão", "Padrão adotado"], [
+        ["1", "Taxa-piso da sua hora", "Cerca de R$ 180/h; R$ 220/h para hora avulsa"],
         ["2", "Capacidade semanal sustentável", "10 h/semana, com 20% de contingência"],
-        ["3", "Cobrar ou não pela reunião de 2h30 já feita", "Não cobrada; entra como Etapa 0 (investimento comercial)"],
-        ["4", "Preço das duas opções", "Essencial R$ 7.800 (~41 h); Completa R$ 14.800 (~81 h)"],
-        ["5", "Limites de processos", "Essencial até 5; Completa até 8, com 5 redesenhados"],
-        ["6", "Limites de entrevistas", "Essencial até 4 pessoas; Completa até 5 (depende do tamanho da equipe)"],
-        ["7", "Sua forma de faturar (MEI, PJ, RPA)", "Não citada na proposta; impostos de 6% a 15% a reservar"],
-        ["8", "Cláusula de exclusividade no seu emprego atual", "Verificar antes de assinar"],
-        ["9", "Seu sobrenome, e-mail e telefone na proposta", "[PREENCHER]"],
-        ["10", "Grafia do nome da empresa (Surcin ou Sourcin)", "Surcin"],
-    ], [0.8, 7, 8.2])
+        ["3", "Preço das opções", "Essencial R$ 7.800; Completa R$ 14.800"],
+        ["4", "Parcelamento", "Ela tem caixa só até novembro e você disse que valores são conversáveis (02:07). Considerar parcelar a Completa em 4 vezes até janeiro"],
+        ["5", "Oferecer o desenho do programa de remuneração variável como adicional", "Fora do escopo; estrutura entrega a base"],
+        ["6", "Horários das entrevistas", "A equipe trabalha em horário comercial; confirmar se aceitam antes das 10h30 ou no almoço"],
+        ["7", "Horário da reunião de quinta à noite", "A combinar com ela pelo WhatsApp"],
+        ["8", "Marca e contato na proposta", "\"R2 Tech Consulting\" aparece como seu nome na reunião; confirmar sobrenome, e-mail e telefone"],
+        ["9", "Cláusula de exclusividade no seu emprego", "Verificar antes de assinar"],
+    ], [0.8, 6, 9.2])
 
-    h(d, "2. Plano para os dois dias de preparação")
+    h(d, "3. Plano até quinta")
     tabela(d, ["Quando", "O que fazer", "Tempo"], [
-        ["Terça 13/10 · noite", "Ouvir a gravação ou ler a transcrição com o doc 01 aberto, preenchendo as dores e os [PREENCHER]", "2 a 3 h"],
-        ["Quarta 14/10 · manhã", "Revisar a estrutura organizacional (doc 02) com o que ouviu; cortar o que não se aplica", "1 h"],
-        ["Quarta 14/10 · noite", "Fechar decisões da tabela acima, ajustar valores da proposta (doc 04) e ensaiar a apresentação", "2 a 3 h"],
-        ["Quinta 15/10", "Apresentar; levar a lista de perguntas do doc 01 impressa ou aberta", "1 h"],
+        ["Terça 13/10 · noite", "Ler o diagnóstico (doc 01) e conferir os pontos [CONFIRMAR]", "1 h"],
+        ["Quarta 14/10 · manhã", "Revisar a estrutura (doc 02) e a proposta (doc 04)", "1 h"],
+        ["Quarta 14/10 · noite", "Fechar as decisões acima e ensaiar com os slides (doc 06)", "2 h"],
+        ["Quinta 15/10 · noite", "Apresentar e fazer as perguntas da seção 8 do doc 01", "1 h"],
     ], [3.5, 10, 2.5])
-    par(d, "Se a transcrição não chegar a tempo: apresente o modelo como está, diga que as dores serão "
-           "confirmadas na Etapa 1 e use a reunião de quinta para fazer as perguntas da seção 6 do doc 01.")
 
-    h(d, "3. Roteiro da apresentação (cerca de 40 minutos)")
-    slides = [
-        ("1. Abertura (2 min). ", "Agradecer a reunião de 2h30 e dizer que ela já é o início do diagnóstico."),
-        ("2. O que eu entendi (8 min). ", "Áreas, ferramentas e as 3 dores principais nas palavras dela. Pedir que corrija."),
-        ("3. Como vamos trabalhar (5 min). ", "Etapas 0 a 4 em uma linha cada. Reforçar: entender antes de automatizar."),
-        ("4. Estrutura organizacional (7 min). ", "Mostrar o organograma de referência como exemplo de entregável e pedir que ela preencha os nomes."),
-        ("5. Mapeamento de processos (5 min). ", "Explicar o método em 4 passos: ouvir a equipe, desenhar, encontrar gargalos, otimizar."),
-        ("6. Entregáveis e cronograma (5 min). ", "Essencial em 4 a 5 semanas; Completa em 8 a 9, com marco na semana 4."),
-        ("7. Investimento (5 min). ", "Essencial e Completa lado a lado; recomendar a Completa. Implementação orçada depois, por pacotes."),
-        ("8. Próximos passos e perguntas (3 min+). ", "Aceite, confidencialidade, agenda de entrevistas. Fazer as perguntas pendentes."),
-    ]
-    lista(d, slides)
+    h(d, "4. Roteiro da apresentação (cerca de 40 minutos)")
+    lista(d, [
+        ("1. Abertura (2 min). ", "Agradecer a conversa e dizer que ela já é o diagnóstico preliminar, sem custo."),
+        ("2. O que eu entendi (8 min). ", "Os números, a equipe e as dores nas palavras dela. Destacar: \"você já tem processo, falta eficiência\"."),
+        ("3. Como vamos trabalhar (5 min). ", "Etapas 0 a 4. Partir do que existe, entender antes de automatizar."),
+        ("4. Estrutura organizacional (7 min). ", "Estrutura atual e hipótese proposta. Pedir que ela corrija."),
+        ("5. Mapeamento (5 min). ", "Os 11 processos identificados e a prioridade inicial."),
+        ("6. Opções e cronograma (5 min). ", "Essencial e Completa, com datas que respeitam a prova."),
+        ("7. Investimento (5 min). ", "Valores, parcelamento e o que fica fora."),
+        ("8. Próximos passos (3 min). ", "Aceite, confidencialidade, kick-off em 19/10."),
+    ])
 
-    h(d, "4. Possíveis objeções e respostas")
+    h(d, "5. Possíveis objeções e respostas")
     tabela(d, ["Se ela disser", "Resposta sugerida"], [
-        ["Já contei tudo na reunião, por que mais diagnóstico?",
-         "A reunião deu a visão da dona. Falta a visão de quem executa, que é onde estão os detalhes que fazem uma automação funcionar ou falhar."],
-        ["Quero logo as automações.",
-         "Automatizar um processo desorganizado só acelera o problema. A opção Completa entrega o plano de automação com esforço estimado; a primeira automação pode começar logo depois."],
-        ["Está caro.",
-         "Ela pode começar pela Essencial e ampliar depois. A reunião inicial e a proposta não foram cobradas."],
-        ["Por que demora 8 a 9 semanas?",
-         "O ritmo respeita a rotina da equipe para entrevistas e validações; dá para reduzir se a equipe tiver mais disponibilidade."],
+        ["O caixa está apertado até janeiro.", "Começar pela Essencial ou parcelar a Completa. A Essencial já entrega mapeamento, gargalos e organograma antes da prova."],
+        ["Já tenho os processos, por que mapear?", "Justamente por isso o trabalho é mais rápido. O mapeamento mostra onde o processo trava e o que pode sair das suas mãos."],
+        ["Quero logo as automações.", "Automatizar um processo que depende de você só acelera o problema. A Completa entrega o plano com esforço e custo, para começar a implementação em seguida."],
+        ["Não tenho tempo por causa da prova.", "O cronograma pede cerca de 7 horas suas no total, concentradas em outubro e novembro, sem reuniões na semana da prova."],
+        ["E a remuneração por pontos?", "Ela depende de papéis e indicadores claros, que saem da Etapa 2. O desenho do programa pode vir depois."],
     ], [5.5, 10.5])
     d.save(f"{SAIDA}/05-roteiro-apresentacao-e-decisoes.docx")
 
