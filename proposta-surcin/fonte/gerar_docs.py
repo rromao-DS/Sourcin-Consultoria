@@ -128,7 +128,7 @@ LEGENDA = ("Legenda: [REUNIÃO] dito pela Thamires em 12/10/2026 (minuto da grav
            "[BRIEFING] relatório de briefing que a Surcin enviou ao consultor; [HIPÓTESE] leitura do consultor; "
            "[DIVERGÊNCIA] as fontes discordam (ver seção 8). Quando as fontes discordam, vale a reunião.")
 
-CONSULTOR = "Renato [sobrenome] · R2 Tech Consulting [confirmar marca] · [e-mail] · [telefone]"
+CONSULTOR = "Renato Romão · Consultor responsável · R2 Tech Consultoria · r2techconsultoria@gmail.com · [telefone]"
 
 
 # ---------------------------------------------------------------------------
@@ -731,7 +731,7 @@ def roteiro():
         ["5", "Piloto antes de 13/12", "Não cabe nas 10 h/semana junto com a Completa. Alternativa: trocar os fluxos otimizados por um piloto (ex.: especialista de dúvidas do financeiro)"],
         ["6", "Joyce", "Você também atende a Joyce, que o briefing aponta como contabilidade terceirizada da Surcin. Combine confidencialidade entre os dois trabalhos"],
         ["7", "Horários das entrevistas", "A equipe trabalha em horário comercial; confirmar antes das 10h30 ou no almoço"],
-        ["8", "Marca e contato", "\"R2 Tech Consulting\"; confirmar sobrenome, e-mail e telefone"],
+        ["8", "Contato na proposta", "Renato Romão, R2 Tech Consultoria; e-mail r2techconsultoria@gmail.com (do convite da reunião, confirmar); falta o telefone"],
         ["9", "Exclusividade no seu emprego", "Verificar antes de assinar"],
     ], [0.8, 4.5, 10.7])
 

@@ -68,7 +68,7 @@ bg.fill.fore_color.rgb = AZUL
 bg.line.fill.background()
 caixa(s, 2.5, 5.5, 29, 2.5, "Organização, estrutura e processos", 40, BRANCO, True)
 caixa(s, 2.5, 8.3, 29, 1.5, "Proposta de consultoria para a Surcin Assessoria Empresarial", 22, BRANCO)
-caixa(s, 2.5, 13.5, 29, 1.2, "Renato [sobrenome] · R2 Tech Consulting · 15 de outubro de 2026", 16, BRANCO)
+caixa(s, 2.5, 13.5, 29, 1.2, "Renato Romão · R2 Tech Consultoria · 15 de outubro de 2026", 16, BRANCO)
 
 # 2 · O que eu entendi
 s = slide_titulo("O que eu entendi", "\"Eu tenho um processo. Ele só não está eficiente.\"")
