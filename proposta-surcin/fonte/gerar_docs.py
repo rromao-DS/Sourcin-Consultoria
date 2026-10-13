@@ -251,6 +251,7 @@ def diagnostico():
         ["Fiscal feito pela Thamires", "44 clientes em 3 dias, 3 a 4 horas por dia (02:00)", "Gemini: \"3 horas fracionadas\"", "Vale a reunião"],
         ["Tempo do fechamento com IA", "De 5 h para 1 a 2 h (00:34)", "Gemini: 1 h 30", "Usamos 1 a 2 h"],
         ["Clientes de BPO", "12, 15 e 16 em trechos diferentes", "Briefing: 14 a 15", "13 a 15 externos"],
+        ["Ano da quebra e da reconstrução", "Ambígua: \"no final de 2023, eu quebrei\" (00:06) e \"em 2023 foi o ano que eu comecei a me reconstruir\" (00:11)", "Briefing: quebra no fim de 2023, reconstrução em 2024. Gemini: quebra no fim de 2023", "Usamos quebra no fim de 2023 e reconstrução a partir de 2024; confirmar"],
     ], [2.6, 4.8, 4.8, 3.8])
 
     h(d, "9. Leitura do consultor")
@@ -314,7 +315,9 @@ def estrutura():
     d = novo_doc("Estrutura organizacional", "Estrutura atual e hipótese de estrutura proposta · para validação")
     aviso(d, "A estrutura atual vem do que a Thamires descreveu em 12/10/2026. A estrutura proposta reúne as ideias "
              "discutidas na reunião e é uma hipótese: a versão recomendada sai depois das entrevistas com a equipe "
-             "(Etapa 2 da proposta).")
+             "(Etapa 2 da proposta).\n\nNenhuma contratação, desligamento ou mudança definitiva de função é recomendada nesta fase. "
+             "Os itens marcados [decisão dela] são intenções que a própria Thamires citou na reunião ou no briefing; "
+             "só serão avaliados depois de comparar responsabilidades, volume de trabalho, competências e disponibilidade.")
 
     h(d, "1. Estrutura atual (como é)")
     org_bloco(d, [
@@ -344,7 +347,7 @@ def estrutura():
         "    │       comercial, implantação de clientes, atendimento e triagem",
         "    ├── Financeiro (BPO) · Vitória",
         "    ├── Departamento Pessoal · Tamara [avaliar se absorve apoio ao societário]",
-        "    └── Jurídico · processos legados [avaliar: manter estágio ou absorver com monitoramento no Jusbrasil]",
+        "    └── Jurídico · processos legados [decisão dela: ela citou absorver com o monitoramento do Jusbrasil]",
     ])
     par(d, "Racional: a área que mais cresce com novos clientes é a de entrada e suporte, não a operação; Vitória e "
            "Tamara podem atender mais clientes com processos claros; a revisão técnica deixa de depender da "
