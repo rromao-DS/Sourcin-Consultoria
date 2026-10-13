@@ -151,3 +151,33 @@ GENERICO = {
     "participa": {},
     "origens": {},
 }
+
+# Organograma atual da Surcin (documento 02, seção 1, a partir da reunião de 12/10/2026).
+# Só o que as fontes dizem: sem datas de admissão, e-mails ou tipo de vínculo não informado.
+ORGANOGRAMA_SURCIN = {
+    "areas": ["Direção", "Secretaria e atendimento", "Financeiro", "Departamento Pessoal", "Jurídico e societário"],
+    "cargos": {
+        # cargo: (área, missão ou responsabilidades citadas)
+        "Direção": ("Direção", "Direção, técnica contábil e jurídica, fiscal, comercial, reuniões de fechamento"),
+        "Secretaria, atendimento e entrada de clientes": ("Secretaria e atendimento",
+            "Atendimento, implantação de clientes, apoio no fiscal"),
+        "Financeiro": ("Financeiro", "Pagamentos, notas, conciliação, preparação do fechamento"),
+        "Departamento Pessoal": ("Departamento Pessoal", "DP; até outubro de 2026 também apoio no financeiro e notas"),
+        "Estágio no jurídico e no societário (dois dias por semana)": ("Jurídico e societário",
+            "Acompanhamento de processos, peças simples, apoio ao societário"),
+    },
+    # pessoa: (cargo, gestor, tipo de vínculo, jornada)
+    "pessoas": {
+        "Thamires": ("Direção", None, "socio", None),
+        "Júlia": ("Secretaria, atendimento e entrada de clientes", "Thamires", "nao_informado", None),
+        "Vitória": ("Financeiro", "Thamires", "nao_informado", None),
+        "Tamara": ("Departamento Pessoal", "Thamires", "nao_informado", None),
+        "Alana": ("Estágio no jurídico e no societário (dois dias por semana)", "Thamires", "estagio",
+                  "Dois dias por semana (quarta e sexta)"),
+    },
+    "ciclos": [
+        ("Piloto 2026", "piloto", "2026-11-01", "2026-12-31", False),
+        ("1º semestre de 2027", "regular", "2027-01-01", "2027-06-30", True),
+        ("2º semestre de 2027", "regular", "2027-07-01", "2027-12-31", True),
+    ],
+}

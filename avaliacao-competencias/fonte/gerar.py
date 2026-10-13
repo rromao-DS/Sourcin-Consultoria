@@ -2,7 +2,8 @@
 """Gera o modelo genérico da R2 Tech e o caso Surcin (Word e Excel).
 
 Uso: python3 gerar.py [pasta_de_saida]
-Saída: <pasta>/modelo-r2tech/ (genérico) e <pasta>/ (Surcin).
+Saída: <pasta>/modelo-r2tech/ (genérico), <pasta>/ (Surcin) e <pasta>/estrutura-dados/ (cópia de dados/).
+Os JSON de dados/ são gerados por gerar_dados.py e gerar_schema_json.py.
 """
 import os
 import sys
@@ -12,6 +13,7 @@ sys.path.insert(0, AQUI)
 import casos  # noqa: E402
 import gerar_excel  # noqa: E402
 import gerar_word  # noqa: E402
+import gerar_dados  # noqa: E402
 
 if __name__ == "__main__":
     saida = sys.argv[1] if len(sys.argv) > 1 else "."
