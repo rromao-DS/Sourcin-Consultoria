@@ -176,6 +176,7 @@ for i, (t, v, d) in enumerate(precos):
     cor = BRANCO if i == 1 else AZUL
     caixa(s, 1.8 + i * 15.6, 5.3, 14.6, 6.5, [t, v, d], 20, cor, True, fundo=fundo)
 caixa(s, 1.8, 12.6, 30, 4, ["A reunião inicial e esta proposta não foram cobradas.",
+                            "Opcional: avaliação de desempenho por competência, R$ 3.200 (R$ 2.600 junto com a Completa), em janeiro de 2027.",
                             "Fora da Fase 1: desenvolvimento e integrações (Fase 2), correção do Domínio, migração de contas, valores da premiação e licenças."],
       14, CINZA)
 

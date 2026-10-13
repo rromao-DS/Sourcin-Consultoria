@@ -380,8 +380,8 @@ def estrutura():
 
     h(d, "6. Ligação com a remuneração variável")
     par(d, "A Thamires quer um programa de pontos por produtividade (00:46, 02:21). A estrutura entrega a base que ele "
-           "precisa: papéis, entregas e indicadores por função. O desenho do programa (pesos, metas e valores) é uma "
-           "decisão dela e pode ser orçado à parte. O briefing já define critérios: reconhecer qualidade, pontualidade, "
+           "precisa: papéis, entregas e indicadores por função. O desenho da avaliação por competência está orçado como "
+           "módulo opcional na proposta comercial (seção 9); pesos, metas e valores são decisão dela. O briefing já define critérios: reconhecer qualidade, pontualidade, "
            "autonomia e conformidade, não o volume de cartões concluídos, e passar valores e natureza jurídica por "
            "revisão trabalhista (seção 10).")
 
@@ -629,6 +629,27 @@ def proposta():
     par(d, "A reunião inicial de 12/10/2026 e a preparação desta proposta não são cobradas. Acompanhamento mensal "
            "(Fase 3), se desejado, a partir de R$ 900 por mês com 4 horas.")
 
+    h(d, "Módulo opcional · Avaliação de desempenho por competência", 3)
+    par(d, "Atende ao pedido de avaliar o desempenho individual e criar uma premiação (reunião 00:46 e 02:21; briefing, "
+           "seção 10). Parte dos papéis e indicadores da Fase 1 e organiza a avaliação em ciclos semestrais, com uma "
+           "gratificação de fim de ano que a Surcin consegue provisionar mês a mês.")
+    lista(d, [
+        "Matriz de competências por função (secretária, financeiro, DP, estagiária do jurídico), com o nível esperado de cada uma.",
+        "Formulário de avaliação com escala definida: autoavaliação da funcionária e avaliação da Thamires.",
+        "Regras do ciclo: duas avaliações por ano, critérios de assiduidade e pontualidade, conversa de devolutiva e plano de desenvolvimento individual.",
+        "Modelo de ligação com a gratificação de fim de ano, com simulação de provisão mensal. Os valores são decisão dela.",
+        "Guia de aplicação e uma sessão de preparação da Thamires para o primeiro ciclo.",
+    ])
+    tabela(d, ["Item", "Valor"], [
+        ["Esforço estimado", "18 h (15 h + 20% de contingência)"],
+        ["**Investimento avulso**", "**R$ 3.200**"],
+        ["**Contratado junto com a Completa**", "**R$ 2.600** (reaproveita os papéis e indicadores da Etapa 2)"],
+        ["Quando", "Janeiro de 2027, para que o primeiro ciclo cubra o 1º semestre de 2027"],
+    ], [6, 10])
+    aviso(d, "Os critérios e a gratificação precisam de revisão trabalhista antes de entrar em vigor, em especial o "
+             "tratamento de faltas justificadas por atestado médico e a natureza jurídica do valor pago. Essa revisão "
+             "não está incluída.")
+
     h(d, "10. Cronograma (opção Completa, aceite até 16/10/2026)")
     par(d, "Cerca de 10 horas por semana do consultor, fora do horário comercial. Respeita as férias da Vitória "
            "(retorno em 28/10), a semana de fechamentos no início do mês e a prova da Thamires em 13/12.")
@@ -728,6 +749,7 @@ def roteiro():
         ["6", "Horários das entrevistas", "A equipe trabalha em horário comercial; confirmar antes das 10h30 ou no almoço"],
         ["7", "Contato na proposta", "Renato Romão, R2 Tech Consultoria; e-mail r2techconsultoria@gmail.com (do convite da reunião, confirmar); falta o telefone"],
         ["8", "Exclusividade no seu emprego", "Verificar antes de assinar"],
+        ["9", "Avaliação por competência (seu pedido de 13/10)", "Incluída como módulo opcional, fora do preço da Fase 1: 18 h, R$ 3.200 avulso ou R$ 2.600 junto com a Completa, em janeiro de 2027. Não cabe antes de 18/12 nas 10 h/semana. Se preferir incluir na Completa, o preço sobe para cerca de R$ 17.400"],
     ], [0.8, 4.5, 10.7])
 
     h(d, "3. Plano até quinta")
