@@ -82,11 +82,11 @@ caixa(s, 17.5, 5, 14.5, 10.5, ["Principais dores", "1. [PREENCHER com a transcri
 
 # 3 · Como vamos trabalhar
 s = slide_titulo("Como vamos trabalhar", "Entender antes de automatizar. Cada etapa termina com uma entrega e uma decisão sua.")
-etapas = [("0", "Reunião de descoberta", "Concluída"),
-          ("1", "Diagnóstico e estrutura organizacional", "Nesta proposta"),
-          ("2", "Mapeamento detalhado de processos", "Nesta proposta"),
-          ("3", "Implementação em pacotes", "Proposta futura"),
-          ("4", "Acompanhamento mensal", "Opcional")]
+etapas = [("0", "Reunião inicial e diagnóstico preliminar", "Concluída, sem custo"),
+          ("1", "Mapeamento dos processos atuais", "Nesta proposta"),
+          ("2", "Estrutura organizacional", "Nesta proposta"),
+          ("3", "Fluxos otimizados e plano de automação", "Nesta proposta"),
+          ("4", "Implementação e acompanhamento", "Proposta futura")]
 for i, (n, nome, st) in enumerate(etapas):
     x = 1.8 + i * 6.1
     cor = AZUL if st == "Nesta proposta" else CLARO
@@ -99,7 +99,7 @@ caixa(s, 12.4, 4.8, 9, 1.8, ["Direção · Thamires"], 16, BRANCO, True, fundo=A
 areas = ["Departamento Pessoal", "Contabilidade e Fiscal", "Financeiro", "Comercial / Vendas", "Apoio adm. [?]"]
 for i, a in enumerate(areas):
     caixa(s, 1.8 + i * 6.1, 8.2, 5.7, 2.4, [a, "Responsável: ?"], 13, AZUL, fundo=CLARO)
-caixa(s, 1.8, 11.8, 30, 4.5, ["Entregável da Etapa 1: organograma atual e proposto, papéis e responsabilidades por área, "
+caixa(s, 1.8, 11.8, 30, 4.5, ["Entregável da Etapa 2: organograma atual e proposto, papéis e responsabilidades por área, "
                               "matriz RACI (quem executa, aprova, é consultado e informado) e as dependências da Direção."],
       15, CINZA)
 
@@ -112,37 +112,37 @@ passos = [("Ouvir", "Entrevistas de 45 a 60 min com a equipe: insumos, passos, s
 for i, (t, d) in enumerate(passos):
     caixa(s, 1.8 + i * 7.6, 5.5, 7.2, 8, [f"{i + 1}. {t}", "", d], 15, AZUL, fundo=CLARO)
 
-# 6 · Entregáveis e cronograma
-s = slide_titulo("Entregáveis e cronograma", "8 semanas, cerca de 10 horas por semana, reuniões fora do horário comercial")
-caixa(s, 1.8, 5, 14.5, 10.8, ["Etapa 1 · semanas 1 a 4",
-                              "• Entrevistas com a equipe (até 6)",
-                              "• Inventário das ferramentas",
-                              "• Relatório de diagnóstico",
-                              "• Organograma, papéis e RACI",
-                              "• Escolha dos processos prioritários"], 15, AZUL, fundo=CLARO)
-caixa(s, 17.5, 5, 14.5, 10.8, ["Etapa 2 · semanas 5 a 8",
-                               "• Até 4 processos mapeados",
-                               "• Fluxos atuais e otimizados",
+# 6 · Duas opções
+s = slide_titulo("Duas opções de escopo", "Você escolhe o tamanho; a Essencial pode virar Completa depois")
+caixa(s, 1.8, 5, 14.5, 10.8, ["Essencial · 4 a 5 semanas",
+                              "• Entrevistas com até 4 pessoas",
+                              "• Até 5 processos mapeados",
+                              "• Gargalos e dependências",
+                              "• Organograma e matriz de responsabilidades",
+                              "• Lista priorizada de automações"], 15, AZUL, fundo=CLARO)
+caixa(s, 17.5, 5, 14.5, 10.8, ["Completa (recomendada) · 8 a 9 semanas",
+                               "• Entrevistas com até 5 pessoas",
+                               "• Até 8 processos mapeados",
                                "• Gargalos e dependências",
-                               "• Backlog de automação priorizado",
-                               "• Proposta de implementação"], 15, AZUL, fundo=CLARO)
+                               "• Organograma atual e proposto, papéis e responsabilidades",
+                               "• 5 fluxos otimizados",
+                               "• Plano de automação com esforço estimado"], 15, BRANCO, fundo=AZUL)
 
 # 7 · Investimento
-s = slide_titulo("Investimento", "Preço fechado por etapa. A implementação é orçada depois, por pacotes.")
-precos = [("Etapa 1", "R$ 6.300", "Diagnóstico e estrutura"),
-          ("Etapa 2", "R$ 6.800", "Mapeamento de até 4 processos"),
-          ("Etapas 1 e 2", "R$ 11.900", "Contratadas juntas")]
+s = slide_titulo("Investimento", "Preço fechado. A implementação é orçada depois, por pacotes.")
+precos = [("Essencial", "R$ 7.800", "50% no aceite, 50% na entrega"),
+          ("Completa (recomendada)", "R$ 14.800", "30% no aceite, 35% no mapeamento, 35% na entrega final")]
 for i, (t, v, d) in enumerate(precos):
-    fundo = AZUL if i == 2 else CLARO
-    cor = BRANCO if i == 2 else AZUL
-    caixa(s, 1.8 + i * 10.2, 5.3, 9.6, 6.5, [t, v, d], 20, cor, True, fundo=fundo)
-caixa(s, 1.8, 12.6, 30, 4, ["50% no início e 50% na entrega de cada etapa · processo adicional R$ 1.250",
+    fundo = AZUL if i == 1 else CLARO
+    cor = BRANCO if i == 1 else AZUL
+    caixa(s, 1.8 + i * 15.6, 5.3, 14.6, 6.5, [t, v, d], 20, cor, True, fundo=fundo)
+caixa(s, 1.8, 12.6, 30, 4, ["A reunião inicial e esta proposta não foram cobradas.",
                             "Fora do escopo: desenvolvimento de automações, integrações, suporte contínuo e licenças."],
       14, CINZA)
 
 # 8 · Próximos passos
 s = slide_titulo("Próximos passos")
-caixa(s, 1.8, 4.5, 30, 10, ["1. Aceite da proposta (Etapa 1 ou Etapas 1 e 2)",
+caixa(s, 1.8, 4.5, 30, 10, ["1. Escolha da opção e aceite da proposta",
                             "2. Acordo de confidencialidade",
                             "3. Kick-off e agenda das entrevistas com a equipe",
                             "", "Perguntas para hoje:",

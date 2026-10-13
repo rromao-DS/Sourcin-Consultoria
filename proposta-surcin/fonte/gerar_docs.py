@@ -248,7 +248,7 @@ def diagnostico():
         "Conferir a transcrição e a gravação e preencher os campos [PREENCHER].",
         "Apresentar a proposta na quinta-feira, 15/10/2026, e validar as lacunas principais com a Thamires.",
         "Após o aceite: entrevistas com os funcionários de cada área para levantar os insumos de cada tarefa.",
-        "Consolidar o diagnóstico final e a proposta de estrutura organizacional (Etapa 1 da proposta).",
+        "Consolidar o mapeamento e a proposta de estrutura organizacional (Etapas 1 e 2 da proposta).",
     ], numerada=True)
     d.save(f"{SAIDA}/01-diagnostico-preliminar.docx")
 
@@ -260,7 +260,7 @@ def estrutura():
     d = novo_doc("Estrutura organizacional", "Hipótese inicial para validação · organograma, áreas, papéis e responsabilidades")
     aviso(d, "Este é um ponto de partida para conversa, não uma recomendação final. Ainda não se sabe "
              "quantas pessoas trabalham no escritório nem como as tarefas estão divididas hoje. A versão "
-             "recomendada só sai depois das entrevistas com os funcionários (Etapa 1 da proposta).")
+             "recomendada só sai depois das entrevistas com os funcionários (Etapas 1 e 2 da proposta).")
 
     h(d, "1. É viável recomendar uma estrutura agora?")
     par(d, "Sim, como hipótese. O que já se sabe (quatro áreas e uma sócia que concentra a direção) permite "
@@ -331,7 +331,7 @@ def estrutura():
         "Se Vendas é uma função de alguém ou se a própria Thamires vende.",
     ], numerada=True)
 
-    h(d, "7. Entregável final desta frente (Etapa 1)")
+    h(d, "7. Entregável final desta frente (Etapa 2 da proposta)")
     lista(d, [
         "Organograma atual (como é) e organograma proposto (como deve ser).",
         "Descrição de papéis por área: missão, responsabilidades, entregas e indicadores simples.",
@@ -465,38 +465,29 @@ def proposta():
     ])
 
     h(d, "3. Abordagem em etapas")
-    par(d, "O trabalho é dividido em etapas independentes. Cada etapa termina com uma entrega e uma decisão "
-           "da cliente sobre seguir para a próxima. A implementação de automações não faz parte desta proposta: "
-           "ela será orçada com base no que o mapeamento revelar.")
+    par(d, "O trabalho segue uma sequência simples: primeiro entender como a empresa funciona hoje, depois "
+           "organizar quem faz o quê e, só então, redesenhar fluxos e planejar automações. A implementação "
+           "das automações não faz parte desta proposta: ela será orçada com base no que o mapeamento revelar.")
     tabela(d, ["Etapa", "O que é", "Situação"], [
-        ["0 · Reunião de descoberta", "Conversa de 2h30 com a Thamires sobre toda a empresa", "Concluída (12/10/2026)"],
-        ["1 · Diagnóstico e estrutura organizacional", "Entrevistas com a equipe, inventário de ferramentas, diagnóstico consolidado e organograma proposto", "Nesta proposta"],
-        ["2 · Mapeamento detalhado de processos", "Fluxos atuais e otimizados dos processos prioritários, gargalos, dependências e backlog de automação", "Nesta proposta"],
-        ["3 · Implementação", "Execução das melhorias e automações em pacotes", "Proposta futura, após a Etapa 2"],
-        ["4 · Acompanhamento", "Ajustes e evolução mensal com franquia de horas", "Opcional, após a Etapa 3"],
+        ["0 · Reunião inicial e diagnóstico preliminar", "Conversa de 2h30 com a Thamires sobre toda a empresa; leitura apresentada nesta reunião", "Concluída, sem custo"],
+        ["1 · Mapeamento dos processos atuais", "Entrevistas com a equipe, insumos e saídas de cada tarefa, gargalos e dependências entre pessoas e áreas", "Nesta proposta"],
+        ["2 · Estrutura organizacional", "Organograma atual e proposto, áreas, papéis e matriz de responsabilidades", "Nesta proposta"],
+        ["3 · Fluxos otimizados e plano de automação", "Redesenho dos processos prioritários e lista de automações com esforço estimado", "Nesta proposta (opção Completa)"],
+        ["4 · Implementação e acompanhamento", "Execução das melhorias em pacotes e ajustes mensais", "Proposta futura, após a Etapa 3"],
     ], [4.5, 8, 3.5])
 
-    h(d, "4. Escopo e entregáveis")
-    h(d, "Etapa 1 · Diagnóstico e estrutura organizacional", 2)
-    lista(d, [
-        "Consolidação da reunião de descoberta (transcrição e gravação).",
-        "Entrevistas com os funcionários das quatro áreas (até 6 entrevistas de 45 a 60 min).",
-        "Inventário das ferramentas: finalidade, usuários, acessos e possibilidades de integração.",
-        "Relatório de diagnóstico: dores, causas, riscos e oportunidades priorizadas.",
-        "Estrutura organizacional: organograma atual e proposto, papéis por área e matriz de responsabilidades (RACI).",
-        "Inventário macro de processos e escolha dos processos prioritários para a Etapa 2.",
-        "Apresentação executiva dos resultados (1 reunião).",
-    ])
-    h(d, "Etapa 2 · Mapeamento detalhado de processos", 2)
-    lista(d, [
-        "Mapeamento de até 4 processos prioritários, escolhidos com a Thamires ao fim da Etapa 1.",
-        "Fluxos atuais (AS-IS) desenhados em raias e validados com quem executa.",
-        "Matriz de dependências entre pessoas e áreas e lista de gargalos.",
-        "Fluxos otimizados (TO-BE) para cada processo mapeado.",
-        "Backlog de oportunidades de automação, priorizado, com estimativa de esforço por pacote.",
-        "Apresentação executiva e proposta de implementação (Etapa 3) sem custo adicional.",
-    ])
-    par(d, "Processos adicionais podem ser incluídos na Etapa 2 com valor unitário (ver seção 7).")
+    h(d, "4. Escopo e entregáveis: duas opções")
+    par(d, "A Thamires escolhe o tamanho do escopo. A opção Essencial pode ser ampliada depois para a Completa por aditivo.")
+    tabela(d, ["Entregável", "Essencial", "Completa (recomendada)"], [
+        ["Entrevistas com a equipe (cerca de 1 h cada)", "Até 4 pessoas", "Até 5 pessoas"],
+        ["Processos atuais mapeados e validados", "Até 5", "Até 8"],
+        ["Gargalos e matriz de dependências", "Sim", "Sim"],
+        ["Inventário das ferramentas e uso real", "Sim", "Sim"],
+        ["Estrutura organizacional", "Organograma e matriz de responsabilidades", "Organograma atual e proposto, matriz de responsabilidades e descrição de papéis"],
+        ["Fluxos otimizados", "Não", "5 processos prioritários"],
+        ["Plano de automação", "Lista priorizada, sem estimativa", "Lista priorizada com esforço estimado, base para orçar a implementação"],
+        ["Relatório e apresentação executiva", "Sim", "Sim"],
+    ], [5.5, 4.5, 6])
 
     h(d, "5. Fora do escopo desta proposta")
     lista(d, [
@@ -509,41 +500,30 @@ def proposta():
     ])
 
     h(d, "6. Esforço estimado")
-    par(d, "As horas abaixo foram estimadas antes de definir o preço e já incluem 20% de contingência.")
-    tabela(d, ["Atividade", "Horas"], [
-        ["**Etapa 1 · Diagnóstico e estrutura**", ""],
-        ["Consolidação da reunião de descoberta", "4"],
-        ["Preparação, entrevistas com a equipe e registro", "8"],
-        ["Inventário de ferramentas e integrações", "3"],
-        ["Estrutura organizacional (organogramas, papéis, RACI)", "6"],
-        ["Inventário macro de processos e priorização", "2"],
-        ["Relatório e apresentação executiva", "4"],
-        ["Reuniões de alinhamento e validação com a Thamires", "2"],
-        ["Contingência (20%)", "6"],
-        ["**Subtotal Etapa 1**", "**35 h**"],
-        ["**Etapa 2 · Mapeamento de 4 processos**", ""],
-        ["Levantamento com executores (4 × 1,5 h)", "6"],
-        ["Desenho dos fluxos atuais (4 × 2 h)", "8"],
-        ["Validação com a equipe", "2"],
-        ["Matriz de dependências e gargalos", "3"],
-        ["Fluxos otimizados (4 × 1,5 h)", "6"],
-        ["Backlog de automação e estimativas", "3"],
-        ["Relatório e apresentação executiva", "4"],
-        ["Contingência (20%)", "6"],
-        ["**Subtotal Etapa 2**", "**38 h**"],
-        ["**Total Etapas 1 e 2**", "**73 h**"],
-    ], [12, 4])
+    par(d, "As horas foram estimadas antes de definir o preço. Premissas: 2 h por entrevista (1 h de conversa e "
+           "1 h de preparação e registro), 2 h por processo mapeado, 2 h por processo redesenhado e 20% de contingência.")
+    tabela(d, ["Atividade", "Essencial", "Completa"], [
+        ["Entrevistas com a equipe", "8", "10"],
+        ["Mapeamento dos processos atuais", "10", "16"],
+        ["Gargalos e dependências", "3", "4"],
+        ["Validação com a Thamires", "2", "2,5"],
+        ["Estrutura organizacional", "6", "14"],
+        ["Fluxos otimizados", "-", "10"],
+        ["Plano de automação", "2", "5"],
+        ["Relatório e apresentação executiva", "3", "6"],
+        ["Contingência (20%)", "7", "13,5"],
+        ["**Total**", "**~41 h**", "**~81 h**"],
+    ], [9, 3.5, 3.5])
 
     h(d, "7. Investimento")
-    tabela(d, ["Item", "Investimento", "Pagamento"], [
-        ["Etapa 1 · Diagnóstico e estrutura organizacional", "R$ 6.300", "50% no aceite, 50% na entrega"],
-        ["Etapa 2 · Mapeamento de até 4 processos", "R$ 6.800", "50% no início, 50% na entrega"],
-        ["**Etapas 1 e 2 contratadas juntas**", "**R$ 11.900 (economia de R$ 1.200)**", "4 parcelas: aceite, entrega da Etapa 1, início e entrega da Etapa 2"],
-        ["Processo adicional na Etapa 2", "R$ 1.250 por processo", "Junto com a parcela de entrega da Etapa 2"],
+    tabela(d, ["Opção", "Investimento", "Pagamento"], [
+        ["**Essencial**", "**R$ 7.800**", "50% no aceite, 50% na entrega"],
+        ["**Completa (recomendada)**", "**R$ 14.800**", "30% no aceite, 35% na entrega do mapeamento, 35% na entrega final"],
         ["Hora avulsa (fora do escopo, sob aprovação prévia)", "R$ 220/h", "Mensal, conforme horas aprovadas"],
-    ], [6.5, 4.5, 5])
+    ], [6, 4, 6])
+    par(d, "A reunião inicial de 2h30 e a preparação desta proposta não são cobradas.")
     par(d, "Referência para a etapa seguinte (não contratada agora): a implementação será orçada em pacotes de "
-           "preço fechado, de acordo com o backlog da Etapa 2. Como ordem de grandeza, pacotes pequenos ficam "
+           "preço fechado, de acordo com o plano de automação. Como ordem de grandeza, pacotes pequenos ficam "
            "entre R$ 1.500 e R$ 2.800 e pacotes médios entre R$ 3.500 e R$ 6.500. O acompanhamento mensal, se "
            "desejado, parte de R$ 900 por mês com franquia de 4 horas.")
     par(d, "Despesas de deslocamento, se houver encontros presenciais, e custos de ferramentas são repassados à parte, "
@@ -551,18 +531,18 @@ def proposta():
 
     h(d, "8. Cronograma")
     par(d, "O consultor dedica cerca de 10 horas por semana ao projeto, fora do horário comercial. Os prazos "
-           "contam a partir do aceite e dependem da disponibilidade da equipe para entrevistas e validações.")
-    tabela(d, ["Semana", "Atividades", "Marco"], [
-        ["1", "Consolidação da reunião, agendamento e início das entrevistas", "Kick-off com a Thamires"],
-        ["2", "Entrevistas com a equipe e inventário de ferramentas", ""],
-        ["3", "Diagnóstico, estrutura organizacional e inventário de processos", ""],
-        ["4", "Relatório e apresentação da Etapa 1", "Entrega da Etapa 1 e escolha dos processos"],
-        ["5", "Levantamento e desenho dos fluxos atuais", ""],
-        ["6", "Validação, gargalos e dependências", ""],
-        ["7", "Fluxos otimizados e backlog de automação", ""],
-        ["8", "Relatório e apresentação da Etapa 2", "Entrega da Etapa 2 e proposta de implementação"],
-    ], [1.8, 9.2, 5])
-
+           "contam a partir do aceite e dependem da disponibilidade da equipe para entrevistas e validações. "
+           "Essencial: 4 a 5 semanas. Completa: 8 a 9 semanas.")
+    tabela(d, ["Semana (Completa)", "Atividades", "Marco"], [
+        ["1", "Kick-off, agendamento e início das entrevistas", "Kick-off com a Thamires"],
+        ["2 e 3", "Entrevistas, inventário de ferramentas e mapeamento dos processos atuais", ""],
+        ["4", "Validação dos fluxos, gargalos e dependências", "Entrega do mapeamento"],
+        ["5 e 6", "Estrutura organizacional: organogramas, papéis e matriz de responsabilidades", ""],
+        ["7 e 8", "Fluxos otimizados e plano de automação com esforço estimado", ""],
+        ["9", "Relatório final e apresentação executiva", "Entrega final e proposta de implementação"],
+    ], [3, 8, 5])
+    par(d, "Na opção Essencial, as semanas 1 a 4 se mantêm e a semana 5 concentra estrutura organizacional, "
+           "plano de automação e apresentação.")
     h(d, "9. Responsabilidades")
     h(d, "Do consultor", 3)
     lista(d, [
@@ -574,9 +554,9 @@ def proposta():
     ])
     h(d, "Da cliente", 3)
     lista(d, [
-        "Indicar um ponto focal e liberar a equipe para entrevistas de 45 a 60 minutos.",
+        "Indicar um ponto focal e liberar a equipe para entrevistas de cerca de 1 hora, de preferência antes das 10h, no almoço ou após 19h30.",
         "Disponibilizar exemplos de documentos, planilhas e acessos de consulta necessários, com dados protegidos quando possível.",
-        "Validar fluxos e entregas em até 5 dias úteis após o envio.",
+        "Responder dúvidas em até 2 dias úteis e validar entregas em até 5 dias úteis após o envio.",
         "Tomar as decisões de priorização ao final de cada etapa.",
         "Arcar com licenças e ferramentas que decidir adotar.",
     ])
@@ -586,14 +566,14 @@ def proposta():
         "Reuniões em janelas fora do horário comercial do consultor: antes das 10h, no almoço ou após 19h30, preferencialmente online.",
         "Atrasos causados por falta de retorno ou de acesso deslocam o cronograma pelo mesmo período.",
         "Mudanças de escopo são orçadas à parte e só executadas após aprovação por escrito.",
-        "A cliente pode encerrar o projeto ao fim de qualquer etapa, pagando apenas as etapas iniciadas.",
+        "Pausas de mais de 10 dias por parte da cliente reagendam o cronograma.",
         "Os documentos produzidos passam a ser da cliente após a quitação da etapa correspondente.",
         "Validade desta proposta: 15 dias a partir de 15/10/2026.",
     ])
 
     h(d, "11. Próximos passos")
     lista(d, [
-        "Aceite da proposta (Etapa 1 ou Etapas 1 e 2).",
+        "Escolha da opção (Essencial ou Completa) e aceite da proposta.",
         "Assinatura do acordo de confidencialidade.",
         "Agendamento do kick-off e das entrevistas com a equipe.",
     ], numerada=True)
@@ -612,10 +592,10 @@ def roteiro():
     tabela(d, ["#", "Decisão", "Padrão adotado nos documentos"], [
         ["1", "Taxa-piso da sua hora", "R$ 180/h para cálculo; R$ 220/h para hora avulsa"],
         ["2", "Capacidade semanal sustentável", "10 h/semana, com 20% de contingência"],
-        ["3", "Cobrar ou não pela reunião de 2h30 já feita", "Não cobrada à parte; entra como Etapa 0 e reduz a Etapa 1"],
-        ["4", "Desconto para fechar Etapas 1 e 2 juntas", "R$ 11.900 em vez de R$ 13.100"],
-        ["5", "Número de processos na Etapa 2", "Até 4, com adicional de R$ 1.250 por processo"],
-        ["6", "Número de entrevistas na Etapa 1", "Até 6 (depende do tamanho da equipe)"],
+        ["3", "Cobrar ou não pela reunião de 2h30 já feita", "Não cobrada; entra como Etapa 0 (investimento comercial)"],
+        ["4", "Preço das duas opções", "Essencial R$ 7.800 (~41 h); Completa R$ 14.800 (~81 h)"],
+        ["5", "Limites de processos", "Essencial até 5; Completa até 8, com 5 redesenhados"],
+        ["6", "Limites de entrevistas", "Essencial até 4 pessoas; Completa até 5 (depende do tamanho da equipe)"],
         ["7", "Sua forma de faturar (MEI, PJ, RPA)", "Não citada na proposta; impostos de 6% a 15% a reservar"],
         ["8", "Cláusula de exclusividade no seu emprego atual", "Verificar antes de assinar"],
         ["9", "Seu sobrenome, e-mail e telefone na proposta", "[PREENCHER]"],
@@ -639,8 +619,8 @@ def roteiro():
         ("3. Como vamos trabalhar (5 min). ", "Etapas 0 a 4 em uma linha cada. Reforçar: entender antes de automatizar."),
         ("4. Estrutura organizacional (7 min). ", "Mostrar o organograma de referência como exemplo de entregável e pedir que ela preencha os nomes."),
         ("5. Mapeamento de processos (5 min). ", "Explicar o método em 4 passos: ouvir a equipe, desenhar, encontrar gargalos, otimizar."),
-        ("6. Entregáveis e cronograma (5 min). ", "8 semanas no total, com marcos na semana 4 e 8."),
-        ("7. Investimento (5 min). ", "Etapa 1, Etapa 2 e a opção conjunta. Implementação orçada depois, por pacotes."),
+        ("6. Entregáveis e cronograma (5 min). ", "Essencial em 4 a 5 semanas; Completa em 8 a 9, com marco na semana 4."),
+        ("7. Investimento (5 min). ", "Essencial e Completa lado a lado; recomendar a Completa. Implementação orçada depois, por pacotes."),
         ("8. Próximos passos e perguntas (3 min+). ", "Aceite, confidencialidade, agenda de entrevistas. Fazer as perguntas pendentes."),
     ]
     lista(d, slides)
@@ -650,10 +630,10 @@ def roteiro():
         ["Já contei tudo na reunião, por que mais diagnóstico?",
          "A reunião deu a visão da dona. Falta a visão de quem executa, que é onde estão os detalhes que fazem uma automação funcionar ou falhar."],
         ["Quero logo as automações.",
-         "Automatizar um processo desorganizado só acelera o problema. A Etapa 2 entrega o backlog com esforço e retorno; a primeira automação pode começar logo depois."],
+         "Automatizar um processo desorganizado só acelera o problema. A opção Completa entrega o plano de automação com esforço estimado; a primeira automação pode começar logo depois."],
         ["Está caro.",
-         "Ela pode contratar só a Etapa 1 e decidir depois. O valor já desconta a reunião inicial."],
-        ["Por que demora 8 semanas?",
+         "Ela pode começar pela Essencial e ampliar depois. A reunião inicial e a proposta não foram cobradas."],
+        ["Por que demora 8 a 9 semanas?",
          "O ritmo respeita a rotina da equipe para entrevistas e validações; dá para reduzir se a equipe tiver mais disponibilidade."],
     ], [5.5, 10.5])
     d.save(f"{SAIDA}/05-roteiro-apresentacao-e-decisoes.docx")
