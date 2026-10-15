@@ -97,6 +97,12 @@ ul.clean li::before { content: ""; position: absolute; left: 0; top: .62em; widt
 .stat .l { color: var(--muted); font-size: 13px; margin-top: 4px; }
 @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .pain { background: var(--warn-bg); border-color: transparent; }
+.trello { margin-top: 24px; display: grid; gap: 16px; }
+.tsrc { color: var(--muted); font-size: 13px; margin: 0; }
+.tgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.tgrid .v { font-size: 26px; font-weight: 700; color: var(--data-text); line-height: 1.1; }
+.tgrid .l { color: var(--text-2); font-size: 13px; margin-top: 4px; }
+@media (max-width: 760px) { .tgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .pain h3 { color: var(--warn-text); }
 
 /* Fases */
@@ -270,6 +276,19 @@ ul.clean li::before { content: ""; position: absolute; left: 0; top: .62em; widt
         <div class="stat"><div class="v num">12 a 16</div><div class="l">clientes no financeiro (a confirmar)</div></div>
         <div class="stat"><div class="v num">~25</div><div class="l">vidas no DP, em 4 ou 5 clientes</div></div>
         <div class="stat"><div class="v num">~20</div><div class="l">processos jurídicos legados</div></div>
+      </div>
+      <div class="card trello">
+        <div>
+          <h3>O que o seu Trello mostra</h3>
+          <p class="tsrc">Quadro “Rotina Atual”, dados até 14/10. Números do quadro, que podem diferir dos citados na reunião.</p>
+        </div>
+        <div class="tgrid">
+          <div><div class="v num">485</div><div class="l">itens ativos na sua lista, cerca de 35% do quadro</div></div>
+          <div><div class="v num">58%</div><div class="l">das marcações feitas pela Júlia nas últimas duas semanas</div></div>
+          <div><div class="v num">0</div><div class="l">cartões com prazo no Trello; datas ficam escritas no texto</div></div>
+          <div><div class="v num">57</div><div class="l">empresas nos cartões de apuração e financeiro (reunião: cerca de 40 na contabilidade)</div></div>
+        </div>
+        <p class="tsrc" style="margin:0">A rotina era recriada à mão todo mês. O quadro também guarda dados pessoais e bancários de clientes, então organizar acessos e proteção de dados entra no trabalho.</p>
       </div>
       <div class="body-gap grid3">
         <div class="card pain">
