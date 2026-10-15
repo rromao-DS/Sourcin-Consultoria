@@ -271,7 +271,7 @@ def diagnostico():
         ],
         "Prioridades e agenda": [
             "Qual processo, resolvido primeiro, mais devolve seu tempo: fiscal, fechamento financeiro ou implantação de clientes?",
-            "A equipe pode participar de entrevistas antes das 10h30, no almoço ou após as 19h30?",
+            "A equipe pode participar de entrevistas no início do expediente, antes das 10h, ou após as 19h30?",
             "A Júlia pode ser a ponto focal do projeto?",
         ],
         "Sistemas": [
@@ -652,7 +652,7 @@ def proposta():
              "não está incluída.")
 
     h(d, "10. Cronograma (opção Completa, aceite até 16/10/2026)")
-    par(d, "Cerca de 10 horas por semana do consultor, fora do horário comercial. Respeita as férias da Vitória "
+    par(d, "Cerca de 10 horas por semana do consultor, segunda a sexta das 6h às 10h e depois das 19h30, além de sábados e domingos. Respeita as férias da Vitória "
            "(retorno em 28/10), a semana de fechamentos no início do mês e a prova da Thamires em 13/12.")
     tabela(d, ["Semana", "Atividades", "Participação da Surcin"], [
         ["19 a 25/10", "Kick-off, inventário de contas e ferramentas, coleta dos passo a passos, entrevistas com Thamires e Júlia", "Thamires 2 h, Júlia 1 h"],
@@ -694,20 +694,21 @@ def proposta():
         "Entregar os documentos em formato editável, no OneDrive da Surcin.",
         "Manter sigilo sobre dados da empresa e de seus clientes, com acordo de confidencialidade.",
         "Avisar com antecedência riscos de atraso ou mudança de escopo.",
-        "Responder mensagens em até 1 dia útil.",
+        "Trabalhar no projeto de segunda a sexta das 6h às 10h e depois das 19h30, além de sábados e domingos.",
+        "Responder mensagens em até 1 dia útil, dentro dessas janelas.",
     ])
     h(d, "Da cliente", 3)
     lista(d, [
         "Indicar a Júlia (ou outra pessoa) como ponto focal para acessos e agenda.",
         "Liberar acesso de leitura ao Trello, à pasta Geral do OneDrive e aos passo a passos.",
-        "Liberar a equipe para entrevistas de cerca de 1 hora, de preferência antes das 10h30, no almoço ou após as 19h30.",
+        "Liberar a equipe para entrevistas de cerca de 1 hora, no início do expediente (antes das 10h) ou após as 19h30.",
         "Aplicar os controles combinados na rotina.",
         "Responder dúvidas em até 2 dias úteis e validar entregas em até 5 dias úteis.",
     ])
 
     h(d, "13. Condições gerais")
     lista(d, [
-        "Reuniões preferencialmente online, nas janelas acima.",
+        "Reuniões preferencialmente online, dentro da disponibilidade do consultor: segunda a sexta das 6h às 10h e depois das 19h30, além de sábados e domingos.",
         "Atrasos por falta de retorno ou de acesso deslocam o cronograma; pausas de mais de 10 dias reagendam o projeto.",
         "Mudanças de escopo são orçadas à parte e só executadas após aprovação por escrito.",
         "Os documentos produzidos são da Surcin após a quitação de cada parcela.",
@@ -748,7 +749,7 @@ def roteiro():
         ["3", "Parcelamento", "Ela tem caixa até novembro e você disse que valores são conversáveis (02:07). Considerar a Completa em 4 vezes até janeiro"],
         ["4", "Contenção dentro das ~96 h", "Absorvida pela contingência; se preferir cobrar à parte, some cerca de 4 h (R$ 700)"],
         ["5", "Piloto antes de 13/12", "Não cabe nas 10 h/semana junto com a Completa. Alternativa: trocar os fluxos otimizados por um piloto (ex.: especialista de dúvidas do financeiro)"],
-        ["6", "Horários das entrevistas", "A equipe trabalha em horário comercial; confirmar antes das 10h30 ou no almoço"],
+        ["6", "Horários das entrevistas", "Sua disponibilidade: seg-sex 6h-10h e após 19h30, sábados e domingos. A equipe trabalha em horário comercial: entrevistas no início do expediente (antes das 10h)"],
         ["7", "Contato na proposta", "Renato Romão, R2 Tech Consultoria; e-mail r2techconsultoria@gmail.com (do convite da reunião, confirmar); falta o telefone"],
         ["8", "Exclusividade no seu emprego", "Verificar antes de assinar"],
         ["9", "Avaliação por competência (decidido em 15/10)", "Dentro da Completa: R$ 17.400, ~96 h, entrega final em 22/01/2027. Com a Essencial ou depois: R$ 3.200 avulso"],

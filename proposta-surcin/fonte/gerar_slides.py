@@ -199,7 +199,7 @@ caixa(s, 1.8, 4.5, 30, 11, ["1. Escolha da opção e aceite da proposta",
                             "", "Para confirmar hoje:",
                             "• Quantos clientes o financeiro atende hoje?",
                             "• Quem emite as notas a partir de novembro?",
-                            "• A equipe pode conversar antes das 10h30 ou no almoço?",
+                            "• A equipe pode conversar antes das 10h ou após as 19h30?",
                             "• Tráfego volta em 15/12 ou em janeiro?",
                             "• Quem corrige a parametrização do Domínio?"], 18, AZUL)
 
