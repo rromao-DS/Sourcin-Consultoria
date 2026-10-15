@@ -148,35 +148,37 @@ caixa(s, 1.8, 5, 14.5, 10.8, ["Essencial · 19/10 a ~22/11",
                               "• Gargalos e dependências",
                               "• Organograma e matriz de responsabilidades",
                               "• Lista priorizada de automações"], 15, AZUL, fundo=CLARO)
-caixa(s, 17.5, 5, 14.5, 10.8, ["Completa (recomendada) · 19/10 a 18/12",
+caixa(s, 17.5, 5, 14.5, 10.8, ["Completa (recomendada) · 19/10 a 22/01",
                                "• 3 controles de contenção até 15/11",
                                "• Entrevistas com até 5 pessoas",
                                "• Até 8 processos mapeados",
                                "• Gargalos e dependências",
                                "• Organograma, papéis e indicadores",
                                "• 5 fluxos otimizados",
-                               "• Plano de automação com esforço e custo"], 15, BRANCO, fundo=AZUL)
+                               "• Plano de automação com esforço e custo",
+                               "• Avaliação de desempenho por competência (jan.)"], 15, BRANCO, fundo=AZUL)
 
 # 7 · Cronograma
-s = slide_titulo("Cronograma", "Cerca de 7 horas suas no total, sem reuniões na semana dos fechamentos nem na semana da prova")
+s = slide_titulo("Cronograma", "Cerca de 9 horas suas no total, sem reuniões na semana dos fechamentos nem na semana da prova")
 marcos = [("19/10", "Kick-off e entrevistas"), ("26/10", "Entrevistas com Tamara e Vitória"),
           ("15/11", "Entrega do mapeamento"), ("29/11", "Estrutura organizacional"),
-          ("13/12", "Sua prova (sem reuniões)"), ("18/12", "Apresentação final")]
+          ("13/12", "Sua prova (sem reuniões)"), ("18/12", "Fluxos e plano de automação"),
+          ("22/01", "Avaliação por competência e entrega final")]
 for i, (dt, t) in enumerate(marcos):
-    fundo = AMARELO if dt == "13/12" else (AZUL if dt in ("15/11", "18/12") else CLARO)
+    fundo = AMARELO if dt == "13/12" else (AZUL if dt in ("15/11", "22/01") else CLARO)
     cor = BRANCO if fundo == AZUL else AZUL
-    caixa(s, 1.8 + i * 5.05, 6, 4.75, 5.5, [dt, t], 15, cor, fundo=fundo)
+    caixa(s, 1.8 + i * 4.33, 6, 4.1, 5.5, [dt, t], 14, cor, fundo=fundo)
 
 # 8 · Investimento
 s = slide_titulo("Investimento", "Preço fechado. A implementação é orçada depois, por pacotes.")
 precos = [("Essencial", "R$ 7.800", "50% no aceite, 50% na entrega"),
-          ("Completa (recomendada)", "R$ 14.800", "30% no aceite, 35% no mapeamento, 35% na entrega final")]
+          ("Completa (recomendada)", "R$ 17.400", "30% no aceite, 35% no mapeamento, 35% na entrega final")]
 for i, (t, v, d) in enumerate(precos):
     fundo = AZUL if i == 1 else CLARO
     cor = BRANCO if i == 1 else AZUL
     caixa(s, 1.8 + i * 15.6, 5.3, 14.6, 6.5, [t, v, d], 20, cor, True, fundo=fundo)
 caixa(s, 1.8, 12.6, 30, 4, ["A reunião inicial e esta proposta não foram cobradas.",
-                            "Opcional: avaliação de desempenho por competência, R$ 3.200 (R$ 2.600 junto com a Completa), em janeiro de 2027.",
+                            "A Completa inclui a avaliação de desempenho por competência, feita em janeiro de 2027.",
                             "Fora da Fase 1: desenvolvimento e integrações (Fase 2), correção do Domínio, migração de contas, valores da premiação e licenças."],
       14, CINZA)
 

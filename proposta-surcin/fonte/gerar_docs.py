@@ -381,7 +381,7 @@ def estrutura():
     h(d, "6. Ligação com a remuneração variável")
     par(d, "A Thamires quer um programa de pontos por produtividade (00:46, 02:21). A estrutura entrega a base que ele "
            "precisa: papéis, entregas e indicadores por função. O desenho da avaliação por competência está orçado como "
-           "módulo opcional na proposta comercial (seção 9); pesos, metas e valores são decisão dela. O briefing já define critérios: reconhecer qualidade, pontualidade, "
+           "parte da opção Completa na proposta comercial (seções 4 e 9); pesos, metas e valores são decisão dela. O briefing já define critérios: reconhecer qualidade, pontualidade, "
            "autonomia e conformidade, não o volume de cartões concluídos, e passar valores e natureza jurídica por "
            "revisão trabalhista (seção 10).")
 
@@ -553,6 +553,7 @@ def proposta():
         ["Estrutura organizacional", "Organograma e matriz de responsabilidades", "Organograma atual e proposto, descrição de papéis e indicadores por função"],
         ["Fluxos otimizados (atual e futuro)", "Não", "5 processos prioritários"],
         ["Plano de automação", "Lista priorizada, sem estimativa", "Casos de uso priorizados por valor, risco, esforço e dependência, com módulos estimados e custo recorrente"],
+        ["Avaliação de desempenho por competência", "Não (pode ser contratada à parte por R$ 3.200)", "Sim, em janeiro de 2027: matriz de competências, formulário, ciclo semestral e ligação com a gratificação"],
         ["Relatório e apresentação executiva", "Sim", "Sim"],
     ], [5.5, 4.5, 6])
 
@@ -616,20 +617,21 @@ def proposta():
         ["Fluxos otimizados", "-", "10"],
         ["Plano de automação", "2", "5"],
         ["Relatório e apresentação executiva", "3", "6"],
-        ["Contingência (20%)", "7", "13,5"],
-        ["**Total**", "**~41 h**", "**~81 h**"],
+        ["Avaliação de desempenho por competência", "-", "12"],
+        ["Contingência (20%)", "7", "16"],
+        ["**Total**", "**~41 h**", "**~96 h**"],
     ], [9, 3.5, 3.5])
 
     h(d, "9. Investimento (Fase 1)")
     tabela(d, ["Opção", "Investimento", "Pagamento"], [
         ["**Essencial**", "**R$ 7.800**", "50% no aceite, 50% na entrega"],
-        ["**Completa (recomendada)**", "**R$ 14.800**", "30% no aceite, 35% na entrega do mapeamento, 35% na entrega final"],
+        ["**Completa (recomendada)**", "**R$ 17.400**", "30% no aceite, 35% na entrega do mapeamento, 35% na entrega final (janeiro de 2027)"],
         ["Hora avulsa (fora do escopo, sob aprovação prévia)", "R$ 220/h", "Mensal, conforme horas aprovadas"],
     ], [6, 4, 6])
     par(d, "A reunião inicial de 12/10/2026 e a preparação desta proposta não são cobradas. Acompanhamento mensal "
            "(Fase 3), se desejado, a partir de R$ 900 por mês com 4 horas.")
 
-    h(d, "Módulo opcional · Avaliação de desempenho por competência", 3)
+    h(d, "Avaliação de desempenho por competência (incluída na Completa)", 3)
     par(d, "Atende ao pedido de avaliar o desempenho individual e criar uma premiação (reunião 00:46 e 02:21; briefing, "
            "seção 10). Parte dos papéis e indicadores da Fase 1 e organiza a avaliação em ciclos semestrais, com uma "
            "gratificação de fim de ano que a Surcin consegue provisionar mês a mês.")
@@ -641,9 +643,8 @@ def proposta():
         "Guia de aplicação e uma sessão de preparação da Thamires para o primeiro ciclo.",
     ])
     tabela(d, ["Item", "Valor"], [
-        ["Esforço estimado", "18 h (15 h + 20% de contingência)"],
-        ["**Investimento avulso**", "**R$ 3.200**"],
-        ["**Contratado junto com a Completa**", "**R$ 2.600** (reaproveita os papéis e indicadores da Etapa 2)"],
+        ["Na opção Completa", "Incluída no valor (cerca de 14 h, reaproveitando os papéis e indicadores da estrutura organizacional)"],
+        ["**Com a Essencial ou contratada depois**", "**R$ 3.200** (cerca de 18 h)"],
         ["Quando", "Janeiro de 2027, para que o primeiro ciclo cubra o 1º semestre de 2027"],
     ], [6, 10])
     aviso(d, "Os critérios e a gratificação precisam de revisão trabalhista antes de entrar em vigor, em especial o "
@@ -660,7 +661,8 @@ def proposta():
         ["09 a 15/11", "Validação, gargalos e dependências; controles em uso; entrega do mapeamento", "Equipe 1 h, Thamires 1 h"],
         ["16 a 29/11", "Estrutura organizacional: organogramas, papéis, indicadores", "Thamires 1 h"],
         ["30/11 a 13/12", "Fluxos otimizados e plano de automação (sem reuniões na semana da prova)", "Validação por escrito"],
-        ["14 a 18/12", "Apresentação final e proposta dos módulos da Fase 2", "Thamires 2 h"],
+        ["14 a 18/12", "Apresentação dos fluxos e do plano de automação; proposta dos módulos da Fase 2", "Thamires 2 h"],
+        ["05 a 22/01/2027", "Avaliação de desempenho por competência: matriz, formulário, regras do ciclo e gratificação; entrega final", "Thamires 2 h"],
     ], [2.8, 9, 4.2])
     par(d, "Opção Essencial: de 19/10 a cerca de 22/11, com entrega única no fim. Primeiros módulos da Fase 2 a partir "
            "de janeiro de 2027.")
@@ -736,20 +738,20 @@ def roteiro():
         "Fatos novos do briefing: fundação em 2021, plataforma Nestzap, CITAX em avaliação, detalhes do erro de ISS e de outros erros fiscais.",
         "Divergências a confirmar com ela: notas da Tamara, data do tráfego pago, contratação em janeiro, número de clientes do financeiro e ano da reconstrução (doc 01, seção 8).",
         "Versão 4 (13/10): retirados BPO, Joyce e contabilidade terceirizada, que não fazem parte do projeto, e conferidos de novo os números contra a transcrição.",
-        "O preço não mudou; a contenção cabe nas 81 h da Completa.",
+        "Preço da Completa: R$ 17.400 (era R$ 14.800), porque agora inclui a avaliação por competência em janeiro (~96 h). A contenção continua dentro da contingência.",
     ])
 
     h(d, "2. Decisões e revisões que só você pode fazer")
     tabela(d, ["#", "Decisão", "Padrão adotado"], [
-        ["1", "Taxa-piso e preço", "Cerca de R$ 180/h; Essencial R$ 7.800, Completa R$ 14.800; hora avulsa R$ 220"],
+        ["1", "Taxa-piso e preço", "Cerca de R$ 180/h; Essencial R$ 7.800, Completa R$ 17.400 (com avaliação por competência); hora avulsa R$ 220"],
         ["2", "Capacidade semanal", "10 h/semana, com 20% de contingência"],
         ["3", "Parcelamento", "Ela tem caixa até novembro e você disse que valores são conversáveis (02:07). Considerar a Completa em 4 vezes até janeiro"],
-        ["4", "Contenção dentro das 81 h", "Absorvida pela contingência; se preferir cobrar à parte, some cerca de 4 h (R$ 700)"],
+        ["4", "Contenção dentro das ~96 h", "Absorvida pela contingência; se preferir cobrar à parte, some cerca de 4 h (R$ 700)"],
         ["5", "Piloto antes de 13/12", "Não cabe nas 10 h/semana junto com a Completa. Alternativa: trocar os fluxos otimizados por um piloto (ex.: especialista de dúvidas do financeiro)"],
         ["6", "Horários das entrevistas", "A equipe trabalha em horário comercial; confirmar antes das 10h30 ou no almoço"],
         ["7", "Contato na proposta", "Renato Romão, R2 Tech Consultoria; e-mail r2techconsultoria@gmail.com (do convite da reunião, confirmar); falta o telefone"],
         ["8", "Exclusividade no seu emprego", "Verificar antes de assinar"],
-        ["9", "Avaliação por competência (seu pedido de 13/10)", "Incluída como módulo opcional, fora do preço da Fase 1: 18 h, R$ 3.200 avulso ou R$ 2.600 junto com a Completa, em janeiro de 2027. Não cabe antes de 18/12 nas 10 h/semana. Se preferir incluir na Completa, o preço sobe para cerca de R$ 17.400"],
+        ["9", "Avaliação por competência (decidido em 15/10)", "Dentro da Completa: R$ 17.400, ~96 h, entrega final em 22/01/2027. Com a Essencial ou depois: R$ 3.200 avulso"],
     ], [0.8, 4.5, 10.7])
 
     h(d, "3. Plano até quinta")
