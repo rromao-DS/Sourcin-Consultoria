@@ -14,7 +14,7 @@ CINZA = RGBColor(0x59, 0x59, 0x59)
 VERSAO = "Versão 4 · 13/10/2026 · dados reconferidos com a transcrição · uso interno até revisão do Renato"
 
 
-def novo_doc(titulo, subtitulo):
+def novo_doc(titulo, subtitulo, versao=VERSAO):
     d = Document()
     for s in d.sections:
         s.left_margin = s.right_margin = Cm(2.2)
@@ -39,7 +39,7 @@ def novo_doc(titulo, subtitulo):
     r.font.size = Pt(13)
     r.font.color.rgb = CINZA
     p = d.add_paragraph()
-    r = p.add_run(VERSAO)
+    r = p.add_run(versao)
     r.italic = True
     r.font.size = Pt(9)
     r.font.color.rgb = CINZA
@@ -106,6 +106,9 @@ def tabela(d, cabecalho, linhas, larguras=None):
             r.font.size = Pt(10)
             r.bold = negrito
     if larguras:
+        t.autofit = False
+        for i, w in enumerate(larguras):
+            t.columns[i].width = Cm(w)
         for row in t.rows:
             for i, w in enumerate(larguras):
                 row.cells[i].width = Cm(w)
@@ -508,9 +511,9 @@ def metodologia():
 # 04 · Proposta comercial
 # ---------------------------------------------------------------------------
 def proposta():
-    d = novo_doc("Proposta de consultoria", "Organização, estrutura, processos e plano de automação · Surcin Assessoria Empresarial")
-    aviso(d, "Valores calculados com taxa de referência de cerca de R$ 180/h e capacidade de 10 h/semana do "
-             "consultor, com 20% de contingência. Aguardam confirmação do Renato antes do envio.")
+    d = novo_doc("Proposta de consultoria",
+                 "Organização, processos, rotinas do Claude e pilotos de automação · Surcin Assessoria Empresarial",
+                 "Versão 5 · 22/10/2026 · oferta única · válida até 30/10/2026")
 
     h(d, "1. O que entendemos")
     par(d, "A Surcin oferece contabilidade, fiscal, DP, financeiro, societário e jurídico empresarial, com cerca de "
@@ -518,210 +521,179 @@ def proposta():
            "desenhados, padrão de pastas e rotinas no Trello, mas a Thamires continua sendo a fonte única de "
            "conhecimento, decisão e revisão, e os erros recentes vieram de parâmetros fiscais errados e de controles "
            "que dependem de atenção humana.")
-    par(d, "O briefing enviado pela Surcin pede uma proposta modular, com entregas verificáveis, que gere ganhos ainda "
-           "em outubro e novembro sem consumir o tempo de estudo da Thamires, e que não seja vendida como \"colocar IA "
-           "em todos os setores\". Esta proposta segue esse caminho: primeiro processo, controle e estrutura; depois "
-           "automação assistida, em módulos orçados um a um.")
+    par(d, "O objetivo é que, a partir de janeiro de 2027, a equipe opere com papéis claros, fluxos documentados, "
+           "rotinas do Claude testadas e indicadores por área, sem depender da Thamires para cada decisão. A ordem é "
+           "sempre a mesma: primeiro processo e controle, depois ferramenta e automação assistida.")
 
-    h(d, "2. Objetivos")
+    h(d, "2. O que a Surcin recebe")
     lista(d, [
-        "Reduzir já os riscos mais caros (guia do cliente errado, tarefa concluída sem evidência, dúvidas repetidas) com controles que não exigem software.",
-        "Tirar a Thamires do centro da operação: papéis claros, critérios de revisão e escalonamento só para exceções.",
-        "Tornar visíveis os fluxos, gargalos e dependências entre pessoas e sistemas.",
-        "Entregar o plano de automação priorizado por valor, risco, esforço e dependência externa, com custo recorrente estimado.",
-        "Preparar a operação para a retomada comercial e para as decisões de contratação de janeiro de 2027.",
+        "Diagnóstico, mapa dos processos atuais e plano inicial.",
+        "Organograma funcional, matriz de responsabilidades e alçadas.",
+        "Fluxos futuros e listas de verificação da entrada do cliente e da passagem formal para a operação.",
+        "Biblioteca de 5 rotinas do Claude documentadas e testadas.",
+        "2 pilotos demonstrados, com resultados registrados.",
+        "Até 2 integrações implantadas entre sistemas de viabilidade confirmada.",
+        "Painel de indicadores por área (DP, Financeiro, Contabilidade e Comercial) e visão da diretoria.",
+        "Primeiro ciclo de avaliação de desempenho por competência.",
+        "Manuais, 3 treinamentos e plano de evolução.",
     ])
 
-    h(d, "3. O que esta proposta cobre (e o que não cobre)")
-    par(d, "O briefing pede que consultoria, implantação, desenvolvimento, integrações, licenças e manutenção fiquem separados.")
-    tabela(d, ["Frente", "Situação nesta proposta"], [
-        ["Consultoria: diagnóstico, mapeamento, estrutura, plano", "Incluída (Fase 1, preço fechado)"],
-        ["Contenção imediata: 3 controles manuais", "Incluída na opção Completa"],
-        ["Implantação e desenvolvimento: ambiente Claude, especialistas, validadores, painéis", "Fase 2, módulos orçados à parte após o plano"],
-        ["Integrações (Conta Azul, Domínio, Nestzap, OneDrive, Trello)", "Fase 2, cada uma com prova de viabilidade antes de orçar"],
-        ["Licenças e ferramentas", "Por conta da Surcin; estimativa mensal entregue no plano"],
-        ["Manutenção e suporte", "Fase 3, mensalidade com franquia de horas, opcional"],
-    ], [9, 7])
+    h(d, "3. Etapas, datas e aceites")
+    par(d, "Um projeto deste porte normalmente leva cerca de 18 semanas. Para atender ao prazo da Surcin, ele foi "
+           "condensado em 8 semanas, de 03/11 a 23/12/2026, com etapas sobrepostas. A partir de janeiro, a Surcin "
+           "opera com o que foi implantado.")
+    tabela(d, ["Etapa", "Período", "Horas", "O que entrega", "Aceite"], [
+        ["1 · Diagnóstico e inventário", "03 a 13/11", "28 h",
+         "Reunião de abertura e análise de materiais; até 5 entrevistas; mapeamento de até 8 processos atuais; inventário de sistemas e riscos",
+         "Diagnóstico, mapa atual, prioridades e plano inicial validados"],
+        ["2 · Arquitetura operacional", "16 a 29/11", "42 h",
+         "Organograma funcional, matriz de responsabilidades e alçadas; jornada de entrada do cliente e passagem formal; redesenho de até 5 fluxos; controles prioritários; indicadores por área e competências por papel",
+         "Fluxos futuros, responsabilidades e listas de verificação aprovados"],
+        ["3 · Fundação do Claude e rotinas", "23/11 a 13/12", "52 h",
+         "Organização da base e das fontes oficiais; Projetos do Claude; construção, testes e documentação das 5 rotinas do Claude",
+         "Biblioteca de 5 rotinas do Claude validada para uso assistido"],
+        ["4 · Pilotos e painel", "07 a 20/12", "63 h",
+         "Implantação controlada dos pilotos A e B com dados autorizados; até 2 integrações implantadas; primeira versão do painel por área (planilha ou Trello)",
+         "Demonstração funcional, resultados dos testes, aceite dos 2 pilotos e painel em uso"],
+        ["5 · Adoção e transferência", "14 a 23/12", "36 h",
+         "Ajustes acordados; 3 treinamentos de até 90 minutos; manuais; painel por área e da diretoria; primeiro ciclo de avaliação por competência; plano de evolução",
+         "Arquivos editáveis, treinamento, avaliação aplicada, relatório final e passagem formal aprovados"],
+        ["**Total**", "**8 semanas**", "**~221 h**", "", ""],
+    ], [3.2, 2.2, 1.4, 5.6, 4.2])
 
-    h(d, "4. Fase 1 · Diagnóstico, estrutura e plano: duas opções")
-    tabela(d, ["Entregável", "Essencial", "Completa (recomendada)"], [
-        ["Entrevistas (cerca de 1 h cada)", "Até 4 pessoas: Thamires, Júlia, Vitória, Tamara", "Até 5 pessoas (inclui a Alana)"],
-        ["Processos atuais mapeados e validados", "Até 5", "Até 8, entre os 11 identificados"],
-        ["Gargalos e matriz de dependências", "Sim", "Sim"],
-        ["Inventário de ferramentas, contas, licenças e acessos", "Sim", "Sim"],
-        ["Contenção imediata: 3 controles manuais implantados com a equipe", "Não", "Sim, até 15/11"],
-        ["Estrutura organizacional", "Organograma e matriz de responsabilidades", "Organograma atual e proposto, descrição de papéis e indicadores por função"],
-        ["Fluxos otimizados (atual e futuro)", "Não", "5 processos prioritários"],
-        ["Plano de automação", "Lista priorizada, sem estimativa", "Casos de uso priorizados por valor, risco, esforço e dependência, com módulos estimados e custo recorrente"],
-        ["Avaliação de desempenho por competência", "Não (pode ser contratada à parte por R$ 3.200)", "Sim, em janeiro de 2027: matriz de competências, formulário, ciclo semestral e ligação com a gratificação"],
-        ["Relatório e apresentação executiva", "Sim", "Sim"],
-    ], [5.5, 4.5, 6])
+    aviso(d, "Dois meses intensivos. Para entregar tudo funcionando até 23/12, a R2 trabalha no projeto todos os dias, "
+             "inclusive sábados e domingos: são cerca de 221 horas, ou cerca de 4h15 por dia, de 03/11 a 23/12. "
+             "Não há folga no calendário: o prazo depende de entrevistas, acessos e dados chegarem nas datas.")
 
-    h(d, "Contenção imediata (opção Completa)", 3)
-    par(d, "Três controles manuais, desenhados a partir dos erros reais citados no briefing, implantados com a equipe "
-           "sem desenvolvimento e sem depender da Thamires no dia a dia:")
+    h(d, "4. As 5 rotinas do Claude")
+    par(d, "Até 5 rotinas do Claude, escolhidas entre os processos priorizados no diagnóstico. As cinco abaixo são as "
+           "candidatas iniciais. Uma rotina do Claude é um procedimento escrito e testado, operado de forma assistida: "
+           "uma pessoa autorizada fornece o insumo, o Claude produz a saída e uma pessoa valida.")
+    tabela(d, ["Rotina do Claude", "Entra", "Sai", "Validação humana"], [
+        ["01 · Entrada do cliente e passagem formal", "Dados de implantação autorizados", "Trilha, lista de verificação, pendências e resumo da passagem formal", "Júlia coordena; a área técnica aprova a ativação"],
+        ["02 · Triagem de demandas", "Mensagem ou documento importado", "Categoria, prioridade sugerida, responsável e rascunho de resposta", "Atendimento revisa antes de enviar"],
+        ["03 · Conferência de guias e documentos", "Documentos e cadastro mestre autorizado", "Quadro por cliente, competência e tributo, com divergências", "Fiscal ou financeiro libera"],
+        ["04 · Fechamento financeiro assistido", "Exportações do Conta Azul e planilhas", "Conferências, indicadores e minuta de análise", "Vitória e/ou Thamires valida"],
+        ["05 · Controle de tarefas e evidências", "Relatório de tarefas e índice de documentos", "Pendências e inconsistências sinalizadas", "Área responsável confere a evidência"],
+    ], [4.2, 3.6, 4.8, 4])
+    par(d, "Cada rotina traz finalidade, procedimento, limites, 3 ou mais casos de teste e responsável. Passar de 5 "
+           "rotinas exige aditivo.")
+
+    h(d, "5. Os 2 pilotos")
     lista(d, [
-        ("Conferência de guia antes do pagamento: ", "checagem de cliente, CNPJ, pasta, tributo, competência e valor, com padrão mínimo de nome de arquivo."),
-        ("Evidência para concluir tarefa: ", "nas rotinas críticas, o cartão do Trello só é concluído com o link do comprovante no OneDrive."),
-        ("Registro de escalonamentos: ", "toda dúvida levada à Thamires é registrada com motivo e solução, o que vira o indicador de dependência e a base do futuro especialista de dúvidas."),
+        ("Piloto A · Entrada do cliente assistida, com a Júlia: ", "até 2 casos selecionados; triagem por tipo de cliente e serviços contratados; lista de verificação e identificação de campos e documentos ausentes; passagem formal com responsáveis, pendências e prazo."),
+        ("Piloto B · Conferência assistida de guias e documentos: ", "documentos de teste pré-aprovados, de preferência anonimizados; confronto de cliente, CNPJ, competência, tributo, valor e pasta; sinalização de campos ausentes, diferenças e baixa confiança."),
     ])
+    par(d, "Os pilotos não dependem de conexão automática com Domínio, Veri ou OneDrive: se um conector não for viável, "
+           "o piloto segue com arquivos exportados. Ficam fora dos pilotos o pagamento bancário, a transmissão de "
+           "declarações, decisões fiscais ou jurídicas finais e a integração com grupos de WhatsApp.")
 
-    h(d, "5. Fase 2 · Implantação em módulos (orçada depois do plano)")
-    par(d, "Módulos citados no briefing, apresentados como ordem de grandeza para planejamento. O escopo, as horas e o "
-           "preço de cada módulo só são fechados depois da Fase 1, com prova de viabilidade dos conectores envolvidos. "
-           "Nenhum deles está contratado nesta proposta.")
-    tabela(d, ["Módulo", "O que entrega", "Porte provável", "Dependências"], [
-        ["Ambiente Surcin e Base Mestre de Clientes", "Conta Claude da Surcin, permissões, Projects Diretoria, Financeiro e Fiscal, base mínima de clientes no OneDrive", "M", "Contas novas no domínio Surcin"],
-        ["Especialista de dúvidas (por setor)", "Assistente que responde com os procedimentos oficiais e escala só exceções", "M", "Procedimentos atualizados na Fase 1"],
-        ["Validador de guias e documentos", "Alerta quando cliente, CNPJ, competência, tributo ou valor divergem; pagamento sempre humano", "M a G", "Padrão de pastas; amostras reais anonimizadas"],
-        ["Fechamento financeiro interativo (piloto)", "Painel para um ou dois clientes, com dados mensais estruturados e narrativa preparada pelo Claude", "M a G", "Conta Azul; Lovable com dados segregados por cliente"],
-        ["Auditoria Trello × OneDrive", "Fila de exceções para uma rotina (ex.: DP), sem concluir sozinha que algo não foi feito", "M", "Controle de evidência da Fase 1"],
-        ["Fila de pedidos de pagamento", "Captura padronizada dos pedidos que chegam por WhatsApp; alternativa por formulário se os grupos não forem acessíveis", "M a G", "Viabilidade técnica e termos do Nestzap/Meta"],
-        ["Painel de desempenho", "Dados para o programa de premiação, com critérios ajustáveis", "M", "Revisão trabalhista dos critérios"],
-        ["Comercial e CRM", "Leads, propostas, onboarding", "G", "Janeiro de 2027"],
-    ], [3.8, 6.2, 2, 4])
-    par(d, "Porte de referência: P de R$ 1.500 a R$ 2.800; M de R$ 3.500 a R$ 6.500; G de R$ 8.000 a R$ 13.000. "
-           "Cada módulo inclui desenho, construção, testes com dados anonimizados, documentação e treinamento.")
+    h(d, "6. Integrações: o que dá para ligar")
+    par(d, "A proposta inclui até 2 integrações implantadas, escolhidas no diagnóstico entre os sistemas de viabilidade "
+           "alta ou média confirmada. A classificação abaixo é uma leitura prévia, feita a partir do que se sabe "
+           "publicamente de cada sistema, e será confirmada com os planos e acessos reais da Surcin.")
+    tabela(d, ["Viabilidade", "Sistemas", "Por quê"], [
+        ["**Alta**", "Trello, OneDrive e Microsoft 365 (Excel), Google Agenda, Google Forms, Notion, Slack", "Têm acesso técnico público e documentado, e a maioria já tem conector pronto para o Claude."],
+        ["**Média**", "Conta Azul, WhatsApp", "O Conta Azul tem acesso técnico público, mas a Surcin precisa autorizar. No WhatsApp, só a versão oficial do WhatsApp Business permite automação; ela é paga por conversa e não automatiza grupos."],
+        ["**Por arquivo exportado**", "Domínio, Veri, Nestzap, Jusbrasil, Alterdata, CITAX", "Não há acesso técnico aberto conhecido para uso direto. Nesses sistemas a rotina usa relatórios exportados até que um acesso seja comprovado."],
+    ], [3, 5.5, 8])
+    par(d, "Candidatas mais fortes: Trello com o Claude (controle de tarefas e painel) e Conta Azul com a planilha do "
+           "fechamento. Alternativa: OneDrive, para a conferência de documentos. Se um acesso não se confirmar, a "
+           "rotina segue por arquivo exportado e a troca fica registrada no plano de evolução. Nenhuma integração "
+           "paga, protocola ou envia algo a cliente sem confirmação humana.")
 
-    h(d, "6. Princípios de implantação")
+    h(d, "7. Avaliação de desempenho e painéis por área")
+    lista(d, [
+        ("Avaliação por competência: ", "competências ajustadas aos papéis definidos na Etapa 2, ficha de avaliação, dicionário de notas, roteiro da conversa de avaliação, rotina de 1:1 semanal e regras de registro de faltas, atrasos e atestados. O primeiro ciclo é aplicado com a Thamires na Etapa 5. O modelo prevê avaliação semestral."),
+        ("Painéis por área: ", "de 3 a 5 indicadores por área (DP, Financeiro, Contabilidade e Comercial), mais uma visão da diretoria, cada um com definição, fórmula, fonte, responsável e meta. Na primeira versão, o painel é alimentado por planilha ou pelo Trello, com uma rotina semanal de atualização; a ligação direta com Domínio e Conta Azul depende das integrações da Etapa 4."),
+    ])
+    aviso(d, "Os valores de gratificação são decisão da Thamires, e os critérios precisam de revisão trabalhista antes de "
+             "entrar em vigor, em especial o tratamento de faltas justificadas por atestado médico. Essa revisão não "
+             "está incluída.")
+
+    h(d, "8. Escopo fechado")
+    tabela(d, ["Item", "Limite do contrato"], [
+        ["Entrevistas", "5"],
+        ["Processos atuais mapeados", "8"],
+        ["Fluxos redesenhados", "5"],
+        ["Rotinas do Claude", "5"],
+        ["Pilotos funcionais", "2"],
+        ["Integrações implantadas", "2"],
+        ["Treinamentos de até 90 minutos", "3"],
+        ["Painel por área + diretoria", "1"],
+        ["Ciclo de avaliação por competência", "1"],
+    ], [10, 6])
+    h(d, "Fora do escopo", 3)
+    lista(d, [
+        "Sistema de gestão integrado (ERP) ou implementação completa de todos os setores.",
+        "Migração de toda a base histórica.",
+        "Integrações além das 2 contratadas e sistemas sem acesso técnico (seguem por arquivo exportado).",
+        "Auditoria fiscal ou contábil formal.",
+        "Decisões e protocolos profissionais, que continuam com a equipe da Surcin.",
+        "Disparos sensíveis e pagamentos automáticos.",
+        "Suporte contínuo e monitoramento 24 horas por dia.",
+        "Valores de gratificação e revisão trabalhista.",
+    ])
+    par(d, "Tudo além do escopo fechado exige orçamento ou aditivo, aprovado por escrito antes da execução.")
+
+    h(d, "9. Investimento")
+    tabela(d, ["", "Valor", "Quando"], [
+        ["**Consultoria e implantação**", "**R$ 31.900**", "8 semanas · 5 etapas · 5 rotinas do Claude · 2 pilotos · 2 integrações"],
+        ["Parcela 1 · 30%", "R$ 9.570", "No aceite da proposta (início da Etapa 1)"],
+        ["Parcela 2 · 35%", "R$ 11.165", "No aceite da Etapa 3 (biblioteca de 5 rotinas do Claude validada)"],
+        ["Parcela 3 · 35%", "R$ 11.165", "Na entrega final (homologação das Etapas 4 e 5)"],
+    ], [5, 3.5, 7.5])
+    par(d, "Valor único, com escopo fechado. O contrato detalha o marco exato de cada parcela.")
+    h(d, "Custos da Surcin, à parte e com aprovação prévia", 3)
+    par(d, "Planos do Claude e de outras ferramentas, uso de modelos de IA e integrações, automação, hospedagem, "
+           "licenças, custo por conversa do WhatsApp Business, infraestrutura e eventuais terceiros.")
+
+    h(d, "10. Princípios de implantação")
     lista(d, [
         ("Processo antes de ferramenta. ", "Nada é automatizado antes de o fluxo estar validado; parâmetros fiscais são conferidos antes de qualquer automação."),
-        ("Matriz de autonomia. ", "Verde (pesquisar, resumir, conferir) pode ser automático; amarelo (criar tarefa, preparar mensagem, registrar conta a pagar) exige confirmação humana e registro; vermelho (pagar, protocolar, excluir, decidir) é sempre humano."),
-        ("Ativos da Surcin. ", "Contas, licenças, prompts, especialistas, bases e código ficam em nome da Surcin, documentados, com acesso administrativo entregue."),
-        ("Segurança e LGPD. ", "Segregação por cliente e função, acesso mínimo, registro de ações, dados reais só após homologação com dados anonimizados."),
-        ("Continuidade. ", "Cada módulo tem procedimento manual de contingência e pode ser operado sem o consultor."),
+        ("Confirmação humana. ", "Pesquisar, resumir e conferir podem ser automáticos; criar tarefa ou preparar mensagem exige confirmação e registro; pagar, protocolar, excluir e decidir é sempre humano."),
+        ("Ativos da Surcin. ", "Arquivos e materiais contratados ficam com a Surcin, com acesso de administrador ao que for dela. A R2 mantém a metodologia pré-existente."),
+        ("Segurança e LGPD. ", "Confidencialidade, minimização e segregação de dados por cliente, testes com dados anonimizados e credenciais em ambiente seguro."),
+        ("Continuidade. ", "Cada rotina tem alternativa manual e pode ser operada sem o consultor."),
     ])
 
-    h(d, "7. Fora do escopo da Fase 1")
-    lista(d, [
-        "Desenvolvimento, configuração ou integração de automações e sistemas (Fase 2).",
-        "Correção da parametrização do Domínio ou do CITAX (exige suporte do sistema ou especialista).",
-        "Migração de contas para o domínio novo da Surcin.",
-        "Definição de valores, periodicidade e natureza jurídica da premiação (exige revisão trabalhista).",
-        "Recrutamento e seleção.",
-        "Suporte contínuo, plantão ou urgência.",
-        "Licenças e assinaturas.",
-        "Serviços contábeis, fiscais, trabalhistas ou jurídicos.",
-    ])
-
-    h(d, "8. Esforço estimado (Fase 1)")
-    par(d, "Premissas: 2 h por entrevista (1 h de conversa e 1 h de preparação e registro), 2 h por processo mapeado, "
-           "2 h por processo redesenhado e 20% de contingência. Na Completa, a contenção imediata é absorvida pelo "
-           "mapeamento do fiscal e do financeiro e pela contingência.")
-    tabela(d, ["Atividade", "Essencial", "Completa"], [
-        ["Entrevistas com a equipe", "8", "10"],
-        ["Mapeamento dos processos atuais", "10", "16"],
-        ["Gargalos e dependências", "3", "4"],
-        ["Validação com a Thamires", "2", "2,5"],
-        ["Estrutura organizacional", "6", "14"],
-        ["Fluxos otimizados", "-", "10"],
-        ["Plano de automação", "2", "5"],
-        ["Relatório e apresentação executiva", "3", "6"],
-        ["Avaliação de desempenho por competência", "-", "12"],
-        ["Contingência (20%)", "7", "16"],
-        ["**Total**", "**~41 h**", "**~96 h**"],
-    ], [9, 3.5, 3.5])
-
-    h(d, "9. Investimento (Fase 1)")
-    tabela(d, ["Opção", "Investimento", "Pagamento"], [
-        ["**Essencial**", "**R$ 7.800**", "50% no aceite, 50% na entrega"],
-        ["**Completa (recomendada)**", "**R$ 17.400**", "30% no aceite, 35% na entrega do mapeamento, 35% na entrega final (janeiro de 2027)"],
-        ["Hora avulsa (fora do escopo, sob aprovação prévia)", "R$ 220/h", "Mensal, conforme horas aprovadas"],
-    ], [6, 4, 6])
-    par(d, "A reunião inicial de 12/10/2026 e a preparação desta proposta não são cobradas. Acompanhamento mensal "
-           "(Fase 3), se desejado, a partir de R$ 900 por mês com 4 horas.")
-
-    h(d, "Avaliação de desempenho por competência (incluída na Completa)", 3)
-    par(d, "Atende ao pedido de avaliar o desempenho individual e criar uma premiação (reunião 00:46 e 02:21; briefing, "
-           "seção 10). Parte dos papéis e indicadores da Fase 1 e organiza a avaliação em ciclos semestrais, com uma "
-           "gratificação de fim de ano que a Surcin consegue provisionar mês a mês.")
-    lista(d, [
-        "Matriz de competências por função (secretária, financeiro, DP, estagiária do jurídico), com o nível esperado de cada uma.",
-        "Formulário de avaliação com escala definida: autoavaliação da funcionária e avaliação da Thamires.",
-        "Regras do ciclo: duas avaliações por ano, critérios de assiduidade e pontualidade, conversa de devolutiva e plano de desenvolvimento individual.",
-        "Modelo de ligação com a gratificação de fim de ano, com simulação de provisão mensal. Os valores são decisão dela.",
-        "Guia de aplicação e uma sessão de preparação da Thamires para o primeiro ciclo.",
-    ])
-    tabela(d, ["Item", "Valor"], [
-        ["Na opção Completa", "Incluída no valor (cerca de 14 h, reaproveitando os papéis e indicadores da estrutura organizacional)"],
-        ["**Com a Essencial ou contratada depois**", "**R$ 3.200** (cerca de 18 h)"],
-        ["Quando", "Janeiro de 2027, para que o primeiro ciclo cubra o 1º semestre de 2027"],
-    ], [6, 10])
-    aviso(d, "Os critérios e a gratificação precisam de revisão trabalhista antes de entrar em vigor, em especial o "
-             "tratamento de faltas justificadas por atestado médico e a natureza jurídica do valor pago. Essa revisão "
-             "não está incluída.")
-
-    h(d, "10. Cronograma (opção Completa, aceite até 16/10/2026)")
-    par(d, "Cerca de 10 horas por semana do consultor, segunda a sexta das 6h às 10h e depois das 19h30, além de sábados e domingos. Respeita as férias da Vitória "
-           "(retorno em 28/10), a semana de fechamentos no início do mês e a prova da Thamires em 13/12.")
-    tabela(d, ["Semana", "Atividades", "Participação da Surcin"], [
-        ["19 a 25/10", "Kick-off, inventário de contas e ferramentas, coleta dos passo a passos, entrevistas com Thamires e Júlia", "Thamires 2 h, Júlia 1 h"],
-        ["26/10 a 01/11", "Entrevistas com Tamara e Vitória; desenho do fiscal e dos pagamentos; desenho dos 3 controles", "Tamara 1 h, Vitória 1 h"],
-        ["02 a 08/11", "Desenho dos fluxos atuais (sem reuniões: semana de fechamentos)", "Nenhuma"],
-        ["09 a 15/11", "Validação, gargalos e dependências; controles em uso; entrega do mapeamento", "Equipe 1 h, Thamires 1 h"],
-        ["16 a 29/11", "Estrutura organizacional: organogramas, papéis, indicadores", "Thamires 1 h"],
-        ["30/11 a 13/12", "Fluxos otimizados e plano de automação (sem reuniões na semana da prova)", "Validação por escrito"],
-        ["14 a 18/12", "Apresentação dos fluxos e do plano de automação; proposta dos módulos da Fase 2", "Thamires 2 h"],
-        ["05 a 22/01/2027", "Avaliação de desempenho por competência: matriz, formulário, regras do ciclo e gratificação; entrega final", "Thamires 2 h"],
-    ], [2.8, 9, 4.2])
-    par(d, "Opção Essencial: de 19/10 a cerca de 22/11, com entrega única no fim. Primeiros módulos da Fase 2 a partir "
-           "de janeiro de 2027.")
-
-    h(d, "11. Respostas às perguntas do briefing (seção 16)")
-    tabela(d, ["Pergunta", "Resposta"], [
-        ["O que pode ser implantado com segurança antes de 13/12 sem consumir horas diárias da diretora?",
-         "Os três controles manuais da contenção imediata, o mapeamento e a estrutura organizacional. Pedem cerca de 7 horas da Thamires no total, concentradas em outubro e novembro."],
-        ["Quais três controles podem entrar primeiro?",
-         "Conferência de guia antes do pagamento, evidência obrigatória para concluir cartões críticos e registro de escalonamentos. Depois, as versões automatizadas viram módulos da Fase 2."],
-        ["Como a Base Mestre será estruturada sem duplicação ou vazamento?",
-         "Uma única base no OneDrive como fonte oficial, com campos mínimos definidos na Fase 1; os especialistas consultam sem duplicar cadastro, com acesso por função. O desenho técnico sai no plano."],
-        ["Como verificar identidade e competência de PDFs?",
-         "Primeiro com padrão de nome e conferência humana (Fase 1); depois com validador testado em amostras reais anonimizadas, sempre com pagamento humano."],
-        ["Como o painel do Lovable não expõe dados entre clientes?",
-         "Piloto com um ou dois clientes, dados segregados por cliente e autenticação; protótipo visual não é tratado como plataforma pronta."],
-        ["Quais integrações são viáveis?",
-         "Cada conector (Conta Azul, Domínio, Nestzap/WhatsApp em grupos, OneDrive, Trello) recebe prova de viabilidade antes de entrar em orçamento. Nada é presumido."],
-        ["Como é a homologação?",
-         "Com dados fictícios ou anonimizados e autorização por escrito antes de usar dados reais."],
-        ["E se o consultor sair ou uma ferramenta mudar?",
-         "Ativos em nome da Surcin, documentação de cada rotina, procedimento manual de contingência e acesso administrativo entregue."],
-    ], [6, 10])
-
-    h(d, "12. Responsabilidades")
-    h(d, "Do consultor", 3)
+    h(d, "11. Responsabilidades")
+    h(d, "Da R2 Tech Consultoria", 3)
     lista(d, [
         "Conduzir entrevistas, análises e reuniões nas datas combinadas.",
-        "Entregar os documentos em formato editável, no OneDrive da Surcin.",
-        "Manter sigilo sobre dados da empresa e de seus clientes, com acordo de confidencialidade.",
+        "Trabalhar no projeto todos os dias, inclusive sábados e domingos, de 03/11 a 23/12.",
+        "Entregar os documentos em formato editável, no ambiente da Surcin.",
+        "Manter sigilo sobre os dados da empresa e de seus clientes, com acordo de confidencialidade.",
         "Avisar com antecedência riscos de atraso ou mudança de escopo.",
-        "Trabalhar no projeto de segunda a sexta das 6h às 10h e depois das 19h30, além de sábados e domingos.",
-        "Responder mensagens em até 1 dia útil, dentro dessas janelas.",
     ])
-    h(d, "Da cliente", 3)
+    h(d, "Da Surcin", 3)
     lista(d, [
-        "Indicar a Júlia (ou outra pessoa) como ponto focal para acessos e agenda.",
-        "Liberar acesso de leitura ao Trello, à pasta Geral do OneDrive e aos passo a passos.",
-        "Liberar a equipe para entrevistas de cerca de 1 hora, no início do expediente (antes das 10h) ou após as 19h30.",
-        "Aplicar os controles combinados na rotina.",
-        "Responder dúvidas em até 2 dias úteis e validar entregas em até 5 dias úteis.",
+        "Aceitar a proposta até 30/10 e liberar os acessos no início do projeto.",
+        "Indicar um ponto focal para acessos e agenda.",
+        "Liberar a equipe para entrevistas de cerca de 1 hora de 09 a 13/11 (sem entrevistas nos fechamentos, de 02 a 08/11).",
+        "Fornecer dados autorizados para os pilotos.",
+        "Responder e validar entregas em até 1 dia útil.",
+        "Não há reuniões na semana de 07 a 13/12, por causa da prova da Thamires.",
     ])
 
-    h(d, "13. Condições gerais")
+    h(d, "12. Condições gerais")
     lista(d, [
-        "Reuniões preferencialmente online, dentro da disponibilidade do consultor: segunda a sexta das 6h às 10h e depois das 19h30, além de sábados e domingos.",
-        "Atrasos por falta de retorno ou de acesso deslocam o cronograma; pausas de mais de 10 dias reagendam o projeto.",
+        "As datas partem de um aceite até 30/10/2026. Aceite depois disso desloca o calendário.",
+        "02/11 (Finados) e 20/11 (Consciência Negra) são feriados e não terão reuniões.",
+        "Atrasos por falta de retorno, acesso ou dados deslocam o cronograma.",
         "Mudanças de escopo são orçadas à parte e só executadas após aprovação por escrito.",
-        "Os documentos produzidos são da Surcin após a quitação de cada parcela.",
-        "Validade desta proposta: 15 dias a partir de 15/10/2026.",
+        "Os materiais produzidos passam a ser da Surcin após a quitação de cada parcela.",
+        "Validade desta proposta: até 30/10/2026.",
     ])
 
-    h(d, "14. Próximos passos")
+    h(d, "13. Próximos passos")
     lista(d, [
-        "Escolha da opção (Essencial ou Completa) e aceite.",
-        "Acordo de confidencialidade.",
-        "Kick-off na semana de 19/10 e agenda das entrevistas.",
+        "Aceite da proposta: confirmação de escopo e investimento.",
+        "Contrato e confidencialidade: marcos, LGPD e propriedade formalizados.",
+        "Acessos e materiais: levantamento do que a Etapa 1 precisa.",
+        "Reunião de abertura em 03/11, com o aceite até 30/10.",
     ], numerada=True)
-    par(d, "\n" + CONSULTOR)
+    par(d, "\nRenato Romão · R2 Tech Consultoria · r2techconsultoria@gmail.com")
     d.save(f"{SAIDA}/04-proposta-comercial.docx")
 
 
