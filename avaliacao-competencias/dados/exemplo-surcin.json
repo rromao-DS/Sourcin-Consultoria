@@ -1,0 +1,1488 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "empresa",
+  "descricao": "Exemplo: Surcin Assessoria Empresarial. Organograma atual (documento 02) e proposta de avaliação para validação da Thamires. Sem notas, valores, e-mails ou datas não informadas.",
+  "empresa": {
+    "id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+    "nome": "Surcin Assessoria Empresarial",
+    "cnpj": null,
+    "ramo": "Assessoria empresarial: contabilidade, financeiro e jurídico"
+  },
+  "usuarios": [],
+  "membros_empresa": [],
+  "areas": [
+    {
+      "id": "990eae0e-4e65-5e3a-bdd9-a0bc6d717472",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "nome": "Direção",
+      "area_pai_id": null,
+      "ordem": 0
+    },
+    {
+      "id": "1dd609d6-1792-548a-aa31-052e8851ca45",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "nome": "Secretaria e atendimento",
+      "area_pai_id": null,
+      "ordem": 1
+    },
+    {
+      "id": "4829dc4f-8e66-5a1a-b136-82f656a6ea55",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "nome": "Financeiro",
+      "area_pai_id": null,
+      "ordem": 2
+    },
+    {
+      "id": "e05bb24a-b238-5425-9d8e-83fb57bbd917",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "nome": "Departamento Pessoal",
+      "area_pai_id": null,
+      "ordem": 3
+    },
+    {
+      "id": "34949381-950c-547d-a42f-d53461f213b1",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "nome": "Jurídico e societário",
+      "area_pai_id": null,
+      "ordem": 4
+    }
+  ],
+  "cargos": [
+    {
+      "id": "c5dd1368-dc98-5389-aa93-bc59ddbf95f2",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "area_id": "990eae0e-4e65-5e3a-bdd9-a0bc6d717472",
+      "nome": "Direção",
+      "missao": null,
+      "responsabilidades": "Direção, técnica contábil e jurídica, fiscal, comercial, reuniões de fechamento",
+      "ativo": true
+    },
+    {
+      "id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "area_id": "1dd609d6-1792-548a-aa31-052e8851ca45",
+      "nome": "Secretaria, atendimento e entrada de clientes",
+      "missao": null,
+      "responsabilidades": "Atendimento, implantação de clientes, apoio no fiscal",
+      "ativo": true
+    },
+    {
+      "id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "area_id": "4829dc4f-8e66-5a1a-b136-82f656a6ea55",
+      "nome": "Financeiro",
+      "missao": null,
+      "responsabilidades": "Pagamentos, notas, conciliação, preparação do fechamento",
+      "ativo": true
+    },
+    {
+      "id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "area_id": "e05bb24a-b238-5425-9d8e-83fb57bbd917",
+      "nome": "Departamento Pessoal",
+      "missao": null,
+      "responsabilidades": "DP; até outubro de 2026 também apoio no financeiro e notas",
+      "ativo": true
+    },
+    {
+      "id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "area_id": "34949381-950c-547d-a42f-d53461f213b1",
+      "nome": "Estágio no jurídico e no societário (dois dias por semana)",
+      "missao": null,
+      "responsabilidades": "Acompanhamento de processos, peças simples, apoio ao societário",
+      "ativo": true
+    }
+  ],
+  "pessoas": [
+    {
+      "id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "usuario_id": null,
+      "nome": "Thamires",
+      "email": null,
+      "ativo": true,
+      "observacoes": null
+    },
+    {
+      "id": "a36eb2aa-7345-5cc9-a728-6ef0878f0c61",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "usuario_id": null,
+      "nome": "Júlia",
+      "email": null,
+      "ativo": true,
+      "observacoes": null
+    },
+    {
+      "id": "f54a9cb8-d109-5d12-bfd9-895345019bd8",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "usuario_id": null,
+      "nome": "Vitória",
+      "email": null,
+      "ativo": true,
+      "observacoes": null
+    },
+    {
+      "id": "b504cb81-bb86-59f8-adaf-677ead0565aa",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "usuario_id": null,
+      "nome": "Tamara",
+      "email": null,
+      "ativo": true,
+      "observacoes": null
+    },
+    {
+      "id": "402583ba-d502-541c-9b93-5d7fb2946501",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "usuario_id": null,
+      "nome": "Alana",
+      "email": null,
+      "ativo": true,
+      "observacoes": null
+    }
+  ],
+  "vinculos": [
+    {
+      "id": "a9ff7847-7857-53fe-bffe-6e0318a9bae8",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "cargo_id": "c5dd1368-dc98-5389-aa93-bc59ddbf95f2",
+      "gestor_pessoa_id": null,
+      "tipo": "socio",
+      "jornada": null,
+      "data_inicio": null,
+      "data_fim": null
+    },
+    {
+      "id": "fdc8505e-3112-58ae-a6f2-851c93ae339c",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "pessoa_id": "a36eb2aa-7345-5cc9-a728-6ef0878f0c61",
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "gestor_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "tipo": "nao_informado",
+      "jornada": null,
+      "data_inicio": null,
+      "data_fim": null
+    },
+    {
+      "id": "9161fd5e-a6d9-5242-a2e1-54cb4e583b7f",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "pessoa_id": "f54a9cb8-d109-5d12-bfd9-895345019bd8",
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "gestor_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "tipo": "nao_informado",
+      "jornada": null,
+      "data_inicio": null,
+      "data_fim": null
+    },
+    {
+      "id": "7fc4df60-eb86-515a-9245-62f4fb9fef4a",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "pessoa_id": "b504cb81-bb86-59f8-adaf-677ead0565aa",
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "gestor_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "tipo": "nao_informado",
+      "jornada": null,
+      "data_inicio": null,
+      "data_fim": null
+    },
+    {
+      "id": "ada82524-183c-5df7-876a-32387fe36451",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "pessoa_id": "402583ba-d502-541c-9b93-5d7fb2946501",
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "gestor_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "tipo": "estagio",
+      "jornada": "Dois dias por semana (quarta e sexta)",
+      "data_inicio": null,
+      "data_fim": null
+    }
+  ],
+  "competencias": [
+    {
+      "id": "6a9c9e65-d483-57f0-bf41-5801f45db5a5",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Secretaria e atendimento",
+      "codigo": null,
+      "nome": "Triagem e distribuição das demandas",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Toda demanda que chega por WhatsApp/Nestzap ou Veri é registrada no Trello e distribuída no mesmo dia; nada fica perdido em grupos.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Demandas distribuídas no dia",
+      "origem": "Reunião 00:15 a 00:19, 01:04; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "34b03098-0bda-535a-a438-649ed2a0f205",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Secretaria e atendimento",
+      "codigo": null,
+      "nome": "Agenda e documentos",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Agenda da operação em dia; documentos salvos na pasta certa do OneDrive, no padrão de nome combinado.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Documentos no lugar certo na conferência por amostra",
+      "origem": "Reunião 00:15 a 00:19, 01:04; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "00b10401-06c1-51a2-8773-b1720bb99fdc",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Secretaria e atendimento",
+      "codigo": null,
+      "nome": "Implantação de novos clientes",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Checklist de novo cliente cumprido por completo (pasta, grupo, dados, cadastro), sem pendência aberta.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Tempo de implantação; checklists completos",
+      "origem": "Reunião 00:15 a 00:19, 01:04; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "ab714f2f-8060-5ee7-a9cb-9c0f871859f4",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Secretaria e atendimento",
+      "codigo": null,
+      "nome": "Propostas e contratos",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Propostas e contratos feitos a partir dos modelos, com dados conferidos e dentro do prazo combinado com o cliente.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Propostas enviadas no prazo; contratos sem retrabalho",
+      "origem": "Reunião 00:15 a 00:19, 01:04; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "d9d58f0b-4eae-588d-94f3-071db2cab2f2",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Secretaria e atendimento",
+      "codigo": null,
+      "nome": "Apoio ao fiscal",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Guias enviadas a todos os clientes com registro na rotina, conferindo se a guia é do cliente certo.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Envios registrados; nenhuma guia trocada",
+      "origem": "Reunião 00:15 a 00:19, 01:04; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "f570f3a4-4fdb-5aff-82c9-0940b553c13c",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Financeiro",
+      "codigo": null,
+      "nome": "Pagamentos dos clientes",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Pagamentos feitos nos dias da rotina, com a guia conferida antes (cliente, valor e vencimento).",
+      "nivel_5": null,
+      "evidencia_sugerida": "Pagamentos sem atraso e sem guia trocada",
+      "origem": "Reunião 00:13, 00:38, 01:34; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "b5d250a2-ec0d-5922-aeca-c965b5bd4197",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Financeiro",
+      "codigo": null,
+      "nome": "Conciliação semanal",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Conciliação no Conta Azul em dia, toda semana; clientes conciliados até o dia 1º.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Clientes conciliados até o dia 1º",
+      "origem": "Reunião 00:13, 00:38, 01:34; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "9175ff6b-15aa-586f-b285-8aed64b9f680",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Financeiro",
+      "codigo": null,
+      "nome": "Emissão de notas fiscais",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Notas emitidas no prazo e com os dados corretos.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Notas canceladas ou corrigidas no mês",
+      "origem": "Reunião 00:13, 00:38, 01:34; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "25d981f8-57d0-5584-b56c-279b62ffeab1",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Financeiro",
+      "codigo": null,
+      "nome": "Preparação do fechamento",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Material do fechamento pronto para a reunião de resultado na primeira semana do mês.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Fechamentos entregues na 1ª semana",
+      "origem": "Reunião 00:13, 00:38, 01:34; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "f32fa776-b4cd-5104-9d78-367d61913e25",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Financeiro",
+      "codigo": null,
+      "nome": "Análise e revisão",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Identifica lançamentos e classificações inconsistentes e sinaliza antes do fechamento.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Inconsistências apontadas antes da reunião",
+      "origem": "Reunião 00:13, 00:38, 01:34; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "008603db-d960-587c-9650-f6453d727f07",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Departamento Pessoal",
+      "codigo": null,
+      "nome": "Folha mensal",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Folhas fechadas e enviadas até o 5º dia útil.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Folhas no prazo",
+      "origem": "Reunião 00:41, 02:05; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "65dcaadf-677c-5d38-83f6-f835bfb9eb85",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Departamento Pessoal",
+      "codigo": null,
+      "nome": "Admissões e rescisões",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Documentos completos e prazos legais cumpridos em cada admissão e rescisão.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Processos sem pendência ou multa",
+      "origem": "Reunião 00:41, 02:05; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "c7fbd0de-ed65-555c-8bae-49f634d477ef",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Departamento Pessoal",
+      "codigo": null,
+      "nome": "eSocial e obrigações trabalhistas",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Eventos e obrigações transmitidos em dia, sem pendência no sistema.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Pendências no eSocial",
+      "origem": "Reunião 00:41, 02:05; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "caa6bb45-8daf-52af-aa9e-28aa71c20828",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Departamento Pessoal",
+      "codigo": null,
+      "nome": "Regularização de pendências antigas",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Plano de pendências antigas seguido até zerar.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Pendências antigas em aberto",
+      "origem": "Reunião 00:41, 02:05; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "d6324970-ebef-5818-a2b0-1c47cb168ba4",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Departamento Pessoal",
+      "codigo": null,
+      "nome": "Atendimento aos clientes de DP",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Dúvidas dos clientes sobre funcionários respondidas no prazo combinado, com registro.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Dúvidas respondidas no prazo",
+      "origem": "Reunião 00:41, 02:05; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "bf03ce06-76d7-5fe5-98c1-76cdda439535",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Jurídico e societário",
+      "codigo": null,
+      "nome": "Acompanhamento de processos e prazos",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Andamentos dos processos legados acompanhados e nenhum prazo perdido.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Prazos cumpridos",
+      "origem": "Reunião 00:42, 01:40, 02:18; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "a2fa667e-0382-51d7-aaed-83fabf1fdbd0",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Jurídico e societário",
+      "codigo": null,
+      "nome": "Peças e documentos simples",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Peças e documentos feitos a partir dos modelos, com cada vez menos correção da Thamires.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Quantidade de correções por peça",
+      "origem": "Reunião 00:42, 01:40, 02:18; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "295c8e39-bbbe-59ae-897f-2152498d268d",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Jurídico e societário",
+      "codigo": null,
+      "nome": "Apoio ao societário",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Abertura, alteração e baixa de empresas seguindo o checklist do Trello.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Etapas do checklist cumpridas",
+      "origem": "Reunião 00:42, 01:40, 02:18; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "583e5219-2781-5f20-ba29-10ea05146d8a",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Jurídico e societário",
+      "codigo": null,
+      "nome": "Organização e registro",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Pastas e andamentos atualizados, para qualquer pessoa achar a informação.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Conferência por amostra",
+      "origem": "Reunião 00:42, 01:40, 02:18; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    },
+    {
+      "id": "5901e847-4733-5025-b965-cc216a263340",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "tecnica",
+      "area_biblioteca": "Jurídico e societário",
+      "codigo": null,
+      "nome": "Aprendizado técnico",
+      "definicao": null,
+      "nivel_1": null,
+      "nivel_3": "Aplica no trabalho o que aprende e precisa de menos revisão a cada ciclo.",
+      "nivel_5": null,
+      "evidencia_sugerida": "Evolução das correções entre ciclos",
+      "origem": "Reunião 00:42, 01:40, 02:18; briefing seções 5 e 10; doc 02",
+      "ativo": true
+    }
+  ],
+  "cargo_competencias": [
+    {
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "competencia_id": "6a9c9e65-d483-57f0-bf41-5801f45db5a5",
+      "codigo": "T1",
+      "ordem": 0,
+      "texto_atender": null,
+      "evidencia": "Demandas distribuídas no dia"
+    },
+    {
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "competencia_id": "34b03098-0bda-535a-a438-649ed2a0f205",
+      "codigo": "T2",
+      "ordem": 1,
+      "texto_atender": null,
+      "evidencia": "Documentos no lugar certo na conferência por amostra"
+    },
+    {
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "competencia_id": "00b10401-06c1-51a2-8773-b1720bb99fdc",
+      "codigo": "T3",
+      "ordem": 2,
+      "texto_atender": null,
+      "evidencia": "Tempo de implantação; checklists completos"
+    },
+    {
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "competencia_id": "ab714f2f-8060-5ee7-a9cb-9c0f871859f4",
+      "codigo": "T4",
+      "ordem": 3,
+      "texto_atender": null,
+      "evidencia": "Propostas enviadas no prazo; contratos sem retrabalho"
+    },
+    {
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "competencia_id": "d9d58f0b-4eae-588d-94f3-071db2cab2f2",
+      "codigo": "T5",
+      "ordem": 4,
+      "texto_atender": null,
+      "evidencia": "Envios registrados; nenhuma guia trocada"
+    },
+    {
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "competencia_id": "f570f3a4-4fdb-5aff-82c9-0940b553c13c",
+      "codigo": "T1",
+      "ordem": 0,
+      "texto_atender": null,
+      "evidencia": "Pagamentos sem atraso e sem guia trocada"
+    },
+    {
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "competencia_id": "b5d250a2-ec0d-5922-aeca-c965b5bd4197",
+      "codigo": "T2",
+      "ordem": 1,
+      "texto_atender": null,
+      "evidencia": "Clientes conciliados até o dia 1º"
+    },
+    {
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "competencia_id": "9175ff6b-15aa-586f-b285-8aed64b9f680",
+      "codigo": "T3",
+      "ordem": 2,
+      "texto_atender": null,
+      "evidencia": "Notas canceladas ou corrigidas no mês"
+    },
+    {
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "competencia_id": "25d981f8-57d0-5584-b56c-279b62ffeab1",
+      "codigo": "T4",
+      "ordem": 3,
+      "texto_atender": null,
+      "evidencia": "Fechamentos entregues na 1ª semana"
+    },
+    {
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "competencia_id": "f32fa776-b4cd-5104-9d78-367d61913e25",
+      "codigo": "T5",
+      "ordem": 4,
+      "texto_atender": null,
+      "evidencia": "Inconsistências apontadas antes da reunião"
+    },
+    {
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "competencia_id": "008603db-d960-587c-9650-f6453d727f07",
+      "codigo": "T1",
+      "ordem": 0,
+      "texto_atender": null,
+      "evidencia": "Folhas no prazo"
+    },
+    {
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "competencia_id": "65dcaadf-677c-5d38-83f6-f835bfb9eb85",
+      "codigo": "T2",
+      "ordem": 1,
+      "texto_atender": null,
+      "evidencia": "Processos sem pendência ou multa"
+    },
+    {
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "competencia_id": "c7fbd0de-ed65-555c-8bae-49f634d477ef",
+      "codigo": "T3",
+      "ordem": 2,
+      "texto_atender": null,
+      "evidencia": "Pendências no eSocial"
+    },
+    {
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "competencia_id": "caa6bb45-8daf-52af-aa9e-28aa71c20828",
+      "codigo": "T4",
+      "ordem": 3,
+      "texto_atender": null,
+      "evidencia": "Pendências antigas em aberto"
+    },
+    {
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "competencia_id": "d6324970-ebef-5818-a2b0-1c47cb168ba4",
+      "codigo": "T5",
+      "ordem": 4,
+      "texto_atender": null,
+      "evidencia": "Dúvidas respondidas no prazo"
+    },
+    {
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "competencia_id": "bf03ce06-76d7-5fe5-98c1-76cdda439535",
+      "codigo": "T1",
+      "ordem": 0,
+      "texto_atender": null,
+      "evidencia": "Prazos cumpridos"
+    },
+    {
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "competencia_id": "a2fa667e-0382-51d7-aaed-83fabf1fdbd0",
+      "codigo": "T2",
+      "ordem": 1,
+      "texto_atender": null,
+      "evidencia": "Quantidade de correções por peça"
+    },
+    {
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "competencia_id": "295c8e39-bbbe-59ae-897f-2152498d268d",
+      "codigo": "T3",
+      "ordem": 2,
+      "texto_atender": null,
+      "evidencia": "Etapas do checklist cumpridas"
+    },
+    {
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "competencia_id": "583e5219-2781-5f20-ba29-10ea05146d8a",
+      "codigo": "T4",
+      "ordem": 3,
+      "texto_atender": null,
+      "evidencia": "Conferência por amostra"
+    },
+    {
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "competencia_id": "5901e847-4733-5025-b965-cc216a263340",
+      "codigo": "T5",
+      "ordem": 4,
+      "texto_atender": null,
+      "evidencia": "Evolução das correções entre ciclos"
+    }
+  ],
+  "indicadores": [
+    {
+      "id": "2463c66a-ec26-58fc-997d-cad0de0cc39d",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Demandas distribuídas no mesmo dia (%)",
+      "fonte": "Trello",
+      "tabela_conversao": null
+    },
+    {
+      "id": "78283406-4ff7-5177-b32b-8219e3cdb718",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Implantações concluídas com checklist completo (%)",
+      "fonte": "Trello",
+      "tabela_conversao": null
+    },
+    {
+      "id": "2749ac08-de25-5d39-b3de-933ffe74cfc1",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Clientes conciliados até o dia 1º (%)",
+      "fonte": "Conta Azul / Trello",
+      "tabela_conversao": null
+    },
+    {
+      "id": "d5c2afc5-bca4-5466-82f7-4ce125c559f8",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Fechamentos entregues na 1ª semana (%)",
+      "fonte": "Trello",
+      "tabela_conversao": null
+    },
+    {
+      "id": "e8b0c440-b079-5b7b-b554-55ed7e917156",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Folhas entregues até o 5º dia útil (%)",
+      "fonte": "Domínio / Trello",
+      "tabela_conversao": null
+    },
+    {
+      "id": "625a2f04-d02c-531f-acd6-3d1050794ed1",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Pendências antigas resolvidas no semestre (%)",
+      "fonte": "Controle de pendências",
+      "tabela_conversao": null
+    },
+    {
+      "id": "13fe33b4-1b79-5d87-876e-3b0322bf512f",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Prazos processuais cumpridos (%)",
+      "fonte": "Jusbrasil / controle de prazos",
+      "tabela_conversao": null
+    },
+    {
+      "id": "ccd59c1d-6f0a-579e-92af-42696b502ff9",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "tipo": "percentual",
+      "nome": "Peças entregues sem correção relevante (%)",
+      "fonte": "Revisão da Thamires",
+      "tabela_conversao": null
+    }
+  ],
+  "cargo_indicadores": [
+    {
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "indicador_id": "2463c66a-ec26-58fc-997d-cad0de0cc39d",
+      "ordem": 0
+    },
+    {
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "indicador_id": "78283406-4ff7-5177-b32b-8219e3cdb718",
+      "ordem": 1
+    },
+    {
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "indicador_id": "2749ac08-de25-5d39-b3de-933ffe74cfc1",
+      "ordem": 0
+    },
+    {
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "indicador_id": "d5c2afc5-bca4-5466-82f7-4ce125c559f8",
+      "ordem": 1
+    },
+    {
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "indicador_id": "e8b0c440-b079-5b7b-b554-55ed7e917156",
+      "ordem": 0
+    },
+    {
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "indicador_id": "625a2f04-d02c-531f-acd6-3d1050794ed1",
+      "ordem": 1
+    },
+    {
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "indicador_id": "13fe33b4-1b79-5d87-876e-3b0322bf512f",
+      "ordem": 0
+    },
+    {
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "indicador_id": "ccd59c1d-6f0a-579e-92af-42696b502ff9",
+      "ordem": 1
+    }
+  ],
+  "politicas_avaliacao": [
+    {
+      "id": "c14684fb-5323-54ef-b628-58a6106b9790",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "nome": "Proposta inicial Surcin (a validar)",
+      "peso_comportamental": 0.4,
+      "peso_tecnico": 0.4,
+      "peso_indicadores": 0.2,
+      "conversao_faltas": [
+        {
+          "a_partir_de": 0,
+          "nota": 5
+        },
+        {
+          "a_partir_de": 1,
+          "nota": 4
+        },
+        {
+          "a_partir_de": 2,
+          "nota": 3
+        },
+        {
+          "a_partir_de": 3,
+          "nota": 2
+        },
+        {
+          "a_partir_de": 4,
+          "nota": 1
+        }
+      ],
+      "conversao_atrasos": [
+        {
+          "a_partir_de": 0,
+          "nota": 5
+        },
+        {
+          "a_partir_de": 3,
+          "nota": 4
+        },
+        {
+          "a_partir_de": 6,
+          "nota": 3
+        },
+        {
+          "a_partir_de": 9,
+          "nota": 2
+        },
+        {
+          "a_partir_de": 13,
+          "nota": 1
+        }
+      ],
+      "conversao_percentual": [
+        {
+          "a_partir_de": 0,
+          "nota": 1
+        },
+        {
+          "a_partir_de": 0.8,
+          "nota": 2
+        },
+        {
+          "a_partir_de": 0.9,
+          "nota": 3
+        },
+        {
+          "a_partir_de": 0.95,
+          "nota": 4
+        },
+        {
+          "a_partir_de": 0.98,
+          "nota": 5
+        }
+      ],
+      "faixas_gratificacao": [
+        {
+          "a_partir_de": 0,
+          "percentual": 0.0,
+          "faixa": "Abaixo do esperado"
+        },
+        {
+          "a_partir_de": 2.5,
+          "percentual": 0.5,
+          "faixa": "Em desenvolvimento"
+        },
+        {
+          "a_partir_de": 3.5,
+          "percentual": 1.0,
+          "faixa": "Atende"
+        },
+        {
+          "a_partir_de": 4.5,
+          "percentual": 1.2,
+          "faixa": "Destaque"
+        }
+      ],
+      "periodicidade": "semestral",
+      "atestado_reduz_nota": false,
+      "validada_em": null
+    }
+  ],
+  "ciclos_avaliacao": [
+    {
+      "id": "8b5bc926-5748-51d2-9dfb-525ead29b651",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "politica_id": "c14684fb-5323-54ef-b628-58a6106b9790",
+      "nome": "Piloto 2026",
+      "tipo": "piloto",
+      "data_inicio": "2026-11-01",
+      "data_fim": "2026-12-31",
+      "status": "planejado",
+      "efeito_financeiro": false
+    },
+    {
+      "id": "27ed9fa4-f87d-525d-8ab5-379596f12734",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "politica_id": "c14684fb-5323-54ef-b628-58a6106b9790",
+      "nome": "1º semestre de 2027",
+      "tipo": "regular",
+      "data_inicio": "2027-01-01",
+      "data_fim": "2027-06-30",
+      "status": "planejado",
+      "efeito_financeiro": true
+    },
+    {
+      "id": "04706eb2-8082-5206-bc7e-b1588015b231",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "politica_id": "c14684fb-5323-54ef-b628-58a6106b9790",
+      "nome": "2º semestre de 2027",
+      "tipo": "regular",
+      "data_inicio": "2027-07-01",
+      "data_fim": "2027-12-31",
+      "status": "planejado",
+      "efeito_financeiro": true
+    }
+  ],
+  "avaliacoes": [
+    {
+      "id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "ciclo_id": "8b5bc926-5748-51d2-9dfb-525ead29b651",
+      "pessoa_id": "a36eb2aa-7345-5cc9-a728-6ef0878f0c61",
+      "cargo_id": "28a2a1cf-24f6-5b01-822c-9dcafdbe7a53",
+      "avaliador_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "status": "nao_iniciada",
+      "inclui_trilha_lideranca": true,
+      "data_conversa": null,
+      "comentario_geral": null,
+      "nota_comportamental": null,
+      "nota_tecnica": null,
+      "nota_indicadores": null,
+      "nota_final": null
+    },
+    {
+      "id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "ciclo_id": "8b5bc926-5748-51d2-9dfb-525ead29b651",
+      "pessoa_id": "f54a9cb8-d109-5d12-bfd9-895345019bd8",
+      "cargo_id": "46e1bb3b-6098-51cc-94e7-464eace17b20",
+      "avaliador_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "status": "nao_iniciada",
+      "inclui_trilha_lideranca": false,
+      "data_conversa": null,
+      "comentario_geral": null,
+      "nota_comportamental": null,
+      "nota_tecnica": null,
+      "nota_indicadores": null,
+      "nota_final": null
+    },
+    {
+      "id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "ciclo_id": "8b5bc926-5748-51d2-9dfb-525ead29b651",
+      "pessoa_id": "b504cb81-bb86-59f8-adaf-677ead0565aa",
+      "cargo_id": "517b5ef9-7cea-5c57-83e7-9480014a23cc",
+      "avaliador_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "status": "nao_iniciada",
+      "inclui_trilha_lideranca": false,
+      "data_conversa": null,
+      "comentario_geral": null,
+      "nota_comportamental": null,
+      "nota_tecnica": null,
+      "nota_indicadores": null,
+      "nota_final": null
+    },
+    {
+      "id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "ciclo_id": "8b5bc926-5748-51d2-9dfb-525ead29b651",
+      "pessoa_id": "402583ba-d502-541c-9b93-5d7fb2946501",
+      "cargo_id": "e3ac932f-f689-5cb7-bef1-eedc05cc6214",
+      "avaliador_pessoa_id": "5c115783-18bb-5095-85c7-6dde7bd4fdc5",
+      "status": "nao_iniciada",
+      "inclui_trilha_lideranca": false,
+      "data_conversa": null,
+      "comentario_geral": null,
+      "nota_comportamental": null,
+      "nota_tecnica": null,
+      "nota_indicadores": null,
+      "nota_final": null
+    }
+  ],
+  "avaliacao_itens": [
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "ec6bbc50-e7b3-5c4f-a5ee-217f764836a3",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "62625d34-5e89-5dae-9403-016d6e4017da",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "a4eef28e-ca63-5ace-b064-9799e03ce8f5",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "3bdca3a8-2a00-59d4-9879-ab0bfa91846d",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "73e66822-af19-53f0-ad09-9c25978b1571",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "73189884-5c58-50ea-9c58-05c6dc114296",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "815a1c3f-168c-5299-8b69-5fd5d6ca3356",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "94d9c3e3-a9db-54e5-bffc-65f7c65f9067",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "6a9c9e65-d483-57f0-bf41-5801f45db5a5",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "34b03098-0bda-535a-a438-649ed2a0f205",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "00b10401-06c1-51a2-8773-b1720bb99fdc",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "ab714f2f-8060-5ee7-a9cb-9c0f871859f4",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "d9d58f0b-4eae-588d-94f3-071db2cab2f2",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "76ed67a9-950a-588d-ac4f-139046e84aa8",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "5937a1ef-11f3-5e0c-a6ee-98570b60ebc8",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "67fce707-8122-50bf-b2e4-a1d5aaea3015",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "5d763865-22e3-566f-9347-711ef83236d1",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "e8e0766b-90d1-5187-b08e-8f0a00718d26",
+      "competencia_id": "a605d300-e4e1-5f15-81e4-498183947061",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "ec6bbc50-e7b3-5c4f-a5ee-217f764836a3",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "62625d34-5e89-5dae-9403-016d6e4017da",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "a4eef28e-ca63-5ace-b064-9799e03ce8f5",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "3bdca3a8-2a00-59d4-9879-ab0bfa91846d",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "73e66822-af19-53f0-ad09-9c25978b1571",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "73189884-5c58-50ea-9c58-05c6dc114296",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "815a1c3f-168c-5299-8b69-5fd5d6ca3356",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "94d9c3e3-a9db-54e5-bffc-65f7c65f9067",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "f570f3a4-4fdb-5aff-82c9-0940b553c13c",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "b5d250a2-ec0d-5922-aeca-c965b5bd4197",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "9175ff6b-15aa-586f-b285-8aed64b9f680",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "25d981f8-57d0-5584-b56c-279b62ffeab1",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "51cae8e5-3e67-53a6-b04e-b1c7d3651e38",
+      "competencia_id": "f32fa776-b4cd-5104-9d78-367d61913e25",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "ec6bbc50-e7b3-5c4f-a5ee-217f764836a3",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "62625d34-5e89-5dae-9403-016d6e4017da",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "a4eef28e-ca63-5ace-b064-9799e03ce8f5",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "3bdca3a8-2a00-59d4-9879-ab0bfa91846d",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "73e66822-af19-53f0-ad09-9c25978b1571",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "73189884-5c58-50ea-9c58-05c6dc114296",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "815a1c3f-168c-5299-8b69-5fd5d6ca3356",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "94d9c3e3-a9db-54e5-bffc-65f7c65f9067",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "008603db-d960-587c-9650-f6453d727f07",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "65dcaadf-677c-5d38-83f6-f835bfb9eb85",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "c7fbd0de-ed65-555c-8bae-49f634d477ef",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "caa6bb45-8daf-52af-aa9e-28aa71c20828",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "dec0f87c-b951-5059-ba4e-10e57379b7ba",
+      "competencia_id": "d6324970-ebef-5818-a2b0-1c47cb168ba4",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "ec6bbc50-e7b3-5c4f-a5ee-217f764836a3",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "62625d34-5e89-5dae-9403-016d6e4017da",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "a4eef28e-ca63-5ace-b064-9799e03ce8f5",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "3bdca3a8-2a00-59d4-9879-ab0bfa91846d",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "73e66822-af19-53f0-ad09-9c25978b1571",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "73189884-5c58-50ea-9c58-05c6dc114296",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "815a1c3f-168c-5299-8b69-5fd5d6ca3356",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "94d9c3e3-a9db-54e5-bffc-65f7c65f9067",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "bf03ce06-76d7-5fe5-98c1-76cdda439535",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "a2fa667e-0382-51d7-aaed-83fabf1fdbd0",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "295c8e39-bbbe-59ae-897f-2152498d268d",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "583e5219-2781-5f20-ba29-10ea05146d8a",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    },
+    {
+      "avaliacao_id": "3a9bb789-74de-5d20-bc1b-c7fb84ab4e73",
+      "competencia_id": "5901e847-4733-5025-b965-cc216a263340",
+      "nota_auto": null,
+      "nota_gestor": null,
+      "nota_final": null,
+      "evidencias": null
+    }
+  ],
+  "avaliacao_indicadores": [],
+  "registros_assiduidade": [],
+  "pdi_acoes": [],
+  "gratificacao_apuracoes": [
+    {
+      "id": "2c0521e5-985d-56ff-a5fd-025faddd8d68",
+      "empresa_id": "3d34dfb6-3c02-58e5-aa04-c1dd06bc277d",
+      "ano": 2027,
+      "reserva_mensal": null,
+      "meses_reserva": 12,
+      "status": "aberta"
+    }
+  ],
+  "gratificacao_itens": [
+    {
+      "apuracao_id": "2c0521e5-985d-56ff-a5fd-025faddd8d68",
+      "pessoa_id": "a36eb2aa-7345-5cc9-a728-6ef0878f0c61",
+      "participa": "a_definir",
+      "valor_referencia": null,
+      "nota_ano": null,
+      "percentual": null,
+      "valor_calculado": null,
+      "valor_ajustado": null
+    },
+    {
+      "apuracao_id": "2c0521e5-985d-56ff-a5fd-025faddd8d68",
+      "pessoa_id": "f54a9cb8-d109-5d12-bfd9-895345019bd8",
+      "participa": "a_definir",
+      "valor_referencia": null,
+      "nota_ano": null,
+      "percentual": null,
+      "valor_calculado": null,
+      "valor_ajustado": null
+    },
+    {
+      "apuracao_id": "2c0521e5-985d-56ff-a5fd-025faddd8d68",
+      "pessoa_id": "b504cb81-bb86-59f8-adaf-677ead0565aa",
+      "participa": "a_definir",
+      "valor_referencia": null,
+      "nota_ano": null,
+      "percentual": null,
+      "valor_calculado": null,
+      "valor_ajustado": null
+    },
+    {
+      "apuracao_id": "2c0521e5-985d-56ff-a5fd-025faddd8d68",
+      "pessoa_id": "402583ba-d502-541c-9b93-5d7fb2946501",
+      "participa": "a_definir",
+      "valor_referencia": null,
+      "nota_ano": null,
+      "percentual": null,
+      "valor_calculado": null,
+      "valor_ajustado": null
+    }
+  ]
+}

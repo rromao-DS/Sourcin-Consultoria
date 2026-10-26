@@ -1,0 +1,1243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://r2tech.consultoria/schemas/avaliacao-competencias/pacote-1.0.json",
+  "title": "Pacote de avaliação por competências (R2 Tech Consultoria)",
+  "description": "Formato de importação/exportação. Uma chave por tabela de schema.sql; cada objeto usa os nomes das colunas. tipo=biblioteca traz os registros padrão (empresa_id nulo); tipo=empresa traz um escritório completo.",
+  "type": "object",
+  "properties": {
+    "versao_schema": {
+      "const": "1.0"
+    },
+    "tipo": {
+      "enum": [
+        "biblioteca",
+        "empresa"
+      ]
+    },
+    "descricao": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "empresa": {
+      "$ref": "#/$defs/empresa"
+    },
+    "usuarios": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/usuario"
+      }
+    },
+    "membros_empresa": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/membro_empresa"
+      }
+    },
+    "areas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/area"
+      }
+    },
+    "cargos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cargo"
+      }
+    },
+    "pessoas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/pessoa"
+      }
+    },
+    "vinculos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/vinculo"
+      }
+    },
+    "competencias": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/competencia"
+      }
+    },
+    "cargo_competencias": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cargo_competencia"
+      }
+    },
+    "indicadores": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/indicador"
+      }
+    },
+    "cargo_indicadores": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cargo_indicador"
+      }
+    },
+    "politicas_avaliacao": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/politica_avaliacao"
+      }
+    },
+    "ciclos_avaliacao": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ciclo_avaliacao"
+      }
+    },
+    "avaliacoes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/avaliacao"
+      }
+    },
+    "avaliacao_itens": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/avaliacao_item"
+      }
+    },
+    "avaliacao_indicadores": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/avaliacao_indicador"
+      }
+    },
+    "registros_assiduidade": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/registro_assiduidade"
+      }
+    },
+    "pdi_acoes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/pdi_acao"
+      }
+    },
+    "gratificacao_apuracoes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/gratificacao_apuracao"
+      }
+    },
+    "gratificacao_itens": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/gratificacao_item"
+      }
+    }
+  },
+  "required": [
+    "versao_schema",
+    "tipo"
+  ],
+  "additionalProperties": false,
+  "if": {
+    "properties": {
+      "tipo": {
+        "const": "empresa"
+      }
+    }
+  },
+  "then": {
+    "required": [
+      "empresa"
+    ]
+  },
+  "$defs": {
+    "usuario": {
+      "description": "Login no site.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "nome"
+      ],
+      "additionalProperties": false
+    },
+    "empresa": {
+      "description": "Escritório cliente (inquilino).",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cnpj": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ramo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "nome"
+      ],
+      "additionalProperties": false
+    },
+    "membro_empresa": {
+      "description": "Papel de um usuário numa empresa.",
+      "type": "object",
+      "properties": {
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "usuario_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "papel": {
+          "enum": [
+            "admin",
+            "avaliador",
+            "colaborador"
+          ]
+        }
+      },
+      "required": [
+        "empresa_id",
+        "usuario_id",
+        "papel"
+      ],
+      "additionalProperties": false
+    },
+    "area": {
+      "description": "Área ou setor.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "area_pai_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "ordem": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "nome"
+      ],
+      "additionalProperties": false
+    },
+    "cargo": {
+      "description": "Cargo ou função.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "area_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "missao": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "responsabilidades": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ativo": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "nome"
+      ],
+      "additionalProperties": false
+    },
+    "pessoa": {
+      "description": "Funcionário. Sem CPF, salário ou dados de saúde.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "usuario_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "observacoes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "nome"
+      ],
+      "additionalProperties": false
+    },
+    "vinculo": {
+      "description": "Ocupação de cargo e subordinação; organograma = vínculos sem data_fim.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "pessoa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "cargo_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "gestor_pessoa_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "tipo": {
+          "enum": [
+            "clt",
+            "estagio",
+            "pj",
+            "socio",
+            "outro",
+            "nao_informado"
+          ]
+        },
+        "jornada": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "data_inicio": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "data_fim": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "pessoa_id",
+        "cargo_id",
+        "tipo"
+      ],
+      "additionalProperties": false
+    },
+    "competencia": {
+      "description": "Competência. empresa_id nulo = biblioteca R2 Tech.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "tipo": {
+          "enum": [
+            "comportamental",
+            "tecnica",
+            "lideranca"
+          ]
+        },
+        "area_biblioteca": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "codigo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definicao": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nivel_1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nivel_3": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nivel_5": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidencia_sugerida": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "origem": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ativo": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "tipo",
+        "nome",
+        "nivel_3"
+      ],
+      "additionalProperties": false
+    },
+    "cargo_competencia": {
+      "description": "Competências técnicas de um cargo.",
+      "type": "object",
+      "properties": {
+        "cargo_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "competencia_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "codigo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ordem": {
+          "type": "integer"
+        },
+        "texto_atender": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidencia": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "cargo_id",
+        "competencia_id",
+        "codigo"
+      ],
+      "additionalProperties": false
+    },
+    "indicador": {
+      "description": "Indicador objetivo. empresa_id nulo = padrão R2 Tech.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "tipo": {
+          "enum": [
+            "faltas_injustificadas",
+            "atrasos",
+            "percentual"
+          ]
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fonte": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tabela_conversao": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "a_partir_de": {
+                    "type": "number"
+                  },
+                  "nota": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  }
+                },
+                "required": [
+                  "a_partir_de",
+                  "nota"
+                ],
+                "additionalProperties": false
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "tipo",
+        "nome"
+      ],
+      "additionalProperties": false
+    },
+    "cargo_indicador": {
+      "description": "Indicadores de resultado de um cargo.",
+      "type": "object",
+      "properties": {
+        "cargo_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "indicador_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ordem": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cargo_id",
+        "indicador_id"
+      ],
+      "additionalProperties": false
+    },
+    "politica_avaliacao": {
+      "description": "Regras de cálculo. empresa_id nulo = padrão R2 Tech.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "peso_comportamental": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "peso_tecnico": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "peso_indicadores": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "conversao_faltas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "a_partir_de": {
+                "type": "number"
+              },
+              "nota": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "a_partir_de",
+              "nota"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "conversao_atrasos": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "a_partir_de": {
+                "type": "number"
+              },
+              "nota": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "a_partir_de",
+              "nota"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "conversao_percentual": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "a_partir_de": {
+                "type": "number"
+              },
+              "nota": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "a_partir_de",
+              "nota"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "faixas_gratificacao": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "a_partir_de": {
+                "type": "number"
+              },
+              "percentual": {
+                "type": "number",
+                "minimum": 0
+              },
+              "faixa": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "a_partir_de",
+              "percentual",
+              "faixa"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "periodicidade": {
+          "enum": [
+            "semestral",
+            "anual",
+            "trimestral"
+          ]
+        },
+        "atestado_reduz_nota": {
+          "type": "boolean"
+        },
+        "validada_em": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      },
+      "required": [
+        "id",
+        "nome",
+        "peso_comportamental",
+        "peso_tecnico",
+        "peso_indicadores",
+        "conversao_faltas",
+        "conversao_atrasos",
+        "conversao_percentual",
+        "faixas_gratificacao"
+      ],
+      "additionalProperties": false
+    },
+    "ciclo_avaliacao": {
+      "description": "Período de avaliação.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "politica_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tipo": {
+          "enum": [
+            "piloto",
+            "regular"
+          ]
+        },
+        "data_inicio": {
+          "type": "string",
+          "format": "date"
+        },
+        "data_fim": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "planejado",
+            "aberto",
+            "em_avaliacao",
+            "fechado"
+          ]
+        },
+        "efeito_financeiro": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "politica_id",
+        "nome",
+        "data_inicio",
+        "data_fim"
+      ],
+      "additionalProperties": false
+    },
+    "avaliacao": {
+      "description": "Avaliação de uma pessoa num ciclo.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ciclo_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "pessoa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "cargo_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "avaliador_pessoa_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "status": {
+          "enum": [
+            "nao_iniciada",
+            "autoavaliacao",
+            "avaliacao_gestor",
+            "conversa",
+            "fechada"
+          ]
+        },
+        "inclui_trilha_lideranca": {
+          "type": "boolean"
+        },
+        "data_conversa": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "comentario_geral": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nota_comportamental": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "nota_tecnica": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "nota_indicadores": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "nota_final": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "ciclo_id",
+        "pessoa_id",
+        "cargo_id"
+      ],
+      "additionalProperties": false
+    },
+    "avaliacao_item": {
+      "description": "Nota de uma competência numa avaliação.",
+      "type": "object",
+      "properties": {
+        "avaliacao_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "competencia_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "nota_auto": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "nota_gestor": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "nota_final": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "evidencias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "avaliacao_id",
+        "competencia_id"
+      ],
+      "additionalProperties": false
+    },
+    "avaliacao_indicador": {
+      "description": "Valor de um indicador de resultado (fração: 0.96 = 96%).",
+      "type": "object",
+      "properties": {
+        "avaliacao_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "indicador_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "valor": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "observacao": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "avaliacao_id",
+        "indicador_id"
+      ],
+      "additionalProperties": false
+    },
+    "registro_assiduidade": {
+      "description": "Contagens do mês. Sem atestado, CID ou motivo de saúde.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "pessoa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "mes": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-01$"
+        },
+        "faltas_injustificadas": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "atrasos": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "faltas_justificadas": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observacao": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "pessoa_id",
+        "mes"
+      ],
+      "additionalProperties": false
+    },
+    "pdi_acao": {
+      "description": "Ação do plano de desenvolvimento.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "avaliacao_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "competencia_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "acao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "apoio_empresa": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "prazo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "nao_iniciada",
+            "em_andamento",
+            "concluida"
+          ]
+        },
+        "comentario": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "avaliacao_id",
+        "acao"
+      ],
+      "additionalProperties": false
+    },
+    "gratificacao_apuracao": {
+      "description": "Apuração anual da gratificação (fundo = reserva_mensal x meses_reserva).",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "empresa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ano": {
+          "type": "integer"
+        },
+        "reserva_mensal": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "meses_reserva": {
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "aberta",
+            "fechada",
+            "paga"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "empresa_id",
+        "ano"
+      ],
+      "additionalProperties": false
+    },
+    "gratificacao_item": {
+      "description": "Gratificação de uma pessoa no ano.",
+      "type": "object",
+      "properties": {
+        "apuracao_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "pessoa_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "participa": {
+          "enum": [
+            "sim",
+            "nao",
+            "a_definir"
+          ]
+        },
+        "valor_referencia": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "nota_ano": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "percentual": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "valor_calculado": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "valor_ajustado": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "apuracao_id",
+        "pessoa_id",
+        "participa"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
