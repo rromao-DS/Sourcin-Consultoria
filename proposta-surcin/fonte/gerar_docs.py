@@ -513,7 +513,7 @@ def metodologia():
 def proposta():
     d = novo_doc("Proposta de consultoria",
                  "Organização, processos, rotinas do Claude e pilotos de automação · Surcin Assessoria Empresarial",
-                 "Versão 5 · 22/10/2026 · oferta única · válida até 30/10/2026")
+                 "Versão 6 · 26/10/2026 · oferta única · válida até 30/10/2026")
 
     h(d, "1. O que entendemos")
     par(d, "A Surcin oferece contabilidade, fiscal, DP, financeiro, societário e jurídico empresarial, com cerca de "
@@ -639,11 +639,12 @@ def proposta():
     h(d, "9. Investimento")
     tabela(d, ["", "Valor", "Quando"], [
         ["**Consultoria e implantação**", "**R$ 31.900**", "8 semanas · 5 etapas · 5 rotinas do Claude · 2 pilotos · 2 integrações"],
-        ["Parcela 1 · 30%", "R$ 9.570", "No aceite da proposta (início da Etapa 1)"],
-        ["Parcela 2 · 35%", "R$ 11.165", "No aceite da Etapa 3 (biblioteca de 5 rotinas do Claude validada)"],
-        ["Parcela 3 · 35%", "R$ 11.165", "Na entrega final (homologação das Etapas 4 e 5)"],
+        ["Parcela 1 · 30%", "R$ 9.570", "03/11/2026 · início do projeto"],
+        ["Parcela 2 · 35%", "R$ 11.165", "01/12/2026 · meio do projeto"],
+        ["Parcela 3 · 35%", "R$ 11.165", "05/01/2027 · fim do projeto, após a entrega final de 23/12"],
     ], [5, 3.5, 7.5])
-    par(d, "Valor único, com escopo fechado. O contrato detalha o marco exato de cada parcela.")
+    par(d, "Valor único, com escopo fechado. As parcelas seguem o calendário do projeto, com vencimento em datas "
+           "fixas: início, meio e fim.")
     h(d, "Custos da Surcin, à parte e com aprovação prévia", 3)
     par(d, "Planos do Claude e de outras ferramentas, uso de modelos de IA e integrações, automação, hospedagem, "
            "licenças, custo por conversa do WhatsApp Business, infraestrutura e eventuais terceiros.")
