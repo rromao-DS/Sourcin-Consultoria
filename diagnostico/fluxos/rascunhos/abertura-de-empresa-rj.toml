@@ -1,0 +1,182 @@
+# RASCUNHO A VALIDAR · fluxo atual (AS-IS) copiado do checklist do Trello "Rotina Atual" da Surcin
+# Fonte: exportação do quadro de 14/10/2026, lista NOVOS CLIENTES, cartão "Checklis societário". Os passos estão na ordem do checklist.
+# Responsáveis pela letra no fim de cada item: J = Júlia, A = Alana [hipótese: Allana], D = a definir (era a Danielle, que saiu), T = Thamires, DP = departamento pessoal. Itens "se tiver" dependem do tipo de empresa.
+# Tempos não informados no Trello: ficam em branco até a entrevista.
+
+raias = ["Júlia", "Alana", "D (era a Danielle; hoje a definir)", "Thamires", "DP"]
+
+[processo]
+nome = "Abertura de empresa no RJ · rascunho (Trello)"
+descricao = """
+Checklist de 25 etapas do Trello. O mesmo checklist aparece para alteração fora do RJ.
+"""
+
+[[etapas]]
+id = "inicio"
+nome = "Início"
+tipo = "inicio"
+raia = "Júlia"
+
+[[etapas]]
+id = "e01"
+nome = "Conferir documentos e informações"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e02"
+nome = "Consulta prévia"
+tipo = "tarefa"
+raia = "Alana"
+
+[[etapas]]
+id = "e03"
+nome = "Viabilidade"
+tipo = "tarefa"
+raia = "Alana"
+
+[[etapas]]
+id = "e04"
+nome = "Emitir guia"
+tipo = "tarefa"
+raia = "Alana"
+
+[[etapas]]
+id = "e05"
+nome = "Elaborar contrato"
+tipo = "tarefa"
+raia = "Alana"
+
+[[etapas]]
+id = "e06"
+nome = "DBE"
+tipo = "tarefa"
+raia = "Alana"
+sistema = "Receita"
+
+[[etapas]]
+id = "e07"
+nome = "Protocolar na Jucerja"
+tipo = "tarefa"
+raia = "Alana"
+sistema = "Jucerja"
+
+[[etapas]]
+id = "e08"
+nome = "Opção pelo Simples Nacional e assinatura"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e09"
+nome = "Emissão de contrato, CNPJ e QSA dos sócios"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e10"
+nome = "Declaração de autenticidade"
+tipo = "tarefa"
+raia = "Alana"
+
+[[etapas]]
+id = "e11"
+nome = "Salvar documentos na pasta"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+sistema = "OneDrive"
+
+[[etapas]]
+id = "e12"
+nome = "Enviar documentos da empresa para o cliente"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e13"
+nome = "Emissão do certificado digital"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e14"
+nome = "Enviar taxa do alvará para pagamento"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e15"
+nome = "Inscrição estadual (se tiver)"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e16"
+nome = "Vigilância sanitária (se tiver)"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e17"
+nome = "Corpo de bombeiros (se tiver)"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e18"
+nome = "Cadastrar para emissão de NF"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+
+[[etapas]]
+id = "e19"
+nome = "Cadastrar no Domínio"
+tipo = "tarefa"
+raia = "D (era a Danielle; hoje a definir)"
+sistema = "Domínio"
+
+[[etapas]]
+id = "e20"
+nome = "Criar rotina no Trello"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Trello"
+
+[[etapas]]
+id = "e21"
+nome = "Cadastrar e salvar documentos na Veri"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Veri"
+
+[[etapas]]
+id = "e22"
+nome = "Onboarding: agendar reunião"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Google Agenda"
+
+[[etapas]]
+id = "e23"
+nome = "Onboarding: preparar apresentação"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e24"
+nome = "Onboarding: fazer reunião"
+tipo = "tarefa"
+raia = "Thamires"
+
+[[etapas]]
+id = "e25"
+nome = "Fazer DCTFWeb zerada"
+tipo = "tarefa"
+raia = "DP"
+sistema = "eSocial / DCTFWeb"
+
+[[etapas]]
+id = "fim"
+nome = "Fim"
+tipo = "fim"
+raia = "DP"

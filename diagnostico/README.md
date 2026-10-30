@@ -38,13 +38,17 @@ Os fluxos ficam em TOML, um arquivo por processo, no formato do [mapeador-de-pro
 python3 ferramentas/mapeador-de-processos/mapeador.py diagnostico/fluxos/rascunhos/*.toml --saida diagnostico/fluxos/saida
 ```
 
-Os três rascunhos atuais não têm tempos, porque a reunião não informou. Os totais dos relatórios saem zerados por isso. Depois da entrevista, preencha `tempo_min` e `espera_min` e rode de novo.
+Os rascunhos não têm tempos, porque nem a reunião nem o Trello os informam. Os totais dos relatórios saem zerados por isso. Depois da entrevista, preencha `tempo_min` e `espera_min` e rode de novo.
 
 | Rascunho | Fonte | Falta confirmar |
 |---|---|---|
-| Entrada de cliente novo | 12/10 00:55:16, 01:22:40 | Quem faz cada passo antes do fechamento; canal do pedido de documentos; tempos |
+| Entrada de cliente da contabilidade | Checklist do Trello (14 etapas) + 12/10 00:55:16 | Quem faz cada passo antes do fechamento; tempos |
+| Entrada de cliente do financeiro | Checklist do Trello (12 etapas) | Quem é o responsável do setor; onde entram planilha e Conta Azul (12/10 00:55:16); tempos |
+| Abertura de empresa no RJ | Checklist societário do Trello (25 etapas, com letra do responsável) | Quem assumiu os itens "D" da Danielle; tempos |
 | Rotina mensal da contabilidade | 12/10 01:18:43 a 01:20:00 | Divisão entre Júlia e Thamires; qual portal; tempos por etapa |
 | Conciliação e pagamentos do financeiro | 12/10 01:20:00 a 01:22:40 | Onde fica o controle de pagamentos fixos; formato do resumo ao cliente; tempos |
+
+Os checklists vêm da exportação do quadro "Rotina Atual" de 14/10. Quando houver acesso ao quadro vivo, conferir se mudaram.
 
 ## Próximos fluxos (Etapa 1, até 8 no total)
 
