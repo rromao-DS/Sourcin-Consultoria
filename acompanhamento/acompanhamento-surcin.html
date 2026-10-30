@@ -1,0 +1,716 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Acompanhamento Surcin</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: cabeçalho fixo com abas; cada aba é um painel de trabalho (resumo em cima, detalhe embaixo). Visual R2: obsidiana + champanhe. */
+:root{
+  --bg:#080c15; --surface:#10141d; --surface-strong:#1b1e25; --border:#1c232f; --border-strong:#3b3f48;
+  --text:#f5f5f7; --text-2:#c3cad2; --muted:#9aa2ad; --faint:#6a717b;
+  --accent:#c5a880; --on-accent:#080c15; --data:#2d3e50; --on-data:#f5f5f7; --focus:#c5a880;
+  --ok:#6fbf8e; --warn:#e0b45a; --bad:#e2786b; --info:#8fb3d9;
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#f5f5f7; --surface:#ffffff; --surface-strong:#ececef; --border:#e0e0e0; --border-strong:#cfd2d6;
+  --text:#080c15; --text-2:#3a3a3a; --muted:#5c6167; --faint:#5c6167;
+  --accent:#8a5f3a; --on-accent:#080c15; --data:#2d3e50; --on-data:#f5f5f7; --focus:#2d3e50;
+  --ok:#2f7d4f; --warn:#94650f; --bad:#b4412f; --info:#2d5d8a; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f5f5f7; --surface:#ffffff; --surface-strong:#ececef; --border:#e0e0e0; --border-strong:#cfd2d6;
+  --text:#080c15; --text-2:#3a3a3a; --muted:#5c6167; --faint:#5c6167;
+  --accent:#8a5f3a; --on-accent:#080c15; --data:#2d3e50; --on-data:#f5f5f7; --focus:#2d3e50;
+  --ok:#2f7d4f; --warn:#94650f; --bad:#b4412f; --info:#2d5d8a; color-scheme:light}
+:root[data-theme="dark"]{
+  --bg:#080c15; --surface:#10141d; --surface-strong:#1b1e25; --border:#1c232f; --border-strong:#3b3f48;
+  --text:#f5f5f7; --text-2:#c3cad2; --muted:#9aa2ad; --faint:#6a717b;
+  --accent:#c5a880; --on-accent:#080c15; --data:#2d3e50; --on-data:#f5f5f7; --focus:#c5a880;
+  --ok:#6fbf8e; --warn:#e0b45a; --bad:#e2786b; --info:#8fb3d9; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--border)}
+.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-block:16px 10px}
+.mark{width:34px;height:34px;flex:none}
+.brand h1{margin:0;font-size:17px;font-weight:800;letter-spacing:.02em;text-transform:uppercase}
+.brand p{margin:0;color:var(--muted);font-size:12.5px}
+.top .spacer{flex:1}
+.sync{font-size:12px;color:var(--muted)}
+nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:0;scrollbar-width:none}
+nav button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:600 13px var(--sans);padding:10px 12px;cursor:pointer;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em}
+nav button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--accent)}
+main{padding-block:24px 64px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+h2{font-size:20px;font-weight:800;margin:0 0 4px;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance}
+h3{font-size:13px;font-weight:700;margin:0;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.sub{color:var(--muted);margin:0 0 20px;max-width:70ch}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;min-width:0}
+.stat .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.stat .v{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15;margin-top:6px}
+.stat .v small{font-size:14px;color:var(--muted);font-weight:500}
+.stat .d{font-size:12.5px;color:var(--text-2);margin-top:4px}
+.bar{height:6px;border-radius:3px;background:var(--surface-strong);overflow:hidden;margin-top:10px}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.section{margin-top:28px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{font:600 13px var(--sans);border-radius:7px;border:1px solid var(--border-strong);background:var(--surface);color:var(--text);padding:8px 14px;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.ghost{background:none;border-color:transparent;color:var(--muted);padding:6px 8px}
+.btn.danger{color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;border:1px solid currentColor;white-space:nowrap;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;background:none;font-family:var(--sans)}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.s-a_fazer,.s-pendente,.s-aberta{color:var(--muted)}
+.s-andamento{color:var(--info)}
+.s-feito,.s-aceito,.s-resolvida,.s-pago{color:var(--ok)}
+.s-bloqueado,.s-atrasado{color:var(--bad)}
+.s-risco{color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--border-strong)}
+td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl{overflow-x:auto}
+.late{color:var(--bad);font-weight:600}
+.muted{color:var(--muted)}
+.empty{color:var(--muted);padding:18px;border:1px dashed var(--border-strong);border-radius:12px;text-align:center}
+/* Gantt */
+.gantt{overflow-x:auto}
+.gantt-inner{min-width:720px}
+.g-row{display:grid;grid-template-columns:170px 1fr;align-items:center;gap:10px;min-height:40px}
+.g-lab{font-size:13px;font-weight:600}
+.g-lab small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+.g-track{position:relative;height:28px;border-left:1px solid var(--border)}
+.g-bar{position:absolute;top:4px;height:20px;border-radius:5px;background:var(--data);color:var(--on-data);font-size:11.5px;font-weight:700;padding:0 8px;display:flex;align-items:center;overflow:hidden;white-space:nowrap}
+.g-bar .fill{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.9}
+.g-bar span{position:relative}
+.g-weeks{display:grid;grid-template-columns:170px 1fr;gap:10px;font-size:11px;color:var(--muted)}
+.g-wk{position:relative;height:18px}
+.g-wk span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.g-today{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--bad)}
+/* Plano */
+.etapa{margin-top:18px}
+.etapa-h{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+.etapa-h .n{font-size:26px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1}
+.etapa-h .t{font-weight:800;text-transform:uppercase;font-size:15px}
+.etapa-h .m{color:var(--muted);font-size:12.5px}
+.task{display:grid;grid-template-columns:auto 1fr auto auto auto;gap:10px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--border)}
+.task:last-child{border-bottom:0}
+.task .ti{min-width:0}
+.task .ti b{font-weight:600}
+.task .ti div{font-size:12px;color:var(--muted)}
+.task.done .ti b{color:var(--muted);text-decoration:line-through}
+.chk{width:20px;height:20px;accent-color:var(--accent);cursor:pointer}
+.resp{font-size:12px;color:var(--text-2);white-space:nowrap}
+.date{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--text-2)}
+@media (max-width:640px){
+  .task{grid-template-columns:auto 1fr auto;grid-template-areas:"c t s" "c r d"}
+  .task .chk{grid-area:c}.task .ti{grid-area:t}.task .pill{grid-area:s}.task .resp{grid-area:r}.task .date{grid-area:d;justify-self:end}
+  .task .ed{display:none}
+  .g2{grid-template-columns:1fr}
+}
+
+/* Sprints e quadro ágil */
+.s-validacao{color:var(--warn)}
+.sp-head{margin-bottom:14px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.sp-nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.sp-nav select{font:600 13px var(--sans);color:var(--text);background:var(--surface);border:1px solid var(--border-strong);border-radius:7px;padding:7px 10px;max-width:100%}
+.goal{border-left:4px solid var(--accent);padding:8px 12px;background:var(--surface-strong);border-radius:0 10px 10px 0;margin-top:12px;color:var(--text)}
+.goal small{display:block;color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.kanban{display:grid;grid-template-columns:repeat(5,minmax(200px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;min-height:120px;display:flex;flex-direction:column;gap:8px}
+.col.over{border-color:var(--accent)}
+.col-h{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:2px 4px}
+.col-h .wip{color:var(--bad)}
+.kc{background:var(--bg);border:1px solid var(--border-strong);border-radius:9px;padding:9px 10px;cursor:grab}
+.kc b{display:block;font-weight:600;font-size:13px;line-height:1.35}
+.kc .meta{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.kc .mv{display:flex;gap:2px}
+.kc .mv button{background:none;border:1px solid var(--border-strong);color:var(--text-2);border-radius:6px;width:26px;height:24px;cursor:pointer;font:600 12px var(--sans)}
+.kc .mv button:disabled{opacity:.3;cursor:default}
+.kc.late{border-color:var(--bad)}
+.vel{display:flex;align-items:center;gap:8px}
+.vel .bar{flex:1;margin:0}
+.rito{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+@media (max-width:640px){.kanban{grid-template-columns:repeat(5,minmax(78vw,1fr));scroll-snap-type:x mandatory}.col{scroll-snap-align:start}}
+/* Método */
+.steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.step .n{font-size:28px;font-weight:700;color:var(--accent);line-height:1}
+.step h4{margin:8px 0 6px;font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+.step ul{margin:0;padding-left:18px;color:var(--text-2);font-size:13.5px}
+.step li{margin:3px 0}
+.quote{border-left:6px solid var(--data);padding:10px 14px;background:var(--surface);border-radius:0 12px 12px 0;color:var(--text-2);margin-top:16px}
+pre.report{white-space:pre-wrap;font:13.5px/1.55 var(--sans);background:var(--surface-strong);border-radius:10px;padding:14px;margin:12px 0 0;color:var(--text);max-height:420px;overflow:auto}
+/* chart */
+svg text{fill:var(--muted);font-family:var(--sans);font-size:11px}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--text-2);margin-top:6px;flex-wrap:wrap}
+.legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:6px}
+/* modal */
+dialog{border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);color:var(--text);padding:0;width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 48px)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog form{padding:20px;display:grid;gap:12px}
+dialog h3{font-size:14px}
+label.f{display:grid;gap:4px;font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+label.f input,label.f select,label.f textarea{font:400 14px var(--sans);color:var(--text);background:var(--bg);border:1px solid var(--border-strong);border-radius:8px;padding:9px 10px;text-transform:none;letter-spacing:0;width:100%}
+label.f textarea{min-height:76px;resize:vertical}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.f2{grid-template-columns:1fr}}
+.dlg-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px}
+.dlg-actions .left{margin-right:auto}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--text);color:var(--bg);padding:9px 16px;border-radius:8px;font-weight:600;font-size:13px;z-index:50}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.filters select{font:500 13px var(--sans);color:var(--text);background:var(--surface);border:1px solid var(--border-strong);border-radius:7px;padding:7px 10px}
+.banner{background:var(--surface-strong);border-radius:10px;padding:12px 14px;color:var(--text-2);font-size:13px;margin-bottom:18px}
+.list-item{padding:12px 0;border-bottom:1px solid var(--border)}
+.list-item:last-child{border-bottom:0}
+.list-item .h{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.list-item .h b{font-weight:700}
+.list-item p{margin:6px 0 0;color:var(--text-2);font-size:13.5px;white-space:pre-wrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="top">
+      <svg class="mark" viewBox="0 0 600 600" aria-hidden="true"><rect x="62.5" y="212.5" width="175" height="175" fill="var(--accent)"/><rect x="362.5" y="212.5" width="175" height="175" fill="var(--accent)"/><polygon points="237.5,330 362.5,280 362.5,320 237.5,370" fill="var(--accent)"/></svg>
+      <div class="brand">
+        <h1>Acompanhamento Surcin</h1>
+        <p>R2 Tech Consultoria · Arquitetura da Ordem™ · 03/11/2026 a 12/02/2027</p>
+      </div>
+      <div class="spacer"></div>
+      <div class="sync" id="sync">Conectando…</div>
+    </div>
+    <nav role="tablist" id="tabs">
+      <button role="tab" data-tab="painel">Painel</button>
+      <button role="tab" data-tab="sprints">Sprints</button>
+      <button role="tab" data-tab="plano">Plano</button>
+      <button role="tab" data-tab="horas">Horas</button>
+      <button role="tab" data-tab="pendencias">Pendências e riscos</button>
+      <button role="tab" data-tab="reunioes">Reuniões</button>
+      <button role="tab" data-tab="metodo">Método</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="offline" class="banner" hidden>Este painel guarda os dados na nuvem do Claude. Abra-o conectado à sua conta para ver e editar o plano.</div>
+
+  <!-- PAINEL -->
+  <section data-panel="painel">
+    <h2>Visão geral</h2>
+    <p class="sub" id="painel-sub">Onde o projeto está hoje, comparado ao plano de 221 horas.</p>
+    <div class="grid g4" id="stats"></div>
+    <div class="section card">
+      <div class="row" style="justify-content:space-between"><h3>Cronograma das etapas</h3><span class="muted" style="font-size:12px">Dourado = tarefas concluídas</span></div>
+      <div class="gantt" style="margin-top:14px"><div class="gantt-inner" id="gantt"></div></div>
+    </div>
+    <div class="section grid g2">
+      <div class="card">
+        <h3>Horas acumuladas</h3>
+        <div id="chart" style="margin-top:10px"></div>
+        <div class="legend"><span><i style="background:var(--muted)"></i>Plano</span><span><i style="background:var(--accent)"></i>Realizado</span></div>
+      </div>
+      <div class="card">
+        <h3>Próximos 7 dias</h3>
+        <div id="proximos" style="margin-top:8px"></div>
+      </div>
+    </div>
+    <div class="section grid g2">
+      <div class="card"><h3>Marcos de aceite e parcelas</h3><div class="tbl" style="margin-top:8px"><table id="marcos"></table></div></div>
+      <div class="card"><h3>Atenção</h3><div id="atencao" style="margin-top:8px"></div></div>
+    </div>
+  </section>
+
+
+  <!-- SPRINTS -->
+  <section data-panel="sprints" hidden>
+    <div class="sp-head">
+      <div><h2>Sprints e quadro</h2><p class="sub" id="sp-sub">Sprints de uma semana, de segunda a sexta. Cada sprint tem um objetivo, termina na revisão de sexta com a Thamires e numa retrospectiva curta.</p></div>
+      <div class="sp-nav">
+        <button class="btn" id="sp-prev" aria-label="Sprint anterior">◀</button>
+        <select id="sp-sel" aria-label="Escolher sprint"></select>
+        <button class="btn" id="sp-next" aria-label="Próxima sprint">▶</button>
+        <button class="btn" id="sp-edit">Revisão e retro</button>
+        <button class="btn primary" data-new="tarefas">Nova tarefa</button>
+      </div>
+    </div>
+    <div class="grid g4" id="sp-stats"></div>
+    <div class="goal" id="sp-goal"></div>
+    <div class="section"><div class="kanban" id="kanban"></div>
+      <p class="muted" style="font-size:12px;margin:8px 0 0">Arraste o cartão entre as colunas ou use ◀ ▶. Limite de 3 tarefas em andamento ao mesmo tempo. "Em validação" é entregue pela R2 e aguardando o ok da Surcin.</p></div>
+    <div class="section grid g2">
+      <div class="card"><h3>Burndown da sprint</h3><div id="burn" style="margin-top:10px"></div>
+        <div class="legend"><span><i style="background:var(--muted)"></i>Ideal</span><span><i style="background:var(--accent)"></i>Tarefas restantes</span></div></div>
+      <div class="card"><h3>Revisão e retrospectiva</h3><div id="sp-notes" style="margin-top:8px"></div></div>
+    </div>
+    <div class="section card"><h3>Ritmo por sprint</h3><div class="tbl" style="margin-top:8px"><table id="vel"></table></div></div>
+  </section>
+
+  <!-- PLANO -->
+  <section data-panel="plano" hidden>
+    <div class="row" style="justify-content:space-between;align-items:flex-start">
+      <div><h2>Plano de trabalho</h2><p class="sub">Tarefas de cada etapa. Marque como feita ao concluir; toque na situação para mudar.</p></div>
+      <button class="btn primary" data-new="tarefas">Nova tarefa</button>
+    </div>
+    <div class="filters">
+      <select id="f-resp" aria-label="Filtrar por responsável"><option value="">Todos os responsáveis</option></select>
+      <select id="f-status" aria-label="Filtrar por situação"><option value="">Todas as situações</option><option value="aberto">Não concluídas</option><option value="a_fazer">A fazer</option><option value="andamento">Em andamento</option><option value="validacao">Em validação</option><option value="bloqueado">Bloqueadas</option><option value="feito">Feitas</option></select>
+    </div>
+    <div id="plano"></div>
+  </section>
+
+  <!-- HORAS -->
+  <section data-panel="horas" hidden>
+    <div class="row" style="justify-content:space-between;align-items:flex-start">
+      <div><h2>Registro de horas</h2><p class="sub">Lance o tempo de cada sessão de trabalho. O plano prevê cerca de 14 h por semana até 04/12 e cerca de 25 h por semana de 04/01 a 12/02.</p></div>
+      <button class="btn primary" data-new="horas">Lançar horas</button>
+    </div>
+    <div class="grid g4" id="horas-stats"></div>
+    <div class="section card"><h3>Por etapa</h3><div class="tbl" style="margin-top:8px"><table id="horas-etapa"></table></div></div>
+    <div class="section card"><h3>Lançamentos</h3><div class="tbl" style="margin-top:8px"><table id="horas-lista"></table></div></div>
+  </section>
+
+  <!-- PENDÊNCIAS -->
+  <section data-panel="pendencias" hidden>
+    <div class="row" style="justify-content:space-between;align-items:flex-start">
+      <div><h2>Pendências e riscos</h2><p class="sub">O que depende da Surcin, decisões em aberto e riscos ao prazo de 12/02/2027.</p></div>
+      <button class="btn primary" data-new="pendencias">Nova pendência</button>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>Depende da Surcin</h3><div id="pd-surcin"></div></div>
+      <div class="card"><h3>Decisões em aberto</h3><div id="pd-decisao"></div></div>
+    </div>
+    <div class="section card"><h3>Riscos</h3><div id="pd-risco"></div></div>
+    <div class="section card"><h3>Resolvidas</h3><div id="pd-ok"></div></div>
+  </section>
+
+  <!-- REUNIÕES -->
+  <section data-panel="reunioes" hidden>
+    <div class="row" style="justify-content:space-between;align-items:flex-start">
+      <div><h2>Reuniões e decisões</h2><p class="sub">Ata curta de cada encontro: decisões tomadas e próximos passos.</p></div>
+      <button class="btn primary" data-new="reunioes">Registrar reunião</button>
+    </div>
+    <div class="card" id="reunioes-lista"></div>
+    <div class="section card">
+      <div class="row" style="justify-content:space-between"><h3>Relatório semanal para a Thamires</h3><button class="btn" id="copiar">Copiar texto</button></div>
+      <p class="muted" style="margin:6px 0 0;font-size:13px">Gerado a partir do plano, das horas e das pendências desta semana. Revise antes de enviar.</p>
+      <pre class="report" id="relatorio"></pre>
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section data-panel="metodo" hidden>
+    <h2>Método de acompanhamento</h2>
+    <p class="sub">Como o projeto é conduzido e acompanhado de 03/11/2026 a 12/02/2027. Três ritmos: diário, semanal (sprint) e por marco (etapa).</p>
+    <div class="steps">
+      <div class="card step"><div class="n">01</div><h4>Todo dia · R2</h4><ul>
+        <li>Começar pela aba Sprints: objetivo da semana e quadro.</li>
+        <li>Lançar as horas de cada sessão (meta de ~14 h por semana até 04/12 e ~25 h em jan e fev).</li>
+        <li>Atualizar a situação das tarefas tocadas.</li>
+        <li>Registrar como pendência tudo que depender da Surcin.</li>
+      </ul></div>
+      <div class="card step"><div class="n">02</div><h4>Toda sexta · com a Thamires</h4><ul>
+        <li>Enviar o relatório semanal (aba Reuniões).</li>
+        <li>Revisão da sprint (check-in de 30 min): entregas, validações e decisões.</li>
+        <li>Retrospectiva de 10 min e registro na aba Sprints.</li>
+        <li>Registrar a ata com decisões e próximos passos.</li>
+        <li>Sem reuniões de 07 a 13/12: só relatório por escrito. Pausa até 04/01.</li>
+      </ul></div>
+      <div class="card step"><div class="n">03</div><h4>Fim de etapa · aceite</h4><ul>
+        <li>Apresentar a entrega e o critério de aceite da etapa.</li>
+        <li>Registrar o aceite no marco (data e quem aprovou).</li>
+        <li>10 parcelas mensais de R$ 3.190, de 03/11/2026 a agosto de 2027. Marque como paga no painel.</li>
+        <li>O que ficou fora vai para o plano de evolução.</li>
+      </ul></div>
+      <div class="card step"><div class="n">04</div><h4>Sempre · regras do projeto</h4><ul>
+        <li>Processo antes de ferramenta.</li>
+        <li>Mudança de escopo só com aditivo aprovado por escrito.</li>
+        <li>Nada paga, protocola ou envia sem confirmação humana.</li>
+        <li>Dados de clientes só autorizados, de preferência anonimizados.</li>
+      </ul></div>
+    </div>
+    <div class="section card">
+      <h3>Rito ágil · sprints de uma semana</h3>
+      <p class="muted" style="margin:6px 0 12px;font-size:13px">Um formato enxuto de Scrum com quadro Kanban, para um consultor e uma cliente com pouco tempo. São 11 sprints: 5 na organização (03/11 a 04/12) e 6 na implantação (04/01 a 12/02/2027). A etapa é o marco de aceite; a sprint é o passo semanal dentro dela.</p>
+      <div class="rito">
+        <div><b>Segunda · planejamento (R2, 15 min)</b><div class="muted" style="font-size:13px">Escolher o objetivo da sprint e puxar do plano as tarefas que cabem nas horas da semana.</div></div>
+        <div><b>A cada sessão · diária (R2, 5 min)</b><div class="muted" style="font-size:13px">O que fiz, o que faço agora, o que me bloqueia. Mover os cartões e lançar as horas.</div></div>
+        <div><b>Sexta · revisão (com a Thamires, 30 min)</b><div class="muted" style="font-size:13px">Mostrar o que ficou pronto, validar o que está em validação e decidir as pendências. É o check-in semanal.</div></div>
+        <div><b>Sexta · retrospectiva (R2, 10 min)</b><div class="muted" style="font-size:13px">O que funcionou, o que atrapalhou e uma melhoria para a próxima sprint.</div></div>
+      </div>
+      <div class="tbl" style="margin-top:14px"><table>
+        <thead><tr><th>Regra</th><th>Por quê</th></tr></thead>
+        <tbody>
+          <tr><td>Pronto = entregue no ambiente da Surcin e validado por quem usa</td><td>Evita tarefa "feita" que ninguém conferiu.</td></tr>
+          <tr><td>No máximo 3 tarefas em andamento</td><td>Terminar antes de começar outra.</td></tr>
+          <tr><td>O que não coube volta para a próxima sprint, sem esticar a semana</td><td>O ritmo semanal mostra cedo se o prazo de 12/02 está em risco.</td></tr>
+          <tr><td>Pedido novo entra como pendência de decisão, não direto no quadro</td><td>Protege o escopo fechado do contrato.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="section card">
+      <h3>Sinais de alerta</h3>
+      <div class="tbl" style="margin-top:8px"><table>
+        <thead><tr><th>Sinal</th><th>O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td>Horas realizadas mais de 10% abaixo do plano</td><td>Recuperar no fim de semana seguinte ou cortar escopo da etapa com a Thamires.</td></tr>
+          <tr><td>Pendência da Surcin vencida há mais de 1 dia útil</td><td>Cobrar a Júlia (ponto focal) e registrar o impacto no prazo.</td></tr>
+          <tr><td>Tarefa bloqueada</td><td>Levar ao check-in de sexta como decisão, com opções.</td></tr>
+          <tr><td>Marco sem aceite na data</td><td>Agendar a validação em até 2 dias; a etapa seguinte avança só no que não depende dele.</td></tr>
+          <tr><td>Pedido novo fora do escopo</td><td>Registrar como decisão em aberto e orçar como aditivo.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="quote">Simples por fora. Inabalável por dentro. O plano está nas abas; este painel é o registro do que foi feito, do que falta e do que depende de quem.</div>
+  </section>
+</main>
+
+<dialog id="dlg"><form id="frm" method="dialog"></form></dialog>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+const INI=new Date(2026,10,3), FIM=new Date(2027,1,12), PLANO_H=221;
+const ETAPAS=[
+ {n:1,t:"Diagnóstico e inventário",ini:"2026-11-03",fim:"2026-11-19",h:28},
+ {n:2,t:"Arquitetura operacional",ini:"2026-11-23",fim:"2026-12-04",h:42},
+ {n:3,t:"Fundação do Claude e rotinas",ini:"2027-01-04",fim:"2027-01-22",h:52},
+ {n:4,t:"Pilotos e painel",ini:"2027-01-18",fim:"2027-02-05",h:63},
+ {n:5,t:"Adoção e transferência",ini:"2027-02-01",fim:"2027-02-12",h:36}];
+const SPRINTS=[
+ {id:"s01",ini:"2026-11-03",fim:"2026-11-07",e:"1",obj:"Abrir o projeto: reunião de abertura, contrato assinado, acessos pedidos e entrevistas agendadas"},
+ {id:"s02",ini:"2026-11-09",fim:"2026-11-13",e:"1",obj:"Fazer as entrevistas e ver os sistemas em tela"},
+ {id:"s03",ini:"2026-11-16",fim:"2026-11-20",e:"1",obj:"Fechar o mapa dos processos atuais e o aceite da Etapa 1"},
+ {id:"s04",ini:"2026-11-23",fim:"2026-11-27",e:"2",obj:"Desenhar papéis, responsabilidades e os fluxos redesenhados"},
+ {id:"s05",ini:"2026-11-30",fim:"2026-12-04",e:"2",obj:"Fechar a arquitetura operacional e o aceite da Etapa 2 (entrega do meio)"},
+ {id:"s06",ini:"2027-01-04",fim:"2027-01-08",e:"3",obj:"Preparar o ambiente do Claude e a primeira rotina"},
+ {id:"s07",ini:"2027-01-11",fim:"2027-01-15",e:"3",obj:"Construir e testar as rotinas do Claude"},
+ {id:"s08",ini:"2027-01-18",fim:"2027-01-22",e:"3 e 4",obj:"Aceite da Etapa 3 e início dos pilotos"},
+ {id:"s09",ini:"2027-01-25",fim:"2027-01-29",e:"4",obj:"Rodar os pilotos e montar os painéis"},
+ {id:"s10",ini:"2027-02-01",fim:"2027-02-05",e:"4 e 5",obj:"Aceite da Etapa 4, treinamentos e avaliação por competência"},
+ {id:"s11",ini:"2027-02-08",fim:"2027-02-12",e:"5",obj:"Transferência para a equipe e entrega final"}];
+const spNome=sp=>"Sprint "+(+sp.id.slice(1))+" · "+br(sp.ini)+" a "+br(sp.fim);
+const sprintDaData=s=>{if(!s)return null;for(const sp of SPRINTS)if(s<=sp.fim)return sp.id;return SPRINTS[SPRINTS.length-1].id};
+const sprintDe=t=>t.sprint||sprintDaData(t.prazo)||SPRINTS[0].id;
+const sprintAtual=()=>{const h=iso(hoje());for(const sp of SPRINTS)if(h<=sp.fim)return sp.id;return SPRINTS[SPRINTS.length-1].id};
+const KCOLS=["a_fazer","andamento","validacao","feito","bloqueado"], WIP=3;
+let spSel=null;
+const ST={tarefas:{a_fazer:"A fazer",andamento:"Em andamento",validacao:"Em validação",bloqueado:"Bloqueada",feito:"Feita"},
+  pendencias:{aberta:"Aberta",resolvida:"Resolvida"},marcos:{pendente:"Pendente",aceito:"Aceito"}};
+const CICLO=["a_fazer","andamento","validacao","feito","bloqueado"];
+const S={tarefas:[],horas:[],pendencias:[],reunioes:[],marcos:[],sprints:[]};
+let db=null, canWrite=false;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pd=s=>{if(!s)return null;const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c)};
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const br=s=>{const d=pd(s);return d?String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0"):"—"};
+const hoje=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())};
+const DAY=864e5, dias=(a,b)=>Math.round((b-a)/DAY);
+const fh=n=>{n=Math.round(n*4)/4;const h=Math.floor(n),m=Math.round((n-h)*60);return m?h+"h"+String(m).padStart(2,"0"):h+"h"};
+const money=n=>"R$ "+Number(n||0).toLocaleString("pt-BR");
+function toast(t){const e=$("#toast");e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2200)}
+
+/* ---------- plano de horas acumulado ---------- */
+function planoAte(d){let t=0;for(const e of ETAPAS){const a=pd(e.ini),b=pd(e.fim),n=dias(a,b)+1;if(d<a)continue;const k=Math.min(n,dias(a,d)+1);t+=e.h*k/n}return t}
+const real=()=>S.horas.reduce((s,h)=>s+(+h.horas||0),0);
+const realAte=d=>S.horas.filter(h=>pd(h.data)<=d).reduce((s,h)=>s+(+h.horas||0),0);
+const etapaAtual=d=>ETAPAS.filter(e=>d>=pd(e.ini)&&d<=pd(e.fim));
+const atrasada=t=>t.status!=="feito"&&t.prazo&&pd(t.prazo)<hoje();
+
+/* ---------- render ---------- */
+function render(){renderPainel();renderSprint();renderPlano();renderHoras();renderPend();renderReun()}
+
+function renderPainel(){
+  const h=hoje(), tot=S.tarefas.length, ok=S.tarefas.filter(t=>t.status==="feito").length;
+  const r=real(), ref=h<INI?INI:(h>FIM?FIM:h), p=h<INI?0:planoAte(ref);
+  let quando;
+  if(h<INI)quando=`Começa em ${dias(h,INI)} dia${dias(h,INI)===1?"":"s"}`;
+  else if(h>FIM)quando="Prazo encerrado";
+  else quando=`${dias(h,FIM)} dias até 12/02`;
+  const atual=etapaAtual(ref).map(e=>"Etapa "+e.n).join(" + ")||(h<INI?"Antes do início":"—");
+  const pend=S.pendencias.filter(x=>x.status!=="resolvida"&&x.tipo==="surcin").length;
+  const late=S.tarefas.filter(atrasada).length;
+  const dif=r-p;
+  $("#stats").innerHTML=[
+    `<div class="card stat"><div class="k">Prazo</div><div class="v">${esc(quando)}</div><div class="d">${esc(atual)}</div><div class="bar"><i style="width:${Math.max(0,Math.min(100,dias(INI,ref)/dias(INI,FIM)*100))}%"></i></div></div>`,
+    `<div class="card stat"><div class="k">Tarefas concluídas</div><div class="v">${ok}<small> / ${tot}</small></div><div class="d">${late?`<span class="late">${late} atrasada${late>1?"s":""}</span>`:"Nenhuma atrasada"}</div><div class="bar"><i style="width:${tot?ok/tot*100:0}%"></i></div></div>`,
+    `<div class="card stat"><div class="k">Horas realizadas</div><div class="v">${fh(r)}<small> / ${PLANO_H}h</small></div><div class="d">${h<INI?"Plano ainda não começou":(Math.abs(dif)<1?"No ritmo do plano":(dif<0?`<span class="late">${fh(-dif)} abaixo do plano</span>`:`${fh(dif)} acima do plano`))}</div><div class="bar"><i style="width:${Math.min(100,r/PLANO_H*100)}%"></i></div></div>`,
+    `<div class="card stat"><div class="k">Pendências da Surcin</div><div class="v">${pend}</div><div class="d">${S.pendencias.filter(x=>x.status!=="resolvida"&&x.tipo==="surcin"&&x.prazo&&pd(x.prazo)<h).length} vencida(s)</div></div>`
+  ].join("");
+  // gantt
+  const span=dias(INI,FIM)+1, pos=d=>dias(INI,d)/span*100;
+  let wk=`<div class="g-weeks"><div></div><div class="g-wk">`;
+  for(let d=new Date(2026,10,2);d<=FIM;d=new Date(d.getTime()+7*DAY)){const x=Math.max(0,pos(d));wk+=`<span style="left:${x}%">${br(iso(d<INI?INI:d))}</span>`}
+  wk+=`<span style="left:100%">12/02</span></div></div>`;
+  const tl=h>=INI&&h<=FIM?`<div class="g-today" style="left:${pos(h)}%" title="Hoje"></div>`:"";
+  $("#gantt").innerHTML=wk+ETAPAS.map(e=>{const ts=S.tarefas.filter(t=>+t.etapa===e.n),f=ts.length?ts.filter(t=>t.status==="feito").length/ts.length:0;
+    const a=pos(pd(e.ini)),w=(dias(pd(e.ini),pd(e.fim))+1)/span*100;
+    return `<div class="g-row"><div class="g-lab">Etapa ${e.n}<small>${esc(e.t)}</small></div><div class="g-track">${tl}<div class="g-bar" style="left:${a}%;width:${w}%" title="${br(e.ini)} a ${br(e.fim)} · ${e.h} h"><i class="fill" style="width:${f*100}%"></i><span>${br(e.ini)}–${br(e.fim)} · ${e.h} h · ${Math.round(f*100)}%</span></div></div></div>`}).join("");
+  renderChart();
+  // próximos 7 dias
+  const lim=new Date(h.getTime()+7*DAY);
+  const prox=[...S.tarefas.filter(t=>t.status!=="feito"&&t.prazo&&pd(t.prazo)<=lim).map(t=>({d:t.prazo,txt:t.titulo,q:t.resp,k:"Tarefa",late:pd(t.prazo)<h})),
+    ...S.pendencias.filter(x=>x.status!=="resolvida"&&x.prazo&&pd(x.prazo)<=lim).map(x=>({d:x.prazo,txt:x.titulo,q:x.resp,k:"Pendência",late:pd(x.prazo)<h}))].sort((a,b)=>a.d<b.d?-1:1);
+  $("#proximos").innerHTML=prox.length?`<table><tbody>${prox.slice(0,10).map(x=>`<tr><td class="num ${x.late?"late":""}">${br(x.d)}</td><td>${esc(x.txt)}<div class="muted" style="font-size:12px">${x.k} · ${esc(x.q||"")}</div></td></tr>`).join("")}</tbody></table>${prox.length>10?`<p class="muted" style="font-size:12px">e mais ${prox.length-10}</p>`:""}`:`<div class="empty">Nada com prazo nos próximos 7 dias${h<INI?". A primeira semana começa em 03/11.":"."}</div>`;
+  // marcos
+  const ms=[...S.marcos].sort((a,b)=>(a.ordem??0)-(b.ordem??0));
+  $("#marcos").innerHTML=ms.length?`<thead><tr><th>Marco</th><th class="num">Data</th><th>Situação</th><th class="num">Parcela</th></tr></thead><tbody>${ms.map(m=>{const late=m.status!=="aceito"&&pd(m.data)<h;return `<tr><td>${esc(m.titulo)}${m.aceitoEm?`<div class="muted" style="font-size:12px">Aceito em ${br(m.aceitoEm)}${m.aprovador?" · "+esc(m.aprovador):""}</div>`:""}</td><td class="num ${late?"late":""}">${br(m.data)}</td><td><button class="pill s-${late?"atrasado":esc(m.status)}" data-cyc="marcos" data-id="${esc(m.id)}">${late?"Atrasado":esc(ST.marcos[m.status]||m.status)}</button></td><td class="num">${m.valor?money(m.valor)+(m.pago?` <span class="pill s-pago" style="cursor:default">Paga</span>`:""):"—"}</td></tr>`}).join("")}</tbody>`:`<tbody><tr><td class="empty">Os marcos de aceite aparecem aqui.</td></tr></tbody>`;
+  // atenção
+  const at=[];
+  S.tarefas.filter(t=>t.status==="bloqueado").forEach(t=>at.push(["Bloqueada",t.titulo,"s-bloqueado"]));
+  S.tarefas.filter(atrasada).forEach(t=>at.push(["Atrasada",t.titulo+" · "+br(t.prazo),"s-atrasado"]));
+  S.pendencias.filter(x=>x.status!=="resolvida"&&x.tipo==="risco").forEach(x=>at.push(["Risco",x.titulo,"s-risco"]));
+  S.pendencias.filter(x=>x.status!=="resolvida"&&x.tipo==="decisao").forEach(x=>at.push(["Decisão",x.titulo,"s-andamento"]));
+  $("#atencao").innerHTML=at.length?at.slice(0,10).map(a=>`<div class="list-item"><div class="h"><span class="pill ${a[2]}" style="cursor:default">${a[0]}</span><span>${esc(a[1])}</span></div></div>`).join(""):`<div class="empty">Nenhum bloqueio, atraso, risco ou decisão em aberto.</div>`;
+  $("#painel-sub").textContent=h<INI?`O projeto começa em 03/11. Plano: 221 horas, organização até 04/12 e implantação de 04/01 a 12/02/2027.`:`Situação em ${br(iso(h))}, comparada ao plano de 221 horas.`;
+}
+
+function renderChart(){
+  const W=520,H=200,L=36,R=10,T=10,B=26,span=dias(INI,FIM);
+  const x=d=>L+dias(INI,d)/span*(W-L-R), y=v=>T+(1-v/PLANO_H)*(H-T-B);
+  let pl="",rl="";const h=hoje();
+  for(let i=0;i<=span;i++){const d=new Date(INI.getTime()+i*DAY);pl+=(i?"L":"M")+x(d).toFixed(1)+","+y(planoAte(d)).toFixed(1)}
+  const end=h<INI?null:(h>FIM?FIM:h);
+  if(end){for(let i=0;i<=dias(INI,end);i++){const d=new Date(INI.getTime()+i*DAY);rl+=(i?"L":"M")+x(d).toFixed(1)+","+y(realAte(d)).toFixed(1)}}
+  let g="";[0,55,110,165,221].forEach(v=>{g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--border)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
+  [["2026-11-03","03/11"],["2026-12-04","04/12"],["2027-01-04","04/01"],["2027-02-12","12/02"]].forEach(([s,l],i,a)=>g+=`<text x="${x(pd(s))}" y="${H-8}" text-anchor="${i===0?"start":i===a.length-1?"end":"middle"}">${l}</text>`);
+  const dot=end?`<circle cx="${x(end)}" cy="${y(realAte(end))}" r="4" fill="var(--accent)"/>`:"";
+  $("#chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Horas planejadas e realizadas">${g}<path d="${pl}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4"/>${rl?`<path d="${rl}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>`:""}${dot}</svg>`;
+}
+
+
+function renderSprint(){
+  if(!spSel)spSel=sprintAtual();
+  const sp=SPRINTS.find(x=>x.id===spSel), meta=S.sprints.find(x=>x.id===spSel)||{};
+  $("#sp-sel").innerHTML=SPRINTS.map(x=>`<option value="${x.id}" ${x.id===spSel?"selected":""}>${esc(spNome(x))}${x.id===sprintAtual()?" (atual)":""}</option>`).join("");
+  $("#sp-prev").disabled=spSel===SPRINTS[0].id;$("#sp-next").disabled=spSel===SPRINTS[SPRINTS.length-1].id;
+  const ts=S.tarefas.filter(t=>sprintDe(t)===spSel);
+  const ok=ts.filter(t=>t.status==="feito").length, val=ts.filter(t=>t.status==="validacao").length, bl=ts.filter(t=>t.status==="bloqueado").length;
+  const a=pd(sp.ini), b=pd(sp.fim);
+  const hp=planoAte(new Date(b.getTime()+2*DAY))-planoAte(new Date(a.getTime()-DAY)), hr=S.horas.filter(x=>x.data>=sp.ini&&x.data<=iso(new Date(b.getTime()+2*DAY))).reduce((s,x)=>s+(+x.horas||0),0);
+  const h=hoje(); const st=h<a?`Começa em ${dias(h,a)} dia${dias(h,a)===1?"":"s"}`:(h>b?"Encerrada":`Dia ${dias(a,h)+1} de 5`);
+  $("#sp-stats").innerHTML=[
+    `<div class="card stat"><div class="k">${esc("Sprint "+(+sp.id.slice(1))+" de "+SPRINTS.length)}</div><div class="v">${esc(st)}</div><div class="d">Etapa ${esc(sp.e)} · ${br(sp.ini)} a ${br(sp.fim)}</div></div>`,
+    `<div class="card stat"><div class="k">Prontas</div><div class="v">${ok}<small> / ${ts.length}</small></div><div class="d">${val?val+" em validação":"Nenhuma em validação"}${bl?` · <span class="late">${bl} bloqueada${bl>1?"s":""}</span>`:""}</div><div class="bar"><i style="width:${ts.length?ok/ts.length*100:0}%"></i></div></div>`,
+    `<div class="card stat"><div class="k">Horas da sprint</div><div class="v">${fh(hr)}<small> / ${fh(hp)}</small></div><div class="d">Plano de segunda a domingo, pelas horas da etapa</div><div class="bar"><i style="width:${hp?Math.min(100,hr/hp*100):0}%"></i></div></div>`,
+    `<div class="card stat"><div class="k">Revisão</div><div class="v">${meta.revisaoEm?br(meta.revisaoEm):br(sp.fim)}</div><div class="d">${meta.revisaoEm?"Revisão registrada":"Sexta, com a Thamires"}</div></div>`
+  ].join("");
+  $("#sp-goal").innerHTML=`<small>Objetivo da sprint</small>${esc(meta.objetivo||sp.obj)}`;
+  const and=ts.filter(t=>t.status==="andamento").length;
+  $("#kanban").innerHTML=KCOLS.map((c,ci)=>{const cs=ts.filter(t=>(KCOLS.includes(t.status)?t.status:"a_fazer")===c).sort((x,y)=>(x.prazo||"9")<(y.prazo||"9")?-1:1);
+    return `<div class="col" data-col="${c}"><div class="col-h"><span>${esc(ST.tarefas[c])}</span><span class="${c==="andamento"&&and>WIP?"wip":""}">${cs.length}${c==="andamento"?" / "+WIP:""}</span></div>
+    ${cs.map(t=>`<div class="kc ${atrasada(t)?"late":""}" draggable="${canWrite}" data-kid="${esc(t.id)}"><b>${esc(t.titulo)}</b>
+      <div class="meta"><span>${esc(t.resp||"")} · <span class="${atrasada(t)?"late":""}">${br(t.prazo)}</span></span>
+      <span class="mv"><button data-mv="-1" data-id="${esc(t.id)}" aria-label="Mover para a coluna anterior" ${ci===0||!canWrite?"disabled":""}>◀</button><button data-mv="1" data-id="${esc(t.id)}" aria-label="Mover para a próxima coluna" ${ci===KCOLS.length-1||!canWrite?"disabled":""}>▶</button><button data-edit="tarefas" data-id="${esc(t.id)}" aria-label="Editar">✎</button></span></div></div>`).join("")||`<div class="muted" style="font-size:12px;padding:6px 4px">—</div>`}</div>`}).join("");
+  // burndown
+  const W=520,H=180,L=30,R=10,T=10,B=24, n=ts.length||1, nd=dias(a,b);
+  const x=i=>L+i/nd*(W-L-R), y=v=>T+(1-v/n)*(H-T-B);
+  const rest=d=>ts.filter(t=>!(t.status==="feito"&&t.feitoEm&&t.feitoEm<=iso(d))).length;
+  let g="";[0,Math.ceil(n/2),n].forEach(v=>{g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--border)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
+  ["seg","ter","qua","qui","sex"].forEach((l,i)=>g+=`<text x="${x(i)}" y="${H-6}" text-anchor="${i===0?"start":i===4?"end":"middle"}">${l} ${br(iso(new Date(a.getTime()+i*DAY)))}</text>`);
+  let rl="";const end=h<a?null:(h>b?b:h);
+  if(end&&ts.length){for(let i=0;i<=dias(a,end);i++){const d=new Date(a.getTime()+i*DAY);rl+=(i?"L":"M")+x(i).toFixed(1)+","+y(rest(d)).toFixed(1)}}
+  $("#burn").innerHTML=ts.length?`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Tarefas restantes na sprint">${g}<path d="M${x(0)},${y(n)}L${x(nd)},${y(0)}" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>${rl?`<path d="${rl}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>`:""}</svg>`:`<div class="empty">Nenhuma tarefa nesta sprint.</div>`;
+  // notas
+  const it=(k,l)=>meta[k]?`<div class="list-item"><div class="h"><b>${l}</b></div><p>${esc(meta[k])}</p></div>`:"";
+  const notes=it("revisao","Revisão com a Thamires")+it("funcionou","O que funcionou")+it("atrapalhou","O que atrapalhou")+it("melhoria","Melhoria para a próxima sprint");
+  $("#sp-notes").innerHTML=notes||`<div class="empty">Registre na sexta a revisão e a retrospectiva desta sprint (botão "Revisão e retro").</div>`;
+  // ritmo
+  $("#vel").innerHTML=`<thead><tr><th>Sprint</th><th>Etapa</th><th class="num">Tarefas</th><th>Prontas</th><th class="num">Horas plano</th><th class="num">Horas reais</th></tr></thead><tbody>${SPRINTS.map(x=>{const tt=S.tarefas.filter(t=>sprintDe(t)===x.id),f=tt.filter(t=>t.status==="feito").length,aa=pd(x.ini),bb=pd(x.fim);
+    const p=planoAte(new Date(bb.getTime()+2*DAY))-planoAte(new Date(aa.getTime()-DAY)),r=S.horas.filter(z=>z.data>=x.ini&&z.data<=iso(new Date(bb.getTime()+2*DAY))).reduce((s,z)=>s+(+z.horas||0),0);
+    const cur=x.id===sprintAtual();
+    return `<tr${x.id===spSel?' style="background:var(--surface-strong)"':""}><td><b>${+x.id.slice(1)}</b> · ${br(x.ini)} a ${br(x.fim)}${cur?' <span class="pill s-andamento" style="cursor:default">atual</span>':""}${x.id==="s06"?'<div class="muted" style="font-size:12px">Depois da pausa de 05/12 a 03/01</div>':""}</td><td>${esc(x.e)}</td><td class="num">${tt.length}</td><td><div class="vel"><div class="bar"><i style="width:${tt.length?f/tt.length*100:0}%"></i></div><span class="muted" style="font-size:12px">${f}/${tt.length}</span></div></td><td class="num">${fh(p)}</td><td class="num">${r?fh(r):"—"}</td></tr>`}).join("")}</tbody>`;
+}
+
+function renderPlano(){
+  const fr=$("#f-resp").value, fs=$("#f-status").value;
+  const resps=[...new Set(S.tarefas.map(t=>t.resp).filter(Boolean))].sort();
+  const cur=$("#f-resp").value;
+  $("#f-resp").innerHTML=`<option value="">Todos os responsáveis</option>`+resps.map(r=>`<option ${r===cur?"selected":""}>${esc(r)}</option>`).join("");
+  const filt=t=>(!fr||t.resp===fr)&&(!fs||(fs==="aberto"?t.status!=="feito":t.status===fs));
+  if(!S.tarefas.length){$("#plano").innerHTML=`<div class="empty">Nenhuma tarefa ainda. Use "Nova tarefa" para começar o plano.</div>`;return}
+  $("#plano").innerHTML=ETAPAS.map(e=>{
+    const all=S.tarefas.filter(t=>+t.etapa===e.n), ts=all.filter(filt).sort((a,b)=>(a.prazo||"9")<(b.prazo||"9")?-1:(a.prazo===b.prazo?(a.ordem??0)-(b.ordem??0):1));
+    const ok=all.filter(t=>t.status==="feito").length;
+    return `<div class="etapa"><div class="etapa-h"><span class="n">0${e.n}</span><span class="t">${esc(e.t)}</span><span class="m">${br(e.ini)} a ${br(e.fim)} · ${e.h} h · ${ok}/${all.length} feitas</span></div>
+    <div class="card" style="padding:4px 0">${ts.length?ts.map(t=>`<div class="task ${t.status==="feito"?"done":""}">
+      <input type="checkbox" class="chk" data-done="${esc(t.id)}" ${t.status==="feito"?"checked":""} ${canWrite?"":"disabled"} aria-label="Concluir ${esc(t.titulo)}">
+      <div class="ti"><b>${esc(t.titulo)}</b>${t.nota?`<div>${esc(t.nota)}</div>`:""}</div>
+      <span class="resp">${esc(t.resp||"")}</span>
+      <span class="date ${atrasada(t)?"late":""}">${br(t.prazo)}</span>
+      <span class="row" style="gap:4px;flex-wrap:nowrap"><button class="pill s-${esc(t.status)}" data-cyc="tarefas" data-id="${esc(t.id)}">${esc(ST.tarefas[t.status]||t.status)}</button><button class="btn ghost ed" data-edit="tarefas" data-id="${esc(t.id)}" aria-label="Editar">Editar</button></span>
+    </div>`).join(""):`<div class="muted" style="padding:12px">Nenhuma tarefa com esse filtro.</div>`}</div></div>`}).join("");
+}
+
+function renderHoras(){
+  const r=real(), h=hoje(), ref=h<INI?INI:(h>FIM?FIM:h), p=h<INI?0:planoAte(ref);
+  const sem=new Date(h.getTime()-((h.getDay()+6)%7)*DAY);
+  const rs=S.horas.filter(x=>pd(x.data)>=sem&&pd(x.data)<=h).reduce((s,x)=>s+(+x.horas||0),0);
+  const diasRest=Math.max(1,dias(h<INI?INI:h,FIM)+1);
+  $("#horas-stats").innerHTML=[
+    ["Realizado",fh(r),`de ${PLANO_H}h planejadas`],
+    ["Plano até hoje",fh(p),h<INI?"Início em 03/11":(r>=p?"Em dia":`Faltam ${fh(p-r)}`)],
+    ["Esta semana",fh(rs),"Meta: ~14 h/semana até 04/12; ~25 h/semana em jan e fev"],
+    ["Ritmo necessário",fh(Math.max(0,PLANO_H-r)/diasRest)+"/dia",`para fechar ${PLANO_H}h até 12/02`]
+  ].map(a=>`<div class="card stat"><div class="k">${a[0]}</div><div class="v">${a[1]}</div><div class="d">${a[2]}</div></div>`).join("");
+  $("#horas-etapa").innerHTML=`<thead><tr><th>Etapa</th><th class="num">Plano</th><th class="num">Realizado</th><th class="num">Saldo</th><th style="width:30%"></th></tr></thead><tbody>${ETAPAS.map(e=>{const v=S.horas.filter(x=>+x.etapa===e.n).reduce((s,x)=>s+(+x.horas||0),0);return `<tr><td>${e.n} · ${esc(e.t)}</td><td class="num">${e.h}h</td><td class="num">${fh(v)}</td><td class="num ${v>e.h?"late":""}">${v>e.h?"+"+fh(v-e.h):fh(e.h-v)}</td><td><div class="bar" style="margin:6px 0 0"><i style="width:${Math.min(100,v/e.h*100)}%;${v>e.h?"background:var(--bad)":""}"></i></div></td></tr>`}).join("")}<tr><td><b>Total</b></td><td class="num"><b>${PLANO_H}h</b></td><td class="num"><b>${fh(r)}</b></td><td class="num">${fh(Math.abs(PLANO_H-r))}</td><td></td></tr></tbody>`;
+  const ls=[...S.horas].sort((a,b)=>a.data<b.data?1:-1);
+  $("#horas-lista").innerHTML=ls.length?`<thead><tr><th class="num">Data</th><th>Etapa</th><th>O que foi feito</th><th class="num">Horas</th><th></th></tr></thead><tbody>${ls.map(x=>`<tr><td class="num">${br(x.data)}</td><td>${esc(x.etapa)}</td><td>${esc(x.desc)}</td><td class="num">${fh(+x.horas)}</td><td class="num"><button class="btn ghost" data-edit="horas" data-id="${esc(x.id)}">Editar</button></td></tr>`).join("")}</tbody>`:`<tbody><tr><td class="empty">Nenhum lançamento ainda. Use "Lançar horas" depois de cada sessão de trabalho.</td></tr></tbody>`;
+}
+
+function pendItem(x){const late=x.status!=="resolvida"&&x.prazo&&pd(x.prazo)<hoje();
+  return `<div class="list-item"><div class="h"><button class="pill s-${esc(x.status)}" data-cyc="pendencias" data-id="${esc(x.id)}">${esc(ST.pendencias[x.status]||x.status)}</button><b>${esc(x.titulo)}</b></div>
+  <div class="row" style="font-size:12px;color:var(--muted);margin-top:4px;gap:12px">${x.resp?`<span>${esc(x.resp)}</span>`:""}${x.prazo?`<span class="${late?"late":""}">Prazo ${br(x.prazo)}</span>`:""}<button class="btn ghost" data-edit="pendencias" data-id="${esc(x.id)}">Editar</button></div>${x.nota?`<p>${esc(x.nota)}</p>`:""}</div>`}
+function renderPend(){
+  const ab=S.pendencias.filter(x=>x.status!=="resolvida").sort((a,b)=>(a.prazo||"9")<(b.prazo||"9")?-1:1);
+  const put=(sel,arr,msg)=>$(sel).innerHTML=arr.length?arr.map(pendItem).join(""):`<div class="empty" style="margin-top:8px">${msg}</div>`;
+  put("#pd-surcin",ab.filter(x=>x.tipo==="surcin"),"Nada pendente da Surcin.");
+  put("#pd-decisao",ab.filter(x=>x.tipo==="decisao"),"Nenhuma decisão em aberto.");
+  put("#pd-risco",ab.filter(x=>x.tipo==="risco"),"Nenhum risco registrado.");
+  put("#pd-ok",S.pendencias.filter(x=>x.status==="resolvida"),"As pendências resolvidas aparecem aqui.");
+}
+
+function renderReun(){
+  const ls=[...S.reunioes].sort((a,b)=>a.data<b.data?1:-1);
+  $("#reunioes-lista").innerHTML=ls.length?ls.map(m=>`<div class="list-item"><div class="h"><b>${br(m.data)} · ${esc(m.tipo||"Reunião")}</b><span class="muted" style="font-size:12px">${esc(m.participantes||"")}</span><button class="btn ghost" data-edit="reunioes" data-id="${esc(m.id)}">Editar</button></div>${m.decisoes?`<p><b>Decisões:</b> ${esc(m.decisoes)}</p>`:""}${m.proximos?`<p><b>Próximos passos:</b> ${esc(m.proximos)}</p>`:""}</div>`).join(""):`<div class="empty">Nenhuma reunião registrada. A reunião de abertura está prevista para 03/11.</div>`;
+  $("#relatorio").textContent=relatorio();
+}
+
+function relatorio(){
+  const h=hoje(), ini=new Date(h.getTime()-((h.getDay()+6)%7)*DAY), fim=new Date(ini.getTime()+6*DAY), nx=new Date(fim.getTime()+7*DAY);
+  const ref=h<INI?INI:(h>FIM?FIM:h);
+  const feitas=S.tarefas.filter(t=>t.status==="feito"&&t.feitoEm&&pd(t.feitoEm)>=ini&&pd(t.feitoEm)<=fim);
+  const prox=S.tarefas.filter(t=>t.status!=="feito"&&t.prazo&&pd(t.prazo)<=nx).sort((a,b)=>a.prazo<b.prazo?-1:1);
+  const pend=S.pendencias.filter(x=>x.status!=="resolvida"&&x.tipo==="surcin");
+  const dec=S.pendencias.filter(x=>x.status!=="resolvida"&&x.tipo==="decisao");
+  const tot=S.tarefas.length, ok=S.tarefas.filter(t=>t.status==="feito").length;
+  const atual=etapaAtual(ref).map(e=>`Etapa ${e.n} (${e.t})`).join(" e ")||"preparação";
+  const L=[];
+  L.push(`Oi, Thamires! Segue o resumo da semana de ${br(iso(ini))} a ${br(iso(fim))}.`,"");
+  L.push(`Onde estamos: ${atual}. ${ok} de ${tot} tarefas do projeto concluídas.`,"");
+  L.push("Concluído nesta semana:");
+  L.push(...(feitas.length?feitas.map(t=>"• "+t.titulo):["• (nenhuma tarefa marcada como concluída nesta semana)"]),"");
+  L.push("Próximos passos:");
+  L.push(...(prox.length?prox.slice(0,8).map(t=>`• ${t.titulo} (${br(t.prazo)})`):["• (sem tarefas com prazo nos próximos dias)"]),"");
+  if(pend.length){L.push("Preciso de vocês:");L.push(...pend.map(x=>`• ${x.titulo}${x.resp?" · "+x.resp:""}${x.prazo?" · até "+br(x.prazo):""}`),"")}
+  if(dec.length){L.push("Decisões para o nosso check-in:");L.push(...dec.map(x=>"• "+x.titulo),"")}
+  L.push("Qualquer dúvida, me chame.","Renato Romão · R2 Tech Consultoria");
+  return L.join("\n");
+}
+
+/* ---------- formulários ---------- */
+const etapaOpts=ETAPAS.map(e=>[String(e.n),e.n+" · "+e.t]);
+const FORMS={
+  tarefas:{t:"Tarefa",f:[["titulo","Tarefa","text",1],["etapa","Etapa","select",1,etapaOpts],["resp","Responsável","text",0,null,"R2, Thamires, Júlia…"],["prazo","Prazo","date"],["status","Situação","select",1,Object.entries(ST.tarefas)],["sprint","Sprint","select",0,[["","Pela data do prazo"],...SPRINTS.map(x=>[x.id,spNome(x)])]],["nota","Observação","textarea"]]},
+  sprints:{t:"Revisão e retrospectiva",f:[["objetivo","Objetivo da sprint","text",0,null,"Deixe em branco para o objetivo planejado"],["revisaoEm","Data da revisão","date"],["revisao","Revisão com a Thamires: o que foi mostrado e decidido","textarea"],["funcionou","O que funcionou","textarea"],["atrapalhou","O que atrapalhou","textarea"],["melhoria","Uma melhoria para a próxima sprint","textarea"]]},
+  horas:{t:"Lançamento de horas",f:[["data","Data","date",1],["etapa","Etapa","select",1,etapaOpts],["horas","Horas","number",1],["desc","O que foi feito","textarea",1]]},
+  pendencias:{t:"Pendência",f:[["titulo","Descrição","text",1],["tipo","Tipo","select",1,[["surcin","Depende da Surcin"],["decisao","Decisão em aberto"],["risco","Risco"]]],["resp","Responsável","text"],["prazo","Prazo","date"],["status","Situação","select",1,Object.entries(ST.pendencias)],["nota","Observação","textarea"]]},
+  reunioes:{t:"Reunião",f:[["data","Data","date",1],["tipo","Tipo","select",1,[["Abertura","Abertura"],["Check-in semanal","Check-in semanal"],["Entrevista","Entrevista"],["Aceite de etapa","Aceite de etapa"],["Treinamento","Treinamento"],["Outra","Outra"]]],["participantes","Participantes","text"],["decisoes","Decisões","textarea"],["proximos","Próximos passos","textarea"]]},
+  marcos:{t:"Marco",f:[["titulo","Marco","text",1],["data","Data prevista","date",1],["status","Situação","select",1,Object.entries(ST.marcos)],["aceitoEm","Aceito em","date"],["aprovador","Aprovado por","text"],["valor","Parcela (R$)","number"],["pago","Parcela paga","select",0,[["","Não"],["sim","Sim"]]]]}
+};
+let editing=null, confirmDel=false;
+function openForm(col,id){
+  if(!canWrite){toast("Sem permissão para editar");return}
+  const def=FORMS[col], cur=id?(S[col].find(x=>x.id===id)||(col==="sprints"?{}:null)):null;
+  editing={col,id};confirmDel=false;
+  const defaults={tarefas:{sprint:document.querySelector('[data-panel="sprints"]').hidden?"":spSel,status:"a_fazer",etapa:String((etapaAtual(hoje())[0]||ETAPAS[0]).n),resp:"R2"},horas:{data:iso(hoje()),etapa:String((etapaAtual(hoje())[0]||ETAPAS[0]).n)},pendencias:{status:"aberta",tipo:"surcin"},reunioes:{data:iso(hoje()),tipo:"Check-in semanal"},marcos:{status:"pendente"}}[col];
+  const v=k=>{const x=cur?cur[k]:defaults[k];return x==null?"":(k==="pago"?(x?"sim":""):String(x))};
+  const fields=def.f.map(([k,l,ty,req,opts,ph])=>{
+    const idf="fld-"+col+"-"+k;
+    if(ty==="select")return `<label class="f" for="${idf}">${l}<select id="${idf}" name="${k}" ${req?"required":""}>${opts.map(([a,b])=>`<option value="${esc(a)}" ${v(k)===String(a)?"selected":""}>${esc(b)}</option>`).join("")}</select></label>`;
+    if(ty==="textarea")return `<label class="f" for="${idf}">${l}<textarea id="${idf}" name="${k}" ${req?"required":""}>${esc(v(k))}</textarea></label>`;
+    return `<label class="f" for="${idf}">${l}<input id="${idf}" name="${k}" type="${ty}" ${ty==="number"?'step="0.25" min="0"':""} ${req?"required":""} value="${esc(v(k))}" ${ph?`placeholder="${esc(ph)}"`:""}></label>`});
+  // agrupar campos curtos em pares
+  let html=`<h3>${cur?"Editar":"Novo"}: ${def.t.toLowerCase()}</h3>`, buf=[];
+  def.f.forEach((f,i)=>{if(["date","number","select"].includes(f[2])&&f[2]!=="textarea"){buf.push(fields[i]);if(buf.length===2){html+=`<div class="f2">${buf.join("")}</div>`;buf=[]}}else{if(buf.length){html+=`<div class="f2">${buf.join("")}</div>`;buf=[]}html+=fields[i]}});
+  if(buf.length)html+=`<div class="f2">${buf.join("")}</div>`;
+  html+=`<div class="dlg-actions">${cur&&col!=="sprints"?`<button type="button" class="btn danger left" id="del">Excluir</button>`:""}<button type="button" class="btn" id="cancel">Cancelar</button><button type="submit" class="btn primary">Salvar</button></div>`;
+  $("#frm").innerHTML=html;
+  $("#dlg").showModal();
+  $("#cancel").onclick=()=>$("#dlg").close();
+  if(cur&&col!=="sprints")$("#del").onclick=async e=>{if(!confirmDel){confirmDel=true;e.target.textContent="Confirmar exclusão";return}
+    try{await db.collection(col).doc(id).delete();$("#dlg").close();toast("Excluído")}catch(err){toast("Não foi possível excluir")}};
+}
+$("#frm").addEventListener("submit",async e=>{
+  e.preventDefault();const {col,id}=editing, fd=new FormData(e.target), o={};
+  for(const [k,,ty] of FORMS[col].f){let x=fd.get(k);if(ty==="number")x=x===""?null:Number(x);if(k==="etapa")x=Number(x);if(k==="pago")x=x==="sim";o[k]=x}
+  const cur=id?S[col].find(x=>x.id===id):null;
+  if(col==="tarefas"){o.feitoEm=o.status==="feito"?(cur&&cur.feitoEm)||iso(hoje()):null;o.ordem=cur?.ordem??Date.now()}
+  if(col==="marcos"){o.ordem=cur?.ordem??99;if(o.status==="aceito"&&!o.aceitoEm)o.aceitoEm=iso(hoje())}
+  try{if(col==="sprints"){await db.collection("sprints").doc(id).set(o)}else if(id){await db.collection(col).doc(id).update(o)}else{await db.collection(col).add(o)}$("#dlg").close();toast("Salvo")}catch(err){toast(err?.code==="quota_exceeded"?"Limite de registros atingido":"Não foi possível salvar")}
+});
+
+/* ---------- interações ---------- */
+document.addEventListener("click",async e=>{
+  const nw=e.target.closest("[data-new]");if(nw){openForm(nw.dataset.new);return}
+  const ed=e.target.closest("[data-edit]");if(ed){openForm(ed.dataset.edit,ed.dataset.id);return}
+  const mv=e.target.closest("[data-mv]");if(mv){
+    if(!canWrite){toast("Sem permissão para editar");return}
+    const cur=S.tarefas.find(x=>x.id===mv.dataset.id);if(!cur)return;
+    const i=Math.max(0,KCOLS.indexOf(cur.status)),n=KCOLS[Math.min(KCOLS.length-1,Math.max(0,i+(+mv.dataset.mv)))];
+    await moverTarefa(cur,n);return}
+  if(e.target.id==="sp-prev"||e.target.id==="sp-next"){const i=SPRINTS.findIndex(x=>x.id===spSel)+(e.target.id==="sp-next"?1:-1);if(SPRINTS[i]){spSel=SPRINTS[i].id;renderSprint()}return}
+  if(e.target.id==="sp-edit"){openForm("sprints",spSel);return}
+  const cy=e.target.closest("[data-cyc]");if(cy){
+    if(!canWrite){toast("Sem permissão para editar");return}
+    const col=cy.dataset.cyc,id=cy.dataset.id,cur=S[col].find(x=>x.id===id);if(!cur)return;
+    let upd;
+    if(col==="tarefas"){const n=CICLO[(CICLO.indexOf(cur.status)+1)%CICLO.length];upd={status:n,feitoEm:n==="feito"?iso(hoje()):null}}
+    else if(col==="pendencias")upd={status:cur.status==="resolvida"?"aberta":"resolvida"};
+    else if(col==="marcos"){openForm("marcos",id);return}
+    cy.disabled=true;try{await db.collection(col).doc(id).update(upd)}catch(err){toast("Não foi possível salvar")}finally{cy.disabled=false}
+    return}
+  const tb=e.target.closest("[data-tab]");if(tb)show(tb.dataset.tab);
+});
+document.addEventListener("change",async e=>{
+  const c=e.target.closest("[data-done]");
+  if(c){const id=c.dataset.done;c.disabled=true;try{await db.collection("tarefas").doc(id).update(c.checked?{status:"feito",feitoEm:iso(hoje())}:{status:"a_fazer",feitoEm:null})}catch(err){toast("Não foi possível salvar");c.checked=!c.checked}finally{c.disabled=false}return}
+  if(e.target.id==="f-resp"||e.target.id==="f-status")renderPlano();
+  if(e.target.id==="sp-sel"){spSel=e.target.value;renderSprint()}
+});
+
+async function moverTarefa(cur,n){
+  if(cur.status===n)return;
+  if(n==="andamento"&&S.tarefas.filter(t=>t.status==="andamento"&&sprintDe(t)===sprintDe(cur)).length>=WIP)toast("Acima do limite de 3 em andamento");
+  const upd={status:n,feitoEm:n==="feito"?iso(hoje()):null};
+  if(!cur.sprint)upd.sprint=sprintDe(cur);
+  try{await db.collection("tarefas").doc(cur.id).update(upd)}catch(err){toast("Não foi possível salvar")}
+}
+let dragId=null;
+document.addEventListener("dragstart",e=>{const k=e.target.closest?.("[data-kid]");if(k){dragId=k.dataset.kid;e.dataTransfer.effectAllowed="move";try{e.dataTransfer.setData("text/plain",dragId)}catch(_){}}});
+document.addEventListener("dragover",e=>{const c=e.target.closest?.("[data-col]");if(c&&dragId){e.preventDefault();document.querySelectorAll(".col.over").forEach(x=>x!==c&&x.classList.remove("over"));c.classList.add("over")}});
+document.addEventListener("drop",async e=>{const c=e.target.closest?.("[data-col]");document.querySelectorAll(".col.over").forEach(x=>x.classList.remove("over"));if(!c||!dragId)return;e.preventDefault();
+  const cur=S.tarefas.find(x=>x.id===dragId);dragId=null;if(cur&&canWrite)await moverTarefa(cur,c.dataset.col)});
+document.addEventListener("dragend",()=>{dragId=null;document.querySelectorAll(".col.over").forEach(x=>x.classList.remove("over"))});
+$("#copiar").addEventListener("click",()=>{const t=$("#relatorio").textContent;
+  navigator.clipboard.writeText(t).then(()=>toast("Texto copiado"),()=>{const r=document.createRange();r.selectNodeContents($("#relatorio"));const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Selecionado: copie com Ctrl+C")})});
+
+const TABS=["painel","sprints","plano","horas","pendencias","reunioes","metodo"];
+function show(t){if(!TABS.includes(t))t="painel";document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=p.dataset.panel!==t);
+  document.querySelectorAll("[data-tab]").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));try{localStorage.setItem("aba",t)}catch(_){}}
+let first=(location.hash||"").slice(1);if(!TABS.includes(first)){try{first=localStorage.getItem("aba")||"painel"}catch(_){first="painel"}}
+show(first);render();
+
+/* ---------- dados ---------- */
+(async()=>{
+  try{db=await window.claude?.use?.("db")}catch(_){db=null}
+  if(!db){$("#sync").textContent="Sem conexão com os dados";$("#offline").hidden=false;document.querySelectorAll("[data-new]").forEach(b=>b.disabled=true);return}
+  try{const u=await window.claude.use("user");const c=u?.can?.("data.write");canWrite=c!==false}catch(_){canWrite=true}
+  if(!canWrite){$("#sync").textContent="Somente leitura";document.querySelectorAll("[data-new]").forEach(b=>b.disabled=true)}
+  let loaded=0;
+  Object.keys(S).forEach(col=>db.collection(col).onSnapshot(snap=>{
+    S[col]=snap.docs.map(d=>({id:d.id,...d.data()}));
+    if(++loaded>=6&&canWrite)$("#sync").textContent="Dados sincronizados";
+    render();
+  },err=>{$("#sync").textContent="Erro ao carregar "+col}));
+})();
+})();
+</script>
+
+</body></html>

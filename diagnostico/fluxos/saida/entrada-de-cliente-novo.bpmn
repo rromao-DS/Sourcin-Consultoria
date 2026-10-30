@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Colaboracao_1"><bpmn:participant id="Piscina_1" name="Entrada de cliente novo (contabilidade e financeiro) · rascunho" processRef="Processo_1" /></bpmn:collaboration>
+  <bpmn:process id="Processo_1" isExecutable="false">
+    <bpmn:laneSet id="RaiaSet_1">
+      <bpmn:lane id="Raia_1" name="Thamires"><bpmn:flowNodeRef>reuniao</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="Raia_2" name="Júlia"><bpmn:flowNodeRef>marcar</bpmn:flowNodeRef><bpmn:flowNodeRef>proposta</bpmn:flowNodeRef><bpmn:flowNodeRef>dados</bpmn:flowNodeRef><bpmn:flowNodeRef>grupo</bpmn:flowNodeRef><bpmn:flowNodeRef>pasta</bpmn:flowNodeRef><bpmn:flowNodeRef>falta</bpmn:flowNodeRef><bpmn:flowNodeRef>financeiro</bpmn:flowNodeRef><bpmn:flowNodeRef>fin_setup</bpmn:flowNodeRef><bpmn:flowNodeRef>trello</bpmn:flowNodeRef><bpmn:flowNodeRef>fim</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="Raia_3" name="Cliente"><bpmn:flowNodeRef>inicio</bpmn:flowNodeRef><bpmn:flowNodeRef>fechou</bpmn:flowNodeRef><bpmn:flowNodeRef>pedir</bpmn:flowNodeRef><bpmn:flowNodeRef>fim_nao</bpmn:flowNodeRef></bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="inicio" name="Cliente chega"><bpmn:outgoing>fluxo_inicio_marcar_0</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:userTask id="marcar" name="Marcar reunião de apresentação"><bpmn:incoming>fluxo_inicio_marcar_0</bpmn:incoming><bpmn:outgoing>fluxo_marcar_proposta_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="proposta" name="Preparar a proposta"><bpmn:incoming>fluxo_marcar_proposta_0</bpmn:incoming><bpmn:outgoing>fluxo_proposta_reuniao_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="reuniao" name="Fazer a reunião e enviar a proposta"><bpmn:incoming>fluxo_proposta_reuniao_0</bpmn:incoming><bpmn:outgoing>fluxo_reuniao_fechou_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="fechou" name="Cliente fechou?"><bpmn:incoming>fluxo_reuniao_fechou_0</bpmn:incoming><bpmn:outgoing>fluxo_fechou_dados_0</bpmn:outgoing><bpmn:outgoing>fluxo_fechou_fim_nao_1</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="dados" name="Enviar os dados para o contrato e reforçar os serviços"><bpmn:incoming>fluxo_fechou_dados_0</bpmn:incoming><bpmn:outgoing>fluxo_dados_grupo_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="grupo" name="Criar o grupo com o cliente"><bpmn:incoming>fluxo_dados_grupo_0</bpmn:incoming><bpmn:outgoing>fluxo_grupo_pasta_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="pasta" name="Abrir a pasta do cliente e salvar a documentação"><bpmn:incoming>fluxo_grupo_pasta_0</bpmn:incoming><bpmn:incoming>fluxo_pedir_pasta_0</bpmn:incoming><bpmn:outgoing>fluxo_pasta_falta_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="falta" name="Falta algum documento?"><bpmn:incoming>fluxo_pasta_falta_0</bpmn:incoming><bpmn:outgoing>fluxo_falta_pedir_0</bpmn:outgoing><bpmn:outgoing>fluxo_falta_financeiro_1</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="pedir" name="Pedir o que falta [hipótese: canal não informado]"><bpmn:incoming>fluxo_falta_pedir_0</bpmn:incoming><bpmn:outgoing>fluxo_pedir_pasta_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="financeiro" name="É cliente do financeiro?"><bpmn:incoming>fluxo_falta_financeiro_1</bpmn:incoming><bpmn:outgoing>fluxo_financeiro_fin_setup_0</bpmn:outgoing><bpmn:outgoing>fluxo_financeiro_trello_1</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="fin_setup" name="Abrir planilha, criar no Trello e abrir o Conta Azul"><bpmn:incoming>fluxo_financeiro_fin_setup_0</bpmn:incoming><bpmn:outgoing>fluxo_fin_setup_trello_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="trello" name="Criar a tarefa no Trello por responsável"><bpmn:incoming>fluxo_financeiro_trello_1</bpmn:incoming><bpmn:incoming>fluxo_fin_setup_trello_0</bpmn:incoming><bpmn:outgoing>fluxo_trello_fim_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:endEvent id="fim_nao" name="Não fechou"><bpmn:incoming>fluxo_fechou_fim_nao_1</bpmn:incoming></bpmn:endEvent>
+    <bpmn:endEvent id="fim" name="Cliente implantado"><bpmn:incoming>fluxo_trello_fim_0</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="fluxo_inicio_marcar_0" sourceRef="inicio" targetRef="marcar" />
+    <bpmn:sequenceFlow id="fluxo_marcar_proposta_0" sourceRef="marcar" targetRef="proposta" />
+    <bpmn:sequenceFlow id="fluxo_proposta_reuniao_0" sourceRef="proposta" targetRef="reuniao" />
+    <bpmn:sequenceFlow id="fluxo_reuniao_fechou_0" sourceRef="reuniao" targetRef="fechou" />
+    <bpmn:sequenceFlow id="fluxo_fechou_dados_0" name="sim" sourceRef="fechou" targetRef="dados" />
+    <bpmn:sequenceFlow id="fluxo_fechou_fim_nao_1" name="não" sourceRef="fechou" targetRef="fim_nao" />
+    <bpmn:sequenceFlow id="fluxo_dados_grupo_0" sourceRef="dados" targetRef="grupo" />
+    <bpmn:sequenceFlow id="fluxo_grupo_pasta_0" sourceRef="grupo" targetRef="pasta" />
+    <bpmn:sequenceFlow id="fluxo_pasta_falta_0" sourceRef="pasta" targetRef="falta" />
+    <bpmn:sequenceFlow id="fluxo_falta_pedir_0" name="sim" sourceRef="falta" targetRef="pedir" />
+    <bpmn:sequenceFlow id="fluxo_falta_financeiro_1" name="não" sourceRef="falta" targetRef="financeiro" />
+    <bpmn:sequenceFlow id="fluxo_pedir_pasta_0" sourceRef="pedir" targetRef="pasta" />
+    <bpmn:sequenceFlow id="fluxo_financeiro_fin_setup_0" name="sim" sourceRef="financeiro" targetRef="fin_setup" />
+    <bpmn:sequenceFlow id="fluxo_financeiro_trello_1" name="não" sourceRef="financeiro" targetRef="trello" />
+    <bpmn:sequenceFlow id="fluxo_fin_setup_trello_0" sourceRef="fin_setup" targetRef="trello" />
+    <bpmn:sequenceFlow id="fluxo_trello_fim_0" sourceRef="trello" targetRef="fim" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagrama_1">
+    <bpmndi:BPMNPlane id="Plano_1" bpmnElement="Colaboracao_1">
+      <bpmndi:BPMNShape id="Piscina_1_di" bpmnElement="Piscina_1" isHorizontal="true"><dc:Bounds x="160" y="80" width="3060" height="450" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_1_di" bpmnElement="Raia_1" isHorizontal="true"><dc:Bounds x="190" y="80" width="3030" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_2_di" bpmnElement="Raia_2" isHorizontal="true"><dc:Bounds x="190" y="230" width="3030" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_3_di" bpmnElement="Raia_3" isHorizontal="true"><dc:Bounds x="190" y="380" width="3030" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="inicio_di" bpmnElement="inicio"><dc:Bounds x="327" y="437" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="marcar_di" bpmnElement="marcar"><dc:Bounds x="465" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="proposta_di" bpmnElement="proposta"><dc:Bounds x="655" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="reuniao_di" bpmnElement="reuniao"><dc:Bounds x="845" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fechou_di" bpmnElement="fechou"><dc:Bounds x="1080" y="430" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="dados_di" bpmnElement="dados"><dc:Bounds x="1225" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="grupo_di" bpmnElement="grupo"><dc:Bounds x="1415" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="pasta_di" bpmnElement="pasta"><dc:Bounds x="1605" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="falta_di" bpmnElement="falta"><dc:Bounds x="1840" y="280" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="pedir_di" bpmnElement="pedir"><dc:Bounds x="1985" y="415" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="financeiro_di" bpmnElement="financeiro"><dc:Bounds x="2220" y="280" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fin_setup_di" bpmnElement="fin_setup"><dc:Bounds x="2365" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="trello_di" bpmnElement="trello"><dc:Bounds x="2555" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fim_nao_di" bpmnElement="fim_nao"><dc:Bounds x="2797" y="437" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fim_di" bpmnElement="fim"><dc:Bounds x="2987" y="287" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="fluxo_inicio_marcar_0_di" bpmnElement="fluxo_inicio_marcar_0"><di:waypoint x="363" y="455" /><di:waypoint x="388" y="455" /><di:waypoint x="388" y="305" /><di:waypoint x="465" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_marcar_proposta_0_di" bpmnElement="fluxo_marcar_proposta_0"><di:waypoint x="605" y="305" /><di:waypoint x="655" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_proposta_reuniao_0_di" bpmnElement="fluxo_proposta_reuniao_0"><di:waypoint x="795" y="305" /><di:waypoint x="820" y="305" /><di:waypoint x="820" y="155" /><di:waypoint x="845" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_reuniao_fechou_0_di" bpmnElement="fluxo_reuniao_fechou_0"><di:waypoint x="985" y="155" /><di:waypoint x="1010" y="155" /><di:waypoint x="1010" y="455" /><di:waypoint x="1080" y="455" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_fechou_dados_0_di" bpmnElement="fluxo_fechou_dados_0"><di:waypoint x="1130" y="455" /><di:waypoint x="1155" y="455" /><di:waypoint x="1155" y="305" /><di:waypoint x="1225" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_fechou_fim_nao_1_di" bpmnElement="fluxo_fechou_fim_nao_1"><di:waypoint x="1130" y="455" /><di:waypoint x="2797" y="455" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_dados_grupo_0_di" bpmnElement="fluxo_dados_grupo_0"><di:waypoint x="1365" y="305" /><di:waypoint x="1415" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_grupo_pasta_0_di" bpmnElement="fluxo_grupo_pasta_0"><di:waypoint x="1555" y="305" /><di:waypoint x="1605" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_pasta_falta_0_di" bpmnElement="fluxo_pasta_falta_0"><di:waypoint x="1745" y="305" /><di:waypoint x="1840" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_falta_pedir_0_di" bpmnElement="fluxo_falta_pedir_0"><di:waypoint x="1890" y="305" /><di:waypoint x="1915" y="305" /><di:waypoint x="1915" y="455" /><di:waypoint x="1985" y="455" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_falta_financeiro_1_di" bpmnElement="fluxo_falta_financeiro_1"><di:waypoint x="1890" y="305" /><di:waypoint x="2220" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_pedir_pasta_0_di" bpmnElement="fluxo_pedir_pasta_0"><di:waypoint x="2125" y="455" /><di:waypoint x="2150" y="455" /><di:waypoint x="2150" y="305" /><di:waypoint x="1605" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_financeiro_fin_setup_0_di" bpmnElement="fluxo_financeiro_fin_setup_0"><di:waypoint x="2270" y="305" /><di:waypoint x="2365" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_financeiro_trello_1_di" bpmnElement="fluxo_financeiro_trello_1"><di:waypoint x="2270" y="305" /><di:waypoint x="2555" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_fin_setup_trello_0_di" bpmnElement="fluxo_fin_setup_trello_0"><di:waypoint x="2505" y="305" /><di:waypoint x="2555" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_trello_fim_0_di" bpmnElement="fluxo_trello_fim_0"><di:waypoint x="2695" y="305" /><di:waypoint x="2987" y="305" /></bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

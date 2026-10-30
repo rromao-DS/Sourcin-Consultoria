@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Colaboracao_1"><bpmn:participant id="Piscina_1" name="Rotina mensal da contabilidade · rascunho" processRef="Processo_1" /></bpmn:collaboration>
+  <bpmn:process id="Processo_1" isExecutable="false">
+    <bpmn:laneSet id="RaiaSet_1">
+      <bpmn:lane id="Raia_1" name="Júlia"><bpmn:flowNodeRef>inicio</bpmn:flowNodeRef><bpmn:flowNodeRef>xml</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="Raia_2" name="Thamires"><bpmn:flowNodeRef>apuracao</bpmn:flowNodeRef><bpmn:flowNodeRef>contabilidade</bpmn:flowNodeRef><bpmn:flowNodeRef>guia</bpmn:flowNodeRef><bpmn:flowNodeRef>pagou</bpmn:flowNodeRef><bpmn:flowNodeRef>cobrar</bpmn:flowNodeRef><bpmn:flowNodeRef>fim</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="Raia_3" name="Cliente"><bpmn:flowNodeRef>pagar</bpmn:flowNodeRef></bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="inicio" name="Início do mês"><bpmn:outgoing>fluxo_inicio_xml_0</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:userTask id="xml" name="Retirar os arquivos XML no portal"><bpmn:incoming>fluxo_inicio_xml_0</bpmn:incoming><bpmn:outgoing>fluxo_xml_apuracao_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="apuracao" name="Fazer a apuração"><bpmn:incoming>fluxo_xml_apuracao_0</bpmn:incoming><bpmn:outgoing>fluxo_apuracao_contabilidade_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="contabilidade" name="Fazer a contabilidade"><bpmn:incoming>fluxo_apuracao_contabilidade_0</bpmn:incoming><bpmn:outgoing>fluxo_contabilidade_guia_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="guia" name="Tirar o imposto (DAS) e disponibilizar ao cliente"><bpmn:incoming>fluxo_contabilidade_guia_0</bpmn:incoming><bpmn:outgoing>fluxo_guia_pagar_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="pagar" name="Pagar a guia"><bpmn:incoming>fluxo_guia_pagar_0</bpmn:incoming><bpmn:outgoing>fluxo_pagar_pagou_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="pagou" name="Cliente pagou?"><bpmn:incoming>fluxo_pagar_pagou_0</bpmn:incoming><bpmn:incoming>fluxo_cobrar_pagou_0</bpmn:incoming><bpmn:outgoing>fluxo_pagou_fim_0</bpmn:outgoing><bpmn:outgoing>fluxo_pagou_cobrar_1</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="cobrar" name="Cobrar o cliente"><bpmn:incoming>fluxo_pagou_cobrar_1</bpmn:incoming><bpmn:outgoing>fluxo_cobrar_pagou_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:endEvent id="fim" name="Obrigação feita e atualizada"><bpmn:incoming>fluxo_pagou_fim_0</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="fluxo_inicio_xml_0" sourceRef="inicio" targetRef="xml" />
+    <bpmn:sequenceFlow id="fluxo_xml_apuracao_0" sourceRef="xml" targetRef="apuracao" />
+    <bpmn:sequenceFlow id="fluxo_apuracao_contabilidade_0" sourceRef="apuracao" targetRef="contabilidade" />
+    <bpmn:sequenceFlow id="fluxo_contabilidade_guia_0" sourceRef="contabilidade" targetRef="guia" />
+    <bpmn:sequenceFlow id="fluxo_guia_pagar_0" sourceRef="guia" targetRef="pagar" />
+    <bpmn:sequenceFlow id="fluxo_pagar_pagou_0" sourceRef="pagar" targetRef="pagou" />
+    <bpmn:sequenceFlow id="fluxo_pagou_fim_0" name="sim" sourceRef="pagou" targetRef="fim" />
+    <bpmn:sequenceFlow id="fluxo_pagou_cobrar_1" name="não" sourceRef="pagou" targetRef="cobrar" />
+    <bpmn:sequenceFlow id="fluxo_cobrar_pagou_0" sourceRef="cobrar" targetRef="pagou" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagrama_1">
+    <bpmndi:BPMNPlane id="Plano_1" bpmnElement="Colaboracao_1">
+      <bpmndi:BPMNShape id="Piscina_1_di" bpmnElement="Piscina_1" isHorizontal="true"><dc:Bounds x="160" y="80" width="1920" height="450" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_1_di" bpmnElement="Raia_1" isHorizontal="true"><dc:Bounds x="190" y="80" width="1890" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_2_di" bpmnElement="Raia_2" isHorizontal="true"><dc:Bounds x="190" y="230" width="1890" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_3_di" bpmnElement="Raia_3" isHorizontal="true"><dc:Bounds x="190" y="380" width="1890" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="inicio_di" bpmnElement="inicio"><dc:Bounds x="327" y="137" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="xml_di" bpmnElement="xml"><dc:Bounds x="465" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="apuracao_di" bpmnElement="apuracao"><dc:Bounds x="655" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="contabilidade_di" bpmnElement="contabilidade"><dc:Bounds x="845" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="guia_di" bpmnElement="guia"><dc:Bounds x="1035" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="pagar_di" bpmnElement="pagar"><dc:Bounds x="1225" y="415" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="pagou_di" bpmnElement="pagou"><dc:Bounds x="1460" y="280" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="cobrar_di" bpmnElement="cobrar"><dc:Bounds x="1605" y="265" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fim_di" bpmnElement="fim"><dc:Bounds x="1847" y="287" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="fluxo_inicio_xml_0_di" bpmnElement="fluxo_inicio_xml_0"><di:waypoint x="363" y="155" /><di:waypoint x="465" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_xml_apuracao_0_di" bpmnElement="fluxo_xml_apuracao_0"><di:waypoint x="605" y="155" /><di:waypoint x="630" y="155" /><di:waypoint x="630" y="305" /><di:waypoint x="655" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_apuracao_contabilidade_0_di" bpmnElement="fluxo_apuracao_contabilidade_0"><di:waypoint x="795" y="305" /><di:waypoint x="845" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_contabilidade_guia_0_di" bpmnElement="fluxo_contabilidade_guia_0"><di:waypoint x="985" y="305" /><di:waypoint x="1035" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_guia_pagar_0_di" bpmnElement="fluxo_guia_pagar_0"><di:waypoint x="1175" y="305" /><di:waypoint x="1200" y="305" /><di:waypoint x="1200" y="455" /><di:waypoint x="1225" y="455" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_pagar_pagou_0_di" bpmnElement="fluxo_pagar_pagou_0"><di:waypoint x="1365" y="455" /><di:waypoint x="1390" y="455" /><di:waypoint x="1390" y="305" /><di:waypoint x="1460" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_pagou_fim_0_di" bpmnElement="fluxo_pagou_fim_0"><di:waypoint x="1510" y="305" /><di:waypoint x="1847" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_pagou_cobrar_1_di" bpmnElement="fluxo_pagou_cobrar_1"><di:waypoint x="1510" y="305" /><di:waypoint x="1605" y="305" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_cobrar_pagou_0_di" bpmnElement="fluxo_cobrar_pagou_0"><di:waypoint x="1745" y="305" /><di:waypoint x="1460" y="305" /></bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

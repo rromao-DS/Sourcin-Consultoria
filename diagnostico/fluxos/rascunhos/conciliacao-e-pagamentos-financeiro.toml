@@ -1,0 +1,81 @@
+# RASCUNHO A VALIDAR · fluxo atual (AS-IS) do financeiro: conciliação e pagamentos
+# Fonte: transcrição da reunião de 12/10/2026, 01:20:00 a 01:22:40.
+# Conciliação mensal pelo Conta Azul (passando a semanal, decisão de 12/10); pagamentos toda terça e sexta.
+# Quem faz: "elas" (Vitória e, em outubro, Tamara); a partir de novembro a Vitória assume o financeiro.
+# Tempos não informados: ficam em branco até a entrevista.
+
+raias = ["Vitória", "Thamires", "Cliente"]
+
+[processo]
+nome = "Financeiro: conciliação e pagamentos · rascunho"
+descricao = """
+Configurar os bancos no Conta Azul, conciliar, importar o extrato e organizar entradas,
+saídas e plano de contas personalizado. Nos dias de pagamento, ver o que vence, pagar e
+mandar o resumo ao cliente. Pagamentos fixos de cada cliente ainda não estão 100% no Conta Azul.
+"""
+
+[[etapas]]
+id = "inicio"
+nome = "Mês do cliente em aberto"
+tipo = "inicio"
+raia = "Vitória"
+
+[[etapas]]
+id = "bancos"
+nome = "Configurar os bancos do cliente"
+tipo = "tarefa"
+raia = "Vitória"
+sistema = "Conta Azul"
+
+[[etapas]]
+id = "conciliar"
+nome = "Conciliar e importar o extrato"
+tipo = "tarefa"
+raia = "Vitória"
+sistema = "Conta Azul"
+
+[[etapas]]
+id = "plano"
+nome = "Classificar entradas e saídas no plano de contas personalizado"
+tipo = "tarefa"
+raia = "Vitória"
+sistema = "Conta Azul"
+
+[[etapas]]
+id = "dia"
+nome = "É terça ou sexta (dia de pagamento)?"
+tipo = "decisao"
+raia = "Vitória"
+proximo = ["ver", "fim"]
+rotulos = { ver = "sim", fim = "não" }
+
+[[etapas]]
+id = "ver"
+nome = "Ver o que há para pagar (valor, forma, chave)"
+tipo = "tarefa"
+raia = "Vitória"
+sistema = "Controle por cliente, fora do Conta Azul"
+
+[[etapas]]
+id = "pagar"
+nome = "Fazer os pagamentos"
+tipo = "tarefa"
+raia = "Vitória"
+
+[[etapas]]
+id = "resumo"
+nome = "Montar e enviar o resumo do dia (a pagar e saldo)"
+tipo = "tarefa"
+raia = "Vitória"
+
+[[etapas]]
+id = "recebe"
+nome = "Receber o resumo"
+tipo = "tarefa"
+raia = "Cliente"
+
+[[etapas]]
+id = "fim"
+nome = "Dia encerrado"
+tipo = "fim"
+raia = "Vitória"

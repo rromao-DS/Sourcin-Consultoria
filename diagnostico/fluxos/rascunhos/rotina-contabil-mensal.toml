@@ -1,0 +1,79 @@
+# RASCUNHO A VALIDAR · fluxo atual (AS-IS) da rotina mensal da contabilidade
+# Fonte: transcrição da reunião de 12/10/2026, 01:18:43 a 01:20:00, e 01:17 (Domínio com
+# parametrização errada desde a migração; fiscal feito direto no portal da Receita, ver diagnóstico preliminar).
+# Desde agosto a Thamires executa o fiscal (00:30). Na fala de 01:18:43, quem entra no portal é a Júlia.
+# A divisão exata entre as duas é [DÚVIDA] para a entrevista. Tempos não informados para esta rotina;
+# a única medida da reunião é o fiscal de 44 clientes em 3 dias, 3 a 4 h por dia (02:00), que não foi
+# distribuída por etapa.
+
+raias = ["Júlia", "Thamires", "Cliente"]
+
+[processo]
+nome = "Rotina mensal da contabilidade · rascunho"
+descricao = """
+Captura dos XML, apuração, contabilidade, emissão da guia e conferência do pagamento.
+No "mundo ideal" tudo seria feito no Domínio, com a Veri nos envios ao cliente (01:18:43).
+"""
+
+[[etapas]]
+id = "inicio"
+nome = "Início do mês"
+tipo = "inicio"
+raia = "Júlia"
+
+[[etapas]]
+id = "xml"
+nome = "Retirar os arquivos XML no portal"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Portal (qual, a confirmar)"
+
+[[etapas]]
+id = "apuracao"
+nome = "Fazer a apuração"
+tipo = "tarefa"
+raia = "Thamires"
+sistema = "Domínio ou por fora"
+
+[[etapas]]
+id = "contabilidade"
+nome = "Fazer a contabilidade"
+tipo = "tarefa"
+raia = "Thamires"
+sistema = "Domínio ou por fora"
+
+[[etapas]]
+id = "guia"
+nome = "Tirar o imposto (DAS) e disponibilizar ao cliente"
+tipo = "tarefa"
+raia = "Thamires"
+sistema = "Veri"
+
+[[etapas]]
+id = "pagar"
+nome = "Pagar a guia"
+tipo = "tarefa"
+raia = "Cliente"
+sistema = "Aplicativo da Veri"
+
+[[etapas]]
+id = "pagou"
+nome = "Cliente pagou?"
+tipo = "decisao"
+raia = "Thamires"
+sistema = "Veri"
+proximo = ["fim", "cobrar"]
+rotulos = { fim = "sim", cobrar = "não" }
+
+[[etapas]]
+id = "cobrar"
+nome = "Cobrar o cliente"
+tipo = "tarefa"
+raia = "Thamires"
+proximo = ["pagou"]
+
+[[etapas]]
+id = "fim"
+nome = "Obrigação feita e atualizada"
+tipo = "fim"
+raia = "Thamires"

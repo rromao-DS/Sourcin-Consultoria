@@ -1,0 +1,6 @@
+[submodule "ferramentas/referencias/claude-skills-borghei"]
+	path = ferramentas/referencias/claude-skills-borghei
+	url = https://github.com/borghei/Claude-Skills
+[submodule "ferramentas/referencias/accounting-workflow-skills"]
+	path = ferramentas/referencias/accounting-workflow-skills
+	url = https://github.com/Denymbird/accounting-workflow-skills
