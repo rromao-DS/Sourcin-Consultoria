@@ -62,7 +62,7 @@ def assinaturas(d, cidade_data="[Cidade], [data]"):
     d.add_paragraph()
     d.add_paragraph(cidade_data)
     for nome in ["CONTRATANTE: [razão social da Surcin] · Thamires Surcin",
-                 "CONTRATADA: R2 Tech Consultoria · Renato Romão",
+                 "CONTRATADA: RENATO ROMAO DA SILVA LTDA (R2 Tech Consultoria) · Renato Romão da Silva",
                  "Testemunha 1: [nome e CPF]",
                  "Testemunha 2: [nome e CPF]"]:
         d.add_paragraph("\n______________________________________________")
@@ -76,8 +76,10 @@ def contrato():
     clausula(d, "Partes")
     item(d, "CONTRATANTE: [razão social], inscrita no CNPJ sob o nº [__], com sede em [endereço], neste ato "
             "representada por Thamires Surcin, [qualificação]. [Confirmar qual dos CNPJs da Surcin contrata.]")
-    item(d, "CONTRATADA: [razão social da R2 Tech Consultoria], inscrita no CNPJ sob o nº [__], com sede em "
-            "[endereço], neste ato representada por Renato Romão, [qualificação].")
+    item(d, "CONTRATADA: RENATO ROMAO DA SILVA LTDA, que atua sob o nome R2 Tech Consultoria, sociedade "
+            "empresária limitada inscrita no CNPJ sob o nº 50.563.506/0001-87, com sede na Rua Siqueira Campos, 253, "
+            "apto 901, Copacabana, Rio de Janeiro/RJ, CEP 22031-071, neste ato representada por seu sócio-administrador, "
+            "Renato Romão da Silva, [nacionalidade, estado civil, CPF].")
 
     clausula(d, "Cláusula 1 · Objeto")
     item(d, "1.1. Prestação de serviços de consultoria em organização, processos, rotinas do Claude e pilotos de "
