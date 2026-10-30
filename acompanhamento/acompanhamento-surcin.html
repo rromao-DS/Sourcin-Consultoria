@@ -138,6 +138,21 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .vel .bar{flex:1;margin:0}
 .rito{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 @media (max-width:640px){.kanban{grid-template-columns:repeat(5,minmax(78vw,1fr));scroll-snap-type:x mandatory}.col{scroll-snap-align:start}}
+/* Registros */
+.s-fato{color:var(--ok)}.s-hipotese{color:var(--info)}.s-duvida{color:var(--warn)}.s-risco_r{color:var(--bad)}.s-processo{color:var(--accent)}
+.s-a_validar{color:var(--muted)}.s-validado{color:var(--ok)}.s-descartado{color:var(--faint)}
+.drop{border:1.5px dashed var(--border-strong);border-radius:12px;padding:18px;text-align:center;color:var(--muted);cursor:pointer}
+.drop.over{border-color:var(--accent);color:var(--text)}
+.rg{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:11px 0;border-bottom:1px solid var(--border)}
+.rg:last-child{border-bottom:0}
+.rg .tx{min-width:0}.rg .tx b{font-weight:600}
+.rg .src{font-size:12px;color:var(--muted);margin-top:3px}
+.rg .q{font-size:12.5px;color:var(--text-2);border-left:3px solid var(--border-strong);padding-left:8px;margin-top:6px;font-style:italic}
+.rg.off{opacity:.5}
+.prog{font-size:13px;color:var(--text-2);white-space:pre-wrap}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.fl select,.fl input{font:500 13px var(--sans);color:var(--text);background:var(--surface);border:1px solid var(--border-strong);border-radius:7px;padding:7px 10px}
+.fl input{flex:1;min-width:160px}
 /* Método */
 .steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .step .n{font-size:28px;font-weight:700;color:var(--accent);line-height:1}
@@ -188,6 +203,7 @@ label.f textarea{min-height:76px;resize:vertical}
     <nav role="tablist" id="tabs">
       <button role="tab" data-tab="painel">Painel</button>
       <button role="tab" data-tab="sprints">Sprints</button>
+      <button role="tab" data-tab="registros">Registros</button>
       <button role="tab" data-tab="plano">Plano</button>
       <button role="tab" data-tab="horas">Horas</button>
       <button role="tab" data-tab="pendencias">Pendências e riscos</button>
@@ -251,6 +267,47 @@ label.f textarea{min-height:76px;resize:vertical}
     <div class="section card"><h3>Ritmo por sprint</h3><div class="tbl" style="margin-top:8px"><table id="vel"></table></div></div>
   </section>
 
+
+  <!-- REGISTROS -->
+  <section data-panel="registros" hidden>
+    <h2>Registros das conversas</h2>
+    <p class="sub">Grave a conversa, cole ou suba a transcrição e o Claude separa fatos, hipóteses, dúvidas, riscos e passos de processo, cada um com o trecho e o minuto. Você revisa e salva. Nada vira fato sem a sua validação.</p>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Nova conversa</h3>
+        <div class="f2" style="margin-top:12px">
+          <label class="f" for="rx-data">Data<input id="rx-data" type="date"></label>
+          <label class="f" for="rx-tipo">Tipo<select id="rx-tipo"><option>Entrevista</option><option>Demonstração em tela</option><option>Check-in</option><option>Reunião</option><option>Conversa rápida</option></select></label>
+        </div>
+        <label class="f" for="rx-pessoa" style="margin-top:12px">Com quem<input id="rx-pessoa" list="rx-pessoas" placeholder="Júlia, Vitória…"></label>
+        <datalist id="rx-pessoas"><option>Thamires</option><option>Júlia</option><option>Vitória</option><option>Tamara</option><option>Alana</option><option>Equipe</option></datalist>
+        <label class="f" for="rx-assunto" style="margin-top:12px">Assunto<input id="rx-assunto" placeholder="Ex.: rotina do financeiro"></label>
+        <div class="drop" id="rx-drop" tabindex="0" role="button" style="margin-top:12px">Solte aqui o arquivo da transcrição (.txt, .vtt, .srt, .md) ou toque para escolher</div>
+        <input type="file" id="rx-file" accept=".txt,.vtt,.srt,.md,text/plain" hidden>
+        <label class="f" for="rx-texto" style="margin-top:12px">Ou cole a transcrição<textarea id="rx-texto" style="min-height:140px" placeholder="Cole aqui o texto da transcrição"></textarea></label>
+        <div class="row" style="margin-top:12px;justify-content:space-between"><span class="muted" id="rx-tam" style="font-size:12px"></span><span class="row"><button class="btn" id="rx-parar" hidden>Parar</button><button class="btn primary" id="rx-gerar">Gerar registros com o Claude</button></span></div>
+        <div class="prog" id="rx-prog" style="margin-top:10px"></div>
+      </div>
+      <div class="card">
+        <h3>Revisar antes de salvar</h3>
+        <div id="rx-prev" style="margin-top:8px"><div class="empty">Os registros extraídos aparecem aqui. Desmarque o que não quiser guardar.</div></div>
+        <div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn primary" id="rx-salvar" hidden>Salvar</button></div>
+      </div>
+    </div>
+    <div class="section card">
+      <div class="row" style="justify-content:space-between"><h3>Base do diagnóstico</h3><span class="row"><button class="btn" id="rg-md">Copiar como texto</button><button class="btn primary" data-new="registros">Novo registro</button></span></div>
+      <div class="grid g4" id="rg-stats" style="margin-top:12px"></div>
+      <div class="fl">
+        <select id="rg-tipo" aria-label="Tipo"><option value="">Todos os tipos</option><option value="fato">Fatos</option><option value="hipotese">Hipóteses</option><option value="duvida">Dúvidas</option><option value="risco">Riscos</option><option value="processo">Processos</option></select>
+        <select id="rg-pessoa" aria-label="Pessoa"><option value="">Todas as pessoas</option></select>
+        <select id="rg-status" aria-label="Situação"><option value="">Todas as situações</option><option value="a_validar">A validar</option><option value="validado">Validados</option><option value="descartado">Descartados</option></select>
+        <input id="rg-busca" type="search" placeholder="Buscar" aria-label="Buscar">
+      </div>
+      <div id="rg-lista"></div>
+    </div>
+    <div class="section card"><h3>Conversas registradas</h3><div id="rx-lista" style="margin-top:8px"></div></div>
+  </section>
+
   <!-- PLANO -->
   <section data-panel="plano" hidden>
     <div class="row" style="justify-content:space-between;align-items:flex-start">
@@ -311,6 +368,7 @@ label.f textarea{min-height:76px;resize:vertical}
       <div class="card step"><div class="n">01</div><h4>Todo dia · R2</h4><ul>
         <li>Começar pela aba Sprints: objetivo da semana e quadro.</li>
         <li>Lançar as horas de cada sessão (meta de ~14 h por semana até 04/12 e ~25 h em jan e fev).</li>
+        <li>Depois de cada conversa gravada, subir a transcrição na aba Registros e validar o que o Claude extraiu.</li>
         <li>Atualizar a situação das tarefas tocadas.</li>
         <li>Registrar como pendência tudo que depender da Surcin.</li>
       </ul></div>
@@ -403,7 +461,7 @@ let spSel=null;
 const ST={tarefas:{a_fazer:"A fazer",andamento:"Em andamento",validacao:"Em validação",bloqueado:"Bloqueada",feito:"Feita"},
   pendencias:{aberta:"Aberta",resolvida:"Resolvida"},marcos:{pendente:"Pendente",aceito:"Aceito"}};
 const CICLO=["a_fazer","andamento","validacao","feito","bloqueado"];
-const S={tarefas:[],horas:[],pendencias:[],reunioes:[],marcos:[],sprints:[]};
+const S={tarefas:[],horas:[],pendencias:[],reunioes:[],marcos:[],sprints:[],registros:[],interacoes:[]};
 let db=null, canWrite=false;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -424,7 +482,7 @@ const etapaAtual=d=>ETAPAS.filter(e=>d>=pd(e.ini)&&d<=pd(e.fim));
 const atrasada=t=>t.status!=="feito"&&t.prazo&&pd(t.prazo)<hoje();
 
 /* ---------- render ---------- */
-function render(){renderPainel();renderSprint();renderPlano();renderHoras();renderPend();renderReun()}
+function render(){renderPainel();renderSprint();renderReg();renderPlano();renderHoras();renderPend();renderReun()}
 
 function renderPainel(){
   const h=hoje(), tot=S.tarefas.length, ok=S.tarefas.filter(t=>t.status==="feito").length;
@@ -604,6 +662,96 @@ function relatorio(){
   return L.join("\n");
 }
 
+
+/* ---------- registros a partir de transcrições ---------- */
+const RT={fato:"Fato",hipotese:"Hipótese",duvida:"Dúvida",risco:"Risco",processo:"Processo"};
+const RS={a_validar:"A validar",validado:"Validado",descartado:"Descartado"};
+let sampleFn=null, rxCtl=null, rxItens=[];
+const PROMPT=(meta,parte,total,texto)=>`Você ajuda um consultor de processos a registrar uma conversa com a equipe de um escritório de contabilidade e assessoria (Surcin). Leia a transcrição e extraia registros para o diagnóstico.
+
+Regras:
+- Só o que foi dito. Não invente nem complete com conhecimento geral.
+- "fato": algo que a pessoa afirmou sobre como o trabalho acontece hoje (quem faz, quando, em qual sistema, quanto tempo, quantos clientes, o que dá errado).
+- "hipotese": uma leitura sua que a conversa sugere mas ninguém afirmou. Use pouco.
+- "duvida": algo que ficou vago, contraditório ou sem número e precisa ser confirmado. Diga para quem perguntar.
+- "risco": um problema que já aconteceu ou pode acontecer (multa, erro, perda de prazo, dependência de uma só pessoa).
+- "processo": uma sequência de passos descrita na conversa. Em "texto", escreva os passos numerados em uma linha cada: "1. Quem · ação · sistema".
+- Cada item traz "trecho" (frase curta copiada da transcrição, até 25 palavras) e "minuto" (o marcador de tempo mais próximo, se houver, senão "").
+- "tema": uma ou duas palavras (Fiscal, Financeiro, DP, Atendimento, Implantação, Comercial, Jurídico, Sistemas, Gestão, Pessoas).
+- Troque nomes de clientes, CPFs, CNPJs e dados bancários por "Cliente A", "Cliente B". Não registre senhas.
+- Comentários pessoais sobre colegas ou sobre a vida pessoal de alguém: não registre.
+- Escreva em português do Brasil, frases curtas e diretas.
+
+Conversa: ${meta}. Esta é a parte ${parte} de ${total}.
+
+Responda só com JSON neste formato:
+{"resumo":"2 a 4 frases sobre o que esta parte mostrou","itens":[{"tipo":"fato|hipotese|duvida|risco|processo","texto":"...","tema":"...","trecho":"...","minuto":"...","para_quem":"só para dúvida"}]}
+
+Transcrição:
+"""
+${texto}
+"""`;
+function partes(t,max){const out=[];let i=0;const enc=new TextEncoder();
+  while(i<t.length){let j=Math.min(t.length,i+max);while(j<t.length&&enc.encode(t.slice(i,j)).length>max)j-=2000;
+    if(j<t.length){const k=t.lastIndexOf("\n",j);if(k>i+max/2)j=k}out.push(t.slice(i,j));i=j}return out}
+function limparVtt(t){return t.replace(/^WEBVTT.*$/m,"").replace(/^\d+\s*$/gm,"").replace(/(\d{2}:\d{2}:\d{2})[.,]\d{3} --> [^\n]*/g,"[$1]").replace(/<[^>]+>/g,"").replace(/\n{3,}/g,"\n\n").trim()}
+function rxTam(){const t=$("#rx-texto").value;$("#rx-tam").textContent=t?`${t.length.toLocaleString("pt-BR")} caracteres`:""}
+async function rxArquivo(f){if(!f)return;let t=await f.text();if(/\.(vtt|srt)$/i.test(f.name))t=limparVtt(t);$("#rx-texto").value=t;rxTam();toast("Transcrição carregada")}
+async function rxGerar(){
+  const texto=$("#rx-texto").value.trim();if(!texto){toast("Cole ou suba a transcrição");return}
+  if(!sampleFn){$("#rx-prog").textContent="O Claude não está disponível nesta visualização. Abra o painel no claude.ai conectado à sua conta.";return}
+  const pessoa=$("#rx-pessoa").value.trim()||"(não informado)", tipo=$("#rx-tipo").value, data=$("#rx-data").value||iso(hoje()), assunto=$("#rx-assunto").value.trim();
+  const meta=`${tipo} com ${pessoa} em ${br(data)}${assunto?", assunto: "+assunto:""}`;
+  let max=40000;try{const l=await sampleFn.limits();max=Math.max(8000,l.maxPromptBytes-12000)}catch(_){}
+  const ps=partes(texto,max);rxItens=[];let resumos=[];
+  rxCtl=new AbortController();$("#rx-gerar").disabled=true;$("#rx-parar").hidden=false;
+  try{for(let i=0;i<ps.length;i++){
+      $("#rx-prog").textContent=`Lendo a parte ${i+1} de ${ps.length}…`;
+      const r=await sampleFn.json(PROMPT(meta,i+1,ps.length,ps[i]),{modelTier:"complex",signal:rxCtl.signal});
+      if(r&&r.resumo)resumos.push(String(r.resumo));
+      (Array.isArray(r?.itens)?r.itens:[]).forEach(x=>{const tp=String(x.tipo||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+        if(!RT[tp]||!x.texto)return;rxItens.push({on:true,tipo:tp,texto:String(x.texto).slice(0,2000),tema:String(x.tema||"").slice(0,40),trecho:String(x.trecho||"").slice(0,400),minuto:String(x.minuto||"").slice(0,20),para:String(x.para_quem||"").slice(0,60)})})}
+    rxPend={pessoa,tipo,data,assunto,resumo:resumos.join(" "),texto};
+    $("#rx-prog").textContent=`Pronto: ${rxItens.length} registros em ${ps.length} parte${ps.length>1?"s":""}. Revise ao lado e salve.`;
+    renderPrev();
+  }catch(e){$("#rx-prog").textContent=e?.code==="cancelled"?"Parado.":e?.code==="not_granted"?"Sem permissão para usar o Claude nesta página.":e?.code==="rate_limited"?"Limite de uso atingido. Tente de novo em alguns minutos.":e?.code==="invalid_json"?"O Claude respondeu fora do formato. Tente de novo.":"Não foi possível gerar os registros."}
+  finally{$("#rx-gerar").disabled=false;$("#rx-parar").hidden=true;rxCtl=null}
+}
+let rxPend=null;
+function renderPrev(){
+  if(!rxItens.length){$("#rx-prev").innerHTML=`<div class="empty">Nenhum registro encontrado nesta transcrição.</div>`;$("#rx-salvar").hidden=true;return}
+  const ord=["fato","processo","duvida","risco","hipotese"];
+  $("#rx-prev").innerHTML=(rxPend?.resumo?`<div class="goal" style="margin:0 0 8px"><small>Resumo</small>${esc(rxPend.resumo)}</div>`:"")+
+    rxItens.map((x,i)=>[x,i]).sort((a,b)=>ord.indexOf(a[0].tipo)-ord.indexOf(b[0].tipo)).map(([x,i])=>`<div class="rg ${x.on?"":"off"}"><input type="checkbox" class="chk" data-rxi="${i}" ${x.on?"checked":""} aria-label="Guardar"><div class="tx"><b style="white-space:pre-wrap">${esc(x.texto)}</b>${x.trecho?`<div class="q">“${esc(x.trecho)}”</div>`:""}<div class="src">${esc(x.tema||"")}${x.minuto?" · "+esc(x.minuto):""}${x.para?" · perguntar a "+esc(x.para):""}</div></div><span class="pill s-${x.tipo==="risco"?"risco_r":x.tipo}" style="cursor:default">${RT[x.tipo]}</span></div>`).join("");
+  const n=rxItens.filter(x=>x.on).length;$("#rx-salvar").hidden=false;$("#rx-salvar").textContent=`Salvar ${n} registro${n===1?"":"s"}`;$("#rx-salvar").disabled=!n||!canWrite;
+}
+async function rxSalvar(){
+  if(!rxPend||!db)return;const b=$("#rx-salvar");b.disabled=true;
+  try{const it=rxItens.filter(x=>x.on);
+    const ref=await db.collection("interacoes").add({data:rxPend.data,pessoa:rxPend.pessoa,tipo:rxPend.tipo,assunto:rxPend.assunto,resumo:rxPend.resumo,qtd:it.length,transcricao:rxPend.texto.slice(0,200000),criadoEm:new Date().toISOString()});
+    const iid=ref?.id||"";const fonte=`${rxPend.tipo} · ${rxPend.pessoa} · ${br(rxPend.data)}`;
+    for(const x of it){await db.collection("registros").add({tipo:x.tipo,texto:x.texto,tema:x.tema,trecho:x.trecho,minuto:x.minuto,paraQuem:x.para,pessoa:rxPend.pessoa,data:rxPend.data,fonte:fonte+(x.minuto?" · "+x.minuto:""),interacao:iid,status:"a_validar",criadoEm:new Date().toISOString()})}
+    toast(`${it.length} registros salvos`);rxItens=[];rxPend=null;$("#rx-texto").value="";rxTam();$("#rx-prog").textContent="";renderPrev();$("#rx-prev").innerHTML=`<div class="empty">Salvo. Os registros estão na base abaixo, como "a validar".</div>`;$("#rx-salvar").hidden=true;
+  }catch(e){toast(e?.code==="quota_exceeded"?"Limite de registros atingido":"Não foi possível salvar");b.disabled=false}
+}
+function regFiltrados(){const ft=$("#rg-tipo").value,fp=$("#rg-pessoa").value,fs=$("#rg-status").value,q=($("#rg-busca").value||"").toLowerCase();
+  return S.registros.filter(r=>(!ft||r.tipo===ft)&&(!fp||r.pessoa===fp)&&(!fs||(r.status||"a_validar")===fs)&&(!q||[r.texto,r.tema,r.trecho,r.fonte,r.resposta].join(" ").toLowerCase().includes(q)))
+    .sort((a,b)=>(b.data||"")<(a.data||"")?-1:(b.data||"")>(a.data||"")?1:(a.criadoEm||"")<(b.criadoEm||"")?-1:1)}
+function renderReg(){
+  if(!$("#rx-data").value)$("#rx-data").value=iso(hoje());
+  const cur=$("#rg-pessoa").value, ps=[...new Set(S.registros.map(r=>r.pessoa).filter(Boolean))].sort();
+  $("#rg-pessoa").innerHTML=`<option value="">Todas as pessoas</option>`+ps.map(p=>`<option ${p===cur?"selected":""}>${esc(p)}</option>`).join("");
+  const c=t=>S.registros.filter(r=>r.tipo===t&&r.status!=="descartado").length, av=S.registros.filter(r=>(r.status||"a_validar")==="a_validar").length;
+  const dab=S.registros.filter(r=>r.tipo==="duvida"&&r.status!=="validado"&&r.status!=="descartado").length;
+  $("#rg-stats").innerHTML=[["Fatos",c("fato"),"registrados"],["Dúvidas abertas",dab,"para confirmar"],["Riscos",c("risco"),"identificados"],["A validar",av,"esperando revisão"]].map(([k,v,d])=>`<div class="card stat" style="padding:14px"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+  const rs=regFiltrados();
+  $("#rg-lista").innerHTML=rs.length?rs.slice(0,300).map(r=>`<div class="rg ${r.status==="descartado"?"off":""}"><span class="pill s-${r.tipo==="risco"?"risco_r":esc(r.tipo)}" style="cursor:default">${esc(RT[r.tipo]||r.tipo)}</span><div class="tx"><b style="white-space:pre-wrap">${esc(r.texto)}</b>${r.trecho?`<div class="q">“${esc(r.trecho)}”</div>`:""}${r.resposta?`<div class="src" style="color:var(--text-2)">Resposta: ${esc(r.resposta)}</div>`:""}<div class="src">${esc(r.tema||"")}${r.tema?" · ":""}${esc(r.fonte||"")}${r.paraQuem?" · perguntar a "+esc(r.paraQuem):""}</div></div><span class="row" style="gap:4px;flex-wrap:nowrap"><button class="pill s-${esc(r.status||"a_validar")}" data-rgc="${esc(r.id)}">${esc(RS[r.status||"a_validar"])}</button><button class="btn ghost" data-edit="registros" data-id="${esc(r.id)}">Editar</button></span></div>`).join("")+(rs.length>300?`<p class="muted" style="font-size:12px">Mostrando 300 de ${rs.length}. Use os filtros.</p>`:""):`<div class="empty">${S.registros.length?"Nada com esses filtros.":"Nenhum registro ainda. Comece por uma transcrição."}</div>`;
+  const it=[...S.interacoes].sort((a,b)=>(b.data||"")<(a.data||"")?-1:1);
+  $("#rx-lista").innerHTML=it.length?`<table><tbody>${it.map(x=>`<tr><td class="num">${br(x.data)}</td><td><b>${esc(x.tipo||"")} · ${esc(x.pessoa||"")}</b>${x.assunto?` · ${esc(x.assunto)}`:""}<div class="muted" style="font-size:12.5px">${esc(x.resumo||"")}</div></td><td class="num">${S.registros.filter(r=>r.interacao===x.id).length} registros</td><td><button class="btn ghost" data-rxdel="${esc(x.id)}">Excluir</button></td></tr>`).join("")}</tbody></table>`:`<div class="empty">As conversas transcritas aparecem aqui.</div>`;
+}
+function regTexto(){const g={};regFiltrados().filter(r=>r.status!=="descartado").forEach(r=>{(g[r.tipo]=g[r.tipo]||[]).push(r)});
+  return ["fato","duvida","risco","processo","hipotese"].filter(t=>g[t]).map(t=>`${RT[t].toUpperCase()}S\n`+g[t].map(r=>`- ${r.texto.replace(/\n/g,"\n  ")} [${r.fonte||""}]${r.status==="validado"?" (validado)":""}`).join("\n")).join("\n\n")}
+
 /* ---------- formulários ---------- */
 const etapaOpts=ETAPAS.map(e=>[String(e.n),e.n+" · "+e.t]);
 const FORMS={
@@ -612,6 +760,7 @@ const FORMS={
   horas:{t:"Lançamento de horas",f:[["data","Data","date",1],["etapa","Etapa","select",1,etapaOpts],["horas","Horas","number",1],["desc","O que foi feito","textarea",1]]},
   pendencias:{t:"Pendência",f:[["titulo","Descrição","text",1],["tipo","Tipo","select",1,[["surcin","Depende da Surcin"],["decisao","Decisão em aberto"],["risco","Risco"]]],["resp","Responsável","text"],["prazo","Prazo","date"],["status","Situação","select",1,Object.entries(ST.pendencias)],["nota","Observação","textarea"]]},
   reunioes:{t:"Reunião",f:[["data","Data","date",1],["tipo","Tipo","select",1,[["Abertura","Abertura"],["Check-in semanal","Check-in semanal"],["Entrevista","Entrevista"],["Aceite de etapa","Aceite de etapa"],["Treinamento","Treinamento"],["Outra","Outra"]]],["participantes","Participantes","text"],["decisoes","Decisões","textarea"],["proximos","Próximos passos","textarea"]]},
+  registros:{t:"Registro",f:[["texto","Registro","textarea",1],["tipo","Tipo","select",1,Object.entries(RT)],["status","Situação","select",1,Object.entries(RS)],["tema","Tema","text"],["pessoa","Pessoa","text"],["data","Data","date"],["fonte","Fonte","text",0,null,"Entrevista · Júlia · 10/11 · 00:12"],["trecho","Trecho da conversa","textarea"],["resposta","Resposta (para dúvidas)","textarea"]]},
   marcos:{t:"Marco",f:[["titulo","Marco","text",1],["data","Data prevista","date",1],["status","Situação","select",1,Object.entries(ST.marcos)],["aceitoEm","Aceito em","date"],["aprovador","Aprovado por","text"],["valor","Parcela (R$)","number"],["pago","Parcela paga","select",0,[["","Não"],["sim","Sim"]]]]}
 };
 let editing=null, confirmDel=false;
@@ -619,7 +768,7 @@ function openForm(col,id){
   if(!canWrite){toast("Sem permissão para editar");return}
   const def=FORMS[col], cur=id?(S[col].find(x=>x.id===id)||(col==="sprints"?{}:null)):null;
   editing={col,id};confirmDel=false;
-  const defaults={tarefas:{sprint:document.querySelector('[data-panel="sprints"]').hidden?"":spSel,status:"a_fazer",etapa:String((etapaAtual(hoje())[0]||ETAPAS[0]).n),resp:"R2"},horas:{data:iso(hoje()),etapa:String((etapaAtual(hoje())[0]||ETAPAS[0]).n)},pendencias:{status:"aberta",tipo:"surcin"},reunioes:{data:iso(hoje()),tipo:"Check-in semanal"},marcos:{status:"pendente"}}[col];
+  const defaults={tarefas:{sprint:document.querySelector('[data-panel="sprints"]').hidden?"":spSel,status:"a_fazer",etapa:String((etapaAtual(hoje())[0]||ETAPAS[0]).n),resp:"R2"},horas:{data:iso(hoje()),etapa:String((etapaAtual(hoje())[0]||ETAPAS[0]).n)},pendencias:{status:"aberta",tipo:"surcin"},reunioes:{data:iso(hoje()),tipo:"Check-in semanal"},registros:{tipo:"fato",status:"a_validar",data:iso(hoje())},marcos:{status:"pendente"}}[col];
   const v=k=>{const x=cur?cur[k]:defaults[k];return x==null?"":(k==="pago"?(x?"sim":""):String(x))};
   const fields=def.f.map(([k,l,ty,req,opts,ph])=>{
     const idf="fld-"+col+"-"+k;
@@ -650,6 +799,17 @@ $("#frm").addEventListener("submit",async e=>{
 document.addEventListener("click",async e=>{
   const nw=e.target.closest("[data-new]");if(nw){openForm(nw.dataset.new);return}
   const ed=e.target.closest("[data-edit]");if(ed){openForm(ed.dataset.edit,ed.dataset.id);return}
+  const rgc=e.target.closest("[data-rgc]");if(rgc){if(!canWrite){toast("Sem permissão para editar");return}
+    const r=S.registros.find(x=>x.id===rgc.dataset.rgc);if(!r)return;const o=["a_validar","validado","descartado"];const n=o[(o.indexOf(r.status||"a_validar")+1)%3];
+    rgc.disabled=true;try{await db.collection("registros").doc(r.id).update({status:n})}catch(_){toast("Não foi possível salvar")}finally{rgc.disabled=false}return}
+  const rxd=e.target.closest("[data-rxdel]");if(rxd){if(!canWrite)return;
+    if(rxd.dataset.ok!=="1"){rxd.dataset.ok="1";rxd.textContent="Confirmar (apaga os registros dela)";return}
+    const id=rxd.dataset.rxdel;try{for(const r of S.registros.filter(x=>x.interacao===id))await db.collection("registros").doc(r.id).delete();await db.collection("interacoes").doc(id).delete();toast("Conversa excluída")}catch(_){toast("Não foi possível excluir")}return}
+  if(e.target.id==="rx-gerar"){rxGerar();return}
+  if(e.target.id==="rx-parar"){rxCtl?.abort();return}
+  if(e.target.id==="rx-salvar"){rxSalvar();return}
+  if(e.target.id==="rx-drop"||e.target.closest?.("#rx-drop")){$("#rx-file").click();return}
+  if(e.target.id==="rg-md"){const t=regTexto();navigator.clipboard.writeText(t).then(()=>toast("Texto copiado"),()=>toast("Não foi possível copiar"));return}
   const mv=e.target.closest("[data-mv]");if(mv){
     if(!canWrite){toast("Sem permissão para editar");return}
     const cur=S.tarefas.find(x=>x.id===mv.dataset.id);if(!cur)return;
@@ -673,6 +833,9 @@ document.addEventListener("change",async e=>{
   if(c){const id=c.dataset.done;c.disabled=true;try{await db.collection("tarefas").doc(id).update(c.checked?{status:"feito",feitoEm:iso(hoje())}:{status:"a_fazer",feitoEm:null})}catch(err){toast("Não foi possível salvar");c.checked=!c.checked}finally{c.disabled=false}return}
   if(e.target.id==="f-resp"||e.target.id==="f-status")renderPlano();
   if(e.target.id==="sp-sel"){spSel=e.target.value;renderSprint()}
+  const ri=e.target.closest?.("[data-rxi]");if(ri){rxItens[+ri.dataset.rxi].on=ri.checked;renderPrev();return}
+  if(e.target.id==="rx-file"){rxArquivo(e.target.files[0]);e.target.value="";return}
+  if(["rg-tipo","rg-pessoa","rg-status"].includes(e.target.id))renderReg();
 });
 
 async function moverTarefa(cur,n){
@@ -682,6 +845,10 @@ async function moverTarefa(cur,n){
   if(!cur.sprint)upd.sprint=sprintDe(cur);
   try{await db.collection("tarefas").doc(cur.id).update(upd)}catch(err){toast("Não foi possível salvar")}
 }
+document.addEventListener("input",e=>{if(e.target.id==="rg-busca")renderReg();if(e.target.id==="rx-texto")rxTam()});
+const dz=$("#rx-drop");dz.addEventListener("dragover",e=>{e.preventDefault();dz.classList.add("over")});dz.addEventListener("dragleave",()=>dz.classList.remove("over"));
+dz.addEventListener("drop",e=>{e.preventDefault();dz.classList.remove("over");rxArquivo(e.dataTransfer.files[0])});
+dz.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#rx-file").click()}});
 let dragId=null;
 document.addEventListener("dragstart",e=>{const k=e.target.closest?.("[data-kid]");if(k){dragId=k.dataset.kid;e.dataTransfer.effectAllowed="move";try{e.dataTransfer.setData("text/plain",dragId)}catch(_){}}});
 document.addEventListener("dragover",e=>{const c=e.target.closest?.("[data-col]");if(c&&dragId){e.preventDefault();document.querySelectorAll(".col.over").forEach(x=>x!==c&&x.classList.remove("over"));c.classList.add("over")}});
@@ -691,7 +858,7 @@ document.addEventListener("dragend",()=>{dragId=null;document.querySelectorAll("
 $("#copiar").addEventListener("click",()=>{const t=$("#relatorio").textContent;
   navigator.clipboard.writeText(t).then(()=>toast("Texto copiado"),()=>{const r=document.createRange();r.selectNodeContents($("#relatorio"));const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Selecionado: copie com Ctrl+C")})});
 
-const TABS=["painel","sprints","plano","horas","pendencias","reunioes","metodo"];
+const TABS=["painel","sprints","registros","plano","horas","pendencias","reunioes","metodo"];
 function show(t){if(!TABS.includes(t))t="painel";document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=p.dataset.panel!==t);
   document.querySelectorAll("[data-tab]").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));try{localStorage.setItem("aba",t)}catch(_){}}
 let first=(location.hash||"").slice(1);if(!TABS.includes(first)){try{first=localStorage.getItem("aba")||"painel"}catch(_){first="painel"}}
@@ -701,12 +868,13 @@ show(first);render();
 (async()=>{
   try{db=await window.claude?.use?.("db")}catch(_){db=null}
   if(!db){$("#sync").textContent="Sem conexão com os dados";$("#offline").hidden=false;document.querySelectorAll("[data-new]").forEach(b=>b.disabled=true);return}
+  try{sampleFn=await window.claude.use("sample")}catch(_){sampleFn=null}
   try{const u=await window.claude.use("user");const c=u?.can?.("data.write");canWrite=c!==false}catch(_){canWrite=true}
   if(!canWrite){$("#sync").textContent="Somente leitura";document.querySelectorAll("[data-new]").forEach(b=>b.disabled=true)}
   let loaded=0;
   Object.keys(S).forEach(col=>db.collection(col).onSnapshot(snap=>{
     S[col]=snap.docs.map(d=>({id:d.id,...d.data()}));
-    if(++loaded>=6&&canWrite)$("#sync").textContent="Dados sincronizados";
+    if(++loaded>=8&&canWrite)$("#sync").textContent="Dados sincronizados";
     render();
   },err=>{$("#sync").textContent="Erro ao carregar "+col}));
 })();

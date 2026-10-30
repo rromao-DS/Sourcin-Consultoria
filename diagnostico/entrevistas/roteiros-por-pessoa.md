@@ -1,12 +1,13 @@
 # Roteiros de entrevista por pessoa
 
-Cerca de 1 hora por pessoa, entre 09 e 13/11, das 9h às 12h. Sempre que possível, a pessoa mostra a tarefa sendo feita, com tela compartilhada. Anotar as respostas na ficha do processo e na planilha, com rótulo e fonte (`entrevista [nome] [data]`).
+Cerca de 1 hora por pessoa, entre 09 e 13/11, das 9h às 12h. Sempre que possível, a pessoa mostra a tarefa sendo feita, com tela compartilhada. Grave e transcreva; os registros saem da transcrição na aba Registros do Acompanhamento.
 
 ## Abertura (igual para todas, 5 min)
 
 - O projeto organiza processos para tirar carga da Thamires e dar autonomia à equipe. Não é avaliação de ninguém.
 - Vamos olhar como o trabalho acontece hoje, inclusive o que funciona.
 - Nada do que for dito sobre clientes sai do ambiente da Surcin.
+- Pedir para gravar: "Posso gravar para transcrever? Fica só com a R2 e serve só para o projeto." Depois, subir a transcrição na aba Registros (ver `como-gravar-e-registrar.md`).
 
 ## Roteiro comum (documento 03, seção 4)
 

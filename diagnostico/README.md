@@ -10,12 +10,15 @@ A ideia é ir alimentando esta base a cada entrevista, demonstração e check-in
 |---|---|
 | `00-pauta-reuniao-abertura.md` | Pauta da reunião de abertura com a Thamires (03/11) |
 | `pedido-de-acessos-julia.md` | Texto pronto do pedido de acessos à Júlia, para enviar depois do contrato assinado |
-| `registro-diagnostico.xlsx` | Base viva: Fatos, Processos (com pontuação), Sistemas e acessos, Pessoas, Dúvidas, Riscos |
+| `como-gravar-e-registrar.md` | Como gravar as conversas e gerar os registros pelo Claude na aba Registros do Acompanhamento |
 | `entrevistas/roteiros-por-pessoa.md` | Roteiro comum e perguntas específicas para Thamires, Júlia, Vitória, Tamara e Alana |
 | `fichas/modelo-ficha-de-processo.md` | Ficha a preencher para cada processo mapeado (até 8) |
 | `fluxos/rascunhos/*.toml` | Fluxos atuais em rascunho, descritos a partir da reunião |
 | `fluxos/saida/` | Diagrama BPMN, relatório e painel gerados de cada rascunho |
-| `fonte/gerar_registro.py` | Gera a planilha inicial (só rodar de novo se quiser recomeçar do zero) |
+
+## Onde fica a base
+
+A base viva (fatos, hipóteses, dúvidas, riscos e processos) fica na aba **Registros** do [Acompanhamento Surcin](https://claude.ai/artifact/17KBx6snPCL7ziRDyNhECe), alimentada pelas transcrições das conversas. A planilha inicial foi migrada para lá em 30/10 e removida.
 
 ## Regras para alimentar
 
@@ -45,4 +48,4 @@ Os três rascunhos atuais não têm tempos, porque a reunião não informou. Os 
 
 ## Próximos fluxos (Etapa 1, até 8 no total)
 
-Ordem pela prioridade inicial do documento 03: fiscal mensal em detalhe, fechamento financeiro com reunião de resultado, atendimento e triagem de demandas, emissão de notas, folha e DP. A escolha final sai da pontuação na aba Processos, validada com a Thamires.
+Ordem pela prioridade inicial do documento 03: fiscal mensal em detalhe, fechamento financeiro com reunião de resultado, atendimento e triagem de demandas, emissão de notas, folha e DP. A escolha final sai das entrevistas, validada com a Thamires.
