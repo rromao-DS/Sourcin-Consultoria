@@ -1,0 +1,115 @@
+# RASCUNHO A VALIDAR · fluxo atual (AS-IS) copiado do checklist do Trello "Rotina Atual" da Surcin
+# Fonte: exportação do quadro de 14/10/2026, lista NOVOS CLIENTES, cartão "Contabilidade". Os passos estão na ordem do checklist.
+# Quem faz: depois do fechamento, "isso quem faz hoje é a Júlia" (reunião de 12/10, 00:55:16). Antes do fechamento, a divisão é hipótese.
+# Tempos não informados no Trello: ficam em branco até a entrevista.
+
+raias = ["Júlia", "Thamires", "Cliente"]
+
+[processo]
+nome = "Entrada de cliente da contabilidade · rascunho (Trello)"
+descricao = """
+Checklist de 14 etapas do Trello, confirmado na reunião de 12/10 (00:55:16).
+"""
+
+[[etapas]]
+id = "inicio"
+nome = "Início"
+tipo = "inicio"
+raia = "Júlia"
+
+[[etapas]]
+id = "e01"
+nome = "Marcar reunião de apresentação"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e02"
+nome = "Preparar a proposta"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Canva"
+
+[[etapas]]
+id = "e03"
+nome = "Fazer a reunião"
+tipo = "tarefa"
+raia = "Thamires"
+
+[[etapas]]
+id = "e04"
+nome = "Enviar a proposta"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e05"
+nome = "Pedir dados para o contrato (mensagem pronta)"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "WhatsApp"
+
+[[etapas]]
+id = "e06"
+nome = "Reforçar os serviços contratados"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e07"
+nome = "Elaborar o contrato de prestação de serviços"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Veri"
+
+[[etapas]]
+id = "e08"
+nome = "Enviar formulário para o processo de abertura"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e09"
+nome = "Enviar dados para pagamento dos serviços"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e10"
+nome = "Abrir a pasta no Drive"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "OneDrive"
+
+[[etapas]]
+id = "e11"
+nome = "Salvar contrato, formulário e documentos na pasta"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "OneDrive"
+
+[[etapas]]
+id = "e12"
+nome = "Verificar o que falta e cobrar o cliente"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e13"
+nome = "Criar tarefa no Trello da pessoa responsável"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Trello"
+
+[[etapas]]
+id = "e14"
+nome = "Após as tarefas do setor, criar a rotina mensal do cliente"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Trello"
+
+[[etapas]]
+id = "fim"
+nome = "Fim"
+tipo = "fim"
+raia = "Júlia"

@@ -513,7 +513,7 @@ def metodologia():
 def proposta():
     d = novo_doc("Proposta de consultoria",
                  "Organização, processos, rotinas do Claude e pilotos de automação · Surcin Assessoria Empresarial",
-                 "Versão 6 · 26/10/2026 · oferta única · válida até 30/10/2026")
+                 "Versão 7 · 30/10/2026 · oferta única · válida até 03/11/2026")
 
     h(d, "1. O que entendemos")
     par(d, "A Surcin oferece contabilidade, fiscal, DP, financeiro, societário e jurídico empresarial, com cerca de "
@@ -521,7 +521,7 @@ def proposta():
            "desenhados, padrão de pastas e rotinas no Trello, mas a Thamires continua sendo a fonte única de "
            "conhecimento, decisão e revisão, e os erros recentes vieram de parâmetros fiscais errados e de controles "
            "que dependem de atenção humana.")
-    par(d, "O objetivo é que, a partir de janeiro de 2027, a equipe opere com papéis claros, fluxos documentados, "
+    par(d, "O objetivo é que, na entrega final, em fevereiro de 2027, a equipe opere com papéis claros, fluxos documentados, "
            "rotinas do Claude testadas e indicadores por área, sem depender da Thamires para cada decisão. A ordem é "
            "sempre a mesma: primeiro processo e controle, depois ferramenta e automação assistida.")
 
@@ -539,31 +539,36 @@ def proposta():
     ])
 
     h(d, "3. Etapas, datas e aceites")
-    par(d, "Um projeto deste porte normalmente leva cerca de 18 semanas. Para atender ao prazo da Surcin, ele foi "
-           "condensado em 8 semanas, de 03/11 a 23/12/2026, com etapas sobrepostas. A partir de janeiro, a Surcin "
-           "opera com o que foi implantado.")
+    par(d, "O serviço é contratado por inteiro e entregue em cinco etapas, em dois períodos de trabalho. Primeiro a "
+           "organização da empresa, em um ritmo que cabe na agenda da Surcin, de 03/11 a 04/12/2026. Depois de uma "
+           "pausa, a implantação do Claude, dos pilotos e da avaliação, de 04/01 a 12/02/2027.")
+    h(d, "Organização · Etapas 1 e 2 · 03/11 a 04/12/2026 · 70 h", 3)
     tabela(d, ["Etapa", "Período", "Horas", "O que entrega", "Aceite"], [
-        ["1 · Diagnóstico e inventário", "03 a 13/11", "28 h",
+        ["1 · Diagnóstico e inventário", "03 a 19/11", "28 h",
          "Reunião de abertura e análise de materiais; até 5 entrevistas; mapeamento de até 8 processos atuais; inventário de sistemas e riscos",
          "Diagnóstico, mapa atual, prioridades e plano inicial validados"],
-        ["2 · Arquitetura operacional", "16 a 29/11", "42 h",
-         "Organograma funcional, matriz de responsabilidades e alçadas; jornada de entrada do cliente e passagem formal; redesenho de até 5 fluxos; controles prioritários; indicadores por área e competências por papel",
+        ["2 · Arquitetura operacional", "23/11 a 04/12", "42 h",
+         "Organograma funcional, matriz de responsabilidades e alçadas; jornada de entrada do cliente e passagem formal; redesenho de até 5 fluxos; controles prioritários e proposta de evolução da Júlia; indicadores por área e competências por papel",
          "Fluxos futuros, responsabilidades e listas de verificação aprovados"],
-        ["3 · Fundação do Claude e rotinas", "23/11 a 13/12", "52 h",
+        ["**Subtotal**", "**5 semanas**", "**70 h**", "", ""],
+    ], [3.2, 2.2, 1.4, 5.6, 4.2])
+    par(d, "Pausa entre 04/12/2026 e 04/01/2027, sem reuniões de 07 a 13/12.")
+    h(d, "Implantação · Etapas 3 a 5 · 04/01 a 12/02/2027 · 151 h", 3)
+    tabela(d, ["Etapa", "Período", "Horas", "O que entrega", "Aceite"], [
+        ["3 · Fundação do Claude e rotinas", "04 a 22/01", "52 h",
          "Organização da base e das fontes oficiais; Projetos do Claude; construção, testes e documentação das 5 rotinas do Claude",
          "Biblioteca de 5 rotinas do Claude validada para uso assistido"],
-        ["4 · Pilotos e painel", "07 a 20/12", "63 h",
+        ["4 · Pilotos e painel", "18/01 a 05/02", "63 h",
          "Implantação controlada dos pilotos A e B com dados autorizados; até 2 integrações implantadas; primeira versão do painel por área (planilha ou Trello)",
          "Demonstração funcional, resultados dos testes, aceite dos 2 pilotos e painel em uso"],
-        ["5 · Adoção e transferência", "14 a 23/12", "36 h",
+        ["5 · Adoção e transferência", "01 a 12/02", "36 h",
          "Ajustes acordados; 3 treinamentos de até 90 minutos; manuais; painel por área e da diretoria; primeiro ciclo de avaliação por competência; plano de evolução",
          "Arquivos editáveis, treinamento, avaliação aplicada, relatório final e passagem formal aprovados"],
-        ["**Total**", "**8 semanas**", "**~221 h**", "", ""],
+        ["**Subtotal**", "**6 semanas**", "**151 h**", "", ""],
     ], [3.2, 2.2, 1.4, 5.6, 4.2])
 
-    aviso(d, "Dois meses intensivos. Para entregar tudo funcionando até 23/12, a R2 trabalha no projeto todos os dias, "
-             "inclusive sábados e domingos: são cerca de 221 horas, ou cerca de 4h15 por dia, de 03/11 a 23/12. "
-             "Não há folga no calendário: o prazo depende de entrevistas, acessos e dados chegarem nas datas.")
+    aviso(d, "Cerca de 221 horas de trabalho da R2 no total: 70 h na organização e 151 h na implantação. As datas "
+             "partem de um aceite até 03/11/2026. Atrasos de entrevistas, acessos ou dados deslocam o calendário.")
 
     h(d, "4. As 5 rotinas do Claude")
     par(d, "Até 5 rotinas do Claude, escolhidas entre os processos priorizados no diagnóstico. As cinco abaixo são as "
@@ -638,13 +643,14 @@ def proposta():
 
     h(d, "9. Investimento")
     tabela(d, ["", "Valor", "Quando"], [
-        ["**Consultoria e implantação**", "**R$ 31.900**", "8 semanas · 5 etapas · 5 rotinas do Claude · 2 pilotos · 2 integrações"],
-        ["Parcela 1 · 30%", "R$ 9.570", "03/11/2026 · início do projeto"],
-        ["Parcela 2 · 35%", "R$ 11.165", "01/12/2026 · meio do projeto"],
-        ["Parcela 3 · 35%", "R$ 11.165", "05/01/2027 · fim do projeto, após a entrega final de 23/12"],
+        ["**Consultoria e implantação**", "**R$ 31.900**", "Serviço completo · 5 etapas · 5 rotinas do Claude · 2 pilotos · 2 integrações"],
+        ["Pagamento", "10 x R$ 3.190", "Parcelas mensais, a primeira em 03/11/2026 e a última em agosto de 2027"],
+        ["Início", "", "03/11/2026 · reunião de abertura"],
+        ["Meio", "", "04/12/2026 · fim da organização (Etapas 1 e 2)"],
+        ["Fim", "", "12/02/2027 · entrega final"],
     ], [5, 3.5, 7.5])
-    par(d, "Valor único, com escopo fechado. As parcelas seguem o calendário do projeto, com vencimento em datas "
-           "fixas: início, meio e fim.")
+    par(d, "Valor único pelo serviço completo, com escopo fechado, pago em 10 parcelas mensais. A entrega termina "
+           "antes do fim do pagamento.")
     h(d, "Custos da Surcin, à parte e com aprovação prévia", 3)
     par(d, "Planos do Claude e de outras ferramentas, uso de modelos de IA e integrações, automação, hospedagem, "
            "licenças, custo por conversa do WhatsApp Business, infraestrutura e eventuais terceiros.")
@@ -662,29 +668,28 @@ def proposta():
     h(d, "Da R2 Tech Consultoria", 3)
     lista(d, [
         "Conduzir entrevistas, análises e reuniões nas datas combinadas.",
-        "Trabalhar no projeto todos os dias, inclusive sábados e domingos, de 03/11 a 23/12.",
         "Entregar os documentos em formato editável, no ambiente da Surcin.",
         "Manter sigilo sobre os dados da empresa e de seus clientes, com acordo de confidencialidade.",
         "Avisar com antecedência riscos de atraso ou mudança de escopo.",
     ])
     h(d, "Da Surcin", 3)
     lista(d, [
-        "Aceitar a proposta até 30/10 e liberar os acessos no início do projeto.",
+        "Aceitar a proposta até 03/11 e liberar os acessos no início do projeto.",
         "Indicar um ponto focal para acessos e agenda.",
         "Liberar a equipe para entrevistas de cerca de 1 hora de 09 a 13/11 (sem entrevistas nos fechamentos, de 02 a 08/11).",
-        "Fornecer dados autorizados para os pilotos.",
+        "Fornecer até 18/12 os dados autorizados para os pilotos.",
         "Responder e validar entregas em até 1 dia útil.",
-        "Não há reuniões na semana de 07 a 13/12, por causa da prova da Thamires.",
+        "Não há reuniões na semana de 07 a 13/12.",
     ])
 
     h(d, "12. Condições gerais")
     lista(d, [
-        "As datas partem de um aceite até 30/10/2026. Aceite depois disso desloca o calendário.",
-        "02/11 (Finados) e 20/11 (Consciência Negra) são feriados e não terão reuniões.",
+        "As datas partem de um aceite até 03/11/2026. Aceite depois disso desloca o calendário.",
+        "02/11 (Finados) e 20/11 (Consciência Negra) são feriados e não terão reuniões. Não há reuniões de 07 a 13/12.",
         "Atrasos por falta de retorno, acesso ou dados deslocam o cronograma.",
         "Mudanças de escopo são orçadas à parte e só executadas após aprovação por escrito.",
         "Os materiais produzidos passam a ser da Surcin após a quitação de cada parcela.",
-        "Validade desta proposta: até 30/10/2026.",
+        "Validade desta proposta: até 03/11/2026.",
     ])
 
     h(d, "13. Próximos passos")
@@ -692,7 +697,7 @@ def proposta():
         "Aceite da proposta: confirmação de escopo e investimento.",
         "Contrato e confidencialidade: marcos, LGPD e propriedade formalizados.",
         "Acessos e materiais: levantamento do que a Etapa 1 precisa.",
-        "Reunião de abertura em 03/11, com o aceite até 30/10.",
+        "Reunião de abertura em 03/11.",
     ], numerada=True)
     par(d, "\nRenato Romão · R2 Tech Consultoria · r2techconsultoria@gmail.com")
     d.save(f"{SAIDA}/04-proposta-comercial.docx")

@@ -1,0 +1,105 @@
+# RASCUNHO A VALIDAR · fluxo atual (AS-IS) copiado do checklist do Trello "Rotina Atual" da Surcin
+# Fonte: exportação do quadro de 14/10/2026, lista NOVOS CLIENTES, cartão "Financeiro". Os passos estão na ordem do checklist.
+# Quem faz cada passo não está no checklist; a raia é hipótese. Quem é o "responsável do setor" (Vitória) é dúvida.
+# Tempos não informados no Trello: ficam em branco até a entrevista.
+
+raias = ["Júlia", "Responsável do setor", "Cliente"]
+
+[processo]
+nome = "Entrada de cliente do financeiro · rascunho (Trello)"
+descricao = """
+Checklist de 12 etapas do Trello. A reunião de 12/10 (00:55:16) cita ainda planilha, Trello e Conta Azul para o cliente do financeiro.
+"""
+
+[[etapas]]
+id = "inicio"
+nome = "Início"
+tipo = "inicio"
+raia = "Júlia"
+
+[[etapas]]
+id = "e01"
+nome = "Criar o grupo com o cliente"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "WhatsApp"
+
+[[etapas]]
+id = "e02"
+nome = "Mensagem inicial e pedido dos dados para o contrato"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "WhatsApp"
+
+[[etapas]]
+id = "e03"
+nome = "Apresentar a equipe"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "WhatsApp"
+
+[[etapas]]
+id = "e04"
+nome = "Reforçar os valores acordados"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "WhatsApp"
+
+[[etapas]]
+id = "e05"
+nome = "Fazer o contrato de prestação de serviço e enviar"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Modelo na pasta"
+
+[[etapas]]
+id = "e06"
+nome = "Confirmar a reunião inicial e pedir as informações"
+tipo = "tarefa"
+raia = "Júlia"
+
+[[etapas]]
+id = "e07"
+nome = "Abrir a pasta do cliente na nuvem e salvar os modelos"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "OneDrive"
+
+[[etapas]]
+id = "e08"
+nome = "Criar a rotina de serviço"
+tipo = "tarefa"
+raia = "Responsável do setor"
+sistema = "Trello"
+
+[[etapas]]
+id = "e09"
+nome = "Após a reunião, mandar relatório pedindo informações"
+tipo = "tarefa"
+raia = "Responsável do setor"
+
+[[etapas]]
+id = "e10"
+nome = "Sem conta PJ: pedir abertura (de preferência Banco Cora) e acesso secundário"
+tipo = "tarefa"
+raia = "Responsável do setor"
+sistema = "Banco"
+
+[[etapas]]
+id = "e11"
+nome = "Enviar o vídeo sobre os sonhos e o dever de casa (prazo de 10 dias)"
+tipo = "tarefa"
+raia = "Responsável do setor"
+
+[[etapas]]
+id = "e12"
+nome = "Após as tarefas do setor, criar a rotina mensal no Trello"
+tipo = "tarefa"
+raia = "Júlia"
+sistema = "Trello"
+
+[[etapas]]
+id = "fim"
+nome = "Fim"
+tipo = "fim"
+raia = "Júlia"

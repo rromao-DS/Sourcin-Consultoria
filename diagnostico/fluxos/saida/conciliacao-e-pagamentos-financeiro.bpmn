@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Colaboracao_1"><bpmn:participant id="Piscina_1" name="Financeiro: conciliação e pagamentos · rascunho" processRef="Processo_1" /></bpmn:collaboration>
+  <bpmn:process id="Processo_1" isExecutable="false">
+    <bpmn:laneSet id="RaiaSet_1">
+      <bpmn:lane id="Raia_1" name="Vitória"><bpmn:flowNodeRef>inicio</bpmn:flowNodeRef><bpmn:flowNodeRef>bancos</bpmn:flowNodeRef><bpmn:flowNodeRef>conciliar</bpmn:flowNodeRef><bpmn:flowNodeRef>plano</bpmn:flowNodeRef><bpmn:flowNodeRef>dia</bpmn:flowNodeRef><bpmn:flowNodeRef>ver</bpmn:flowNodeRef><bpmn:flowNodeRef>pagar</bpmn:flowNodeRef><bpmn:flowNodeRef>resumo</bpmn:flowNodeRef><bpmn:flowNodeRef>fim</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="Raia_2" name="Thamires"></bpmn:lane>
+      <bpmn:lane id="Raia_3" name="Cliente"><bpmn:flowNodeRef>recebe</bpmn:flowNodeRef></bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="inicio" name="Mês do cliente em aberto"><bpmn:outgoing>fluxo_inicio_bancos_0</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:userTask id="bancos" name="Configurar os bancos do cliente"><bpmn:incoming>fluxo_inicio_bancos_0</bpmn:incoming><bpmn:outgoing>fluxo_bancos_conciliar_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="conciliar" name="Conciliar e importar o extrato"><bpmn:incoming>fluxo_bancos_conciliar_0</bpmn:incoming><bpmn:outgoing>fluxo_conciliar_plano_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="plano" name="Classificar entradas e saídas no plano de contas personalizado"><bpmn:incoming>fluxo_conciliar_plano_0</bpmn:incoming><bpmn:outgoing>fluxo_plano_dia_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="dia" name="É terça ou sexta (dia de pagamento)?"><bpmn:incoming>fluxo_plano_dia_0</bpmn:incoming><bpmn:outgoing>fluxo_dia_ver_0</bpmn:outgoing><bpmn:outgoing>fluxo_dia_fim_1</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ver" name="Ver o que há para pagar (valor, forma, chave)"><bpmn:incoming>fluxo_dia_ver_0</bpmn:incoming><bpmn:outgoing>fluxo_ver_pagar_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="pagar" name="Fazer os pagamentos"><bpmn:incoming>fluxo_ver_pagar_0</bpmn:incoming><bpmn:outgoing>fluxo_pagar_resumo_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="resumo" name="Montar e enviar o resumo do dia (a pagar e saldo)"><bpmn:incoming>fluxo_pagar_resumo_0</bpmn:incoming><bpmn:outgoing>fluxo_resumo_recebe_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="recebe" name="Receber o resumo"><bpmn:incoming>fluxo_resumo_recebe_0</bpmn:incoming><bpmn:outgoing>fluxo_recebe_fim_0</bpmn:outgoing></bpmn:userTask>
+    <bpmn:endEvent id="fim" name="Dia encerrado"><bpmn:incoming>fluxo_dia_fim_1</bpmn:incoming><bpmn:incoming>fluxo_recebe_fim_0</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="fluxo_inicio_bancos_0" sourceRef="inicio" targetRef="bancos" />
+    <bpmn:sequenceFlow id="fluxo_bancos_conciliar_0" sourceRef="bancos" targetRef="conciliar" />
+    <bpmn:sequenceFlow id="fluxo_conciliar_plano_0" sourceRef="conciliar" targetRef="plano" />
+    <bpmn:sequenceFlow id="fluxo_plano_dia_0" sourceRef="plano" targetRef="dia" />
+    <bpmn:sequenceFlow id="fluxo_dia_ver_0" name="sim" sourceRef="dia" targetRef="ver" />
+    <bpmn:sequenceFlow id="fluxo_dia_fim_1" name="não" sourceRef="dia" targetRef="fim" />
+    <bpmn:sequenceFlow id="fluxo_ver_pagar_0" sourceRef="ver" targetRef="pagar" />
+    <bpmn:sequenceFlow id="fluxo_pagar_resumo_0" sourceRef="pagar" targetRef="resumo" />
+    <bpmn:sequenceFlow id="fluxo_resumo_recebe_0" sourceRef="resumo" targetRef="recebe" />
+    <bpmn:sequenceFlow id="fluxo_recebe_fim_0" sourceRef="recebe" targetRef="fim" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagrama_1">
+    <bpmndi:BPMNPlane id="Plano_1" bpmnElement="Colaboracao_1">
+      <bpmndi:BPMNShape id="Piscina_1_di" bpmnElement="Piscina_1" isHorizontal="true"><dc:Bounds x="160" y="80" width="2110" height="450" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_1_di" bpmnElement="Raia_1" isHorizontal="true"><dc:Bounds x="190" y="80" width="2080" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_2_di" bpmnElement="Raia_2" isHorizontal="true"><dc:Bounds x="190" y="230" width="2080" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Raia_3_di" bpmnElement="Raia_3" isHorizontal="true"><dc:Bounds x="190" y="380" width="2080" height="150" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="inicio_di" bpmnElement="inicio"><dc:Bounds x="327" y="137" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="bancos_di" bpmnElement="bancos"><dc:Bounds x="465" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="conciliar_di" bpmnElement="conciliar"><dc:Bounds x="655" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="plano_di" bpmnElement="plano"><dc:Bounds x="845" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="dia_di" bpmnElement="dia"><dc:Bounds x="1080" y="130" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ver_di" bpmnElement="ver"><dc:Bounds x="1225" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="pagar_di" bpmnElement="pagar"><dc:Bounds x="1415" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="resumo_di" bpmnElement="resumo"><dc:Bounds x="1605" y="115" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="recebe_di" bpmnElement="recebe"><dc:Bounds x="1795" y="415" width="140" height="80" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fim_di" bpmnElement="fim"><dc:Bounds x="2037" y="137" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="fluxo_inicio_bancos_0_di" bpmnElement="fluxo_inicio_bancos_0"><di:waypoint x="363" y="155" /><di:waypoint x="465" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_bancos_conciliar_0_di" bpmnElement="fluxo_bancos_conciliar_0"><di:waypoint x="605" y="155" /><di:waypoint x="655" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_conciliar_plano_0_di" bpmnElement="fluxo_conciliar_plano_0"><di:waypoint x="795" y="155" /><di:waypoint x="845" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_plano_dia_0_di" bpmnElement="fluxo_plano_dia_0"><di:waypoint x="985" y="155" /><di:waypoint x="1080" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_dia_ver_0_di" bpmnElement="fluxo_dia_ver_0"><di:waypoint x="1130" y="155" /><di:waypoint x="1225" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_dia_fim_1_di" bpmnElement="fluxo_dia_fim_1"><di:waypoint x="1130" y="155" /><di:waypoint x="2037" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_ver_pagar_0_di" bpmnElement="fluxo_ver_pagar_0"><di:waypoint x="1365" y="155" /><di:waypoint x="1415" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_pagar_resumo_0_di" bpmnElement="fluxo_pagar_resumo_0"><di:waypoint x="1555" y="155" /><di:waypoint x="1605" y="155" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_resumo_recebe_0_di" bpmnElement="fluxo_resumo_recebe_0"><di:waypoint x="1745" y="155" /><di:waypoint x="1770" y="155" /><di:waypoint x="1770" y="455" /><di:waypoint x="1795" y="455" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="fluxo_recebe_fim_0_di" bpmnElement="fluxo_recebe_fim_0"><di:waypoint x="1935" y="455" /><di:waypoint x="1960" y="455" /><di:waypoint x="1960" y="155" /><di:waypoint x="2037" y="155" /></bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
