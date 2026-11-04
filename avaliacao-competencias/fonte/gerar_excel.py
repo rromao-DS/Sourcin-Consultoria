@@ -170,11 +170,12 @@ def gerar(cfg, saida):
     # ------------------------------------------------------------------ Competências
     co = wb.create_sheet("Competências")
     titulo(co, "Competências e níveis")
-    cab(co, 4, ["Código", "Competência comum", "Definição", "Nível 1", "Nível 3", "Nível 5"])
+    cab(co, 4, ["Código", "Competência comum", "Definição", "Nível 1", "Nível 3", "Nível 5", "Uso em excesso (alerta)"])
     li = 5
     for linha in comuns:
-        for j, v in enumerate(linha):
-            cel(co, f"{'ABCDEF'[j]}{li}", v)
+        exc = m.EXCESSO.get(linha[0], "").format(**cfg)
+        for j, v in enumerate(list(linha) + [exc]):
+            cel(co, f"{'ABCDEFG'[j]}{li}", v)
         li += 1
     if not generico:
         li += 1
@@ -192,7 +193,7 @@ def gerar(cfg, saida):
         for j, v in enumerate(linha):
             cel(co, f"{'ABC'[j]}{li}", v)
         li += 1
-    larguras(co, {"A": 8, "B": 32, "C": 45, "D": 35, "E": 35, "F": 35})
+    larguras(co, {"A": 8, "B": 32, "C": 45, "D": 35, "E": 35, "F": 35, "G": 35})
 
     # ------------------------------------------------------------------ Biblioteca
     bi = wb.create_sheet("Biblioteca")

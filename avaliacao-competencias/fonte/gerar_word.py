@@ -42,7 +42,7 @@ def sec_estrutura(d, num):
     h(d, f"{num}. Estrutura da nota")
     par(d, "A nota final vai de 1 a 5 e é a média ponderada de três blocos:")
     tabela(d, ["Bloco", "O que entra", "Peso sugerido"], [
-        [m.PESOS[0][0], "8 competências, as mesmas para toda a equipe", "40%"],
+        [m.PESOS[0][0], f"{len(m.COMUNS)} competências, as mesmas para toda a equipe", "40%"],
         [m.PESOS[1][0], "4 a 6 competências do cargo de cada pessoa", "40%"],
         [m.PESOS[2][0], "Faltas injustificadas, atrasos e 2 indicadores de resultado do cargo", "20%"],
     ], [5.5, 8, 2.5])
@@ -65,11 +65,15 @@ def sec_passos(d, cfg, nivel=2):
 
 def sec_comuns(d, num, cfg):
     h(d, f"{num}. Competências comportamentais (comuns)")
-    par(d, "Descrição dos níveis 1, 3 e 5. As notas 2 e 4 ficam entre eles.")
+    par(d, "Descrição dos níveis 1, 3 e 5. Nota 2: já faz parte do nível 3, mas ainda precisa de lembrete ou de "
+           "correção com frequência. Nota 4: cumpre o nível 3 sempre, sem lembrete, e já mostra parte do nível 5. "
+           "O uso em excesso é um alerta para a conversa e o PDI e não reduz a nota.")
     for cod, nome, defin, n1, n3, n5 in m.comuns(cfg):
         h(d, f"{cod} · {nome}", 3)
         par(d, defin)
         tabela(d, ["Nível 1", "Nível 3", "Nível 5"], [[n1, n3, n5]], [5.3, 5.3, 5.4])
+        if m.EXCESSO.get(cod):
+            par(d, f"Uso em excesso: {m.EXCESSO[cod].format(**cfg)}")
         if cfg["origens"].get(cod):
             par(d, f"Origem: {cfg['origens'][cod]}.", italico=True)
 
