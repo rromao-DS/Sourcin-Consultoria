@@ -58,7 +58,7 @@ PESSOAS_SURCIN = {
             ("Fechamentos entregues na 1ª semana (%)", "Trello"),
         ],
     },
-    "Tamara": {
+    "Thamara": {
         "cargo": "Departamento Pessoal",
         "fonte": "Reunião 00:41, 02:05; briefing seções 5 e 10; doc 02",
         "tecnicas": [
@@ -122,7 +122,8 @@ ORIGENS_SURCIN = {'C1': 'Briefing, seção 10',
  'C5': 'Briefing, seção 10 (escrita/atendimento)',
  'C6': 'Reunião 01:58 ("perfil e comprometimento")',
  'C7': 'Sugestão do consultor (redistribuição das funções da Dani, reunião 02:24)',
- 'C8': 'Briefing, seção 10; reunião 01:58 ("conhecimento a gente desenvolve")'}
+ 'C8': 'Briefing, seção 10; reunião 01:58 ("conhecimento a gente desenvolve")',
+ 'C9': 'Proposta da R2 de 04/11/2026, aprovada pelo Renato; a validar com a Thamires'}
 
 SURCIN = {
     "arquivo": "avaliacao-competencias-surcin",
@@ -130,7 +131,7 @@ SURCIN = {
     "gestor": "Thamires",
     "ao_gestor": "à Thamires",
     "do_gestor": "da Thamires",
-    "versao": "Versão 2 · 13/10/2026 · aplicação do modelo R2 Tech · proposta para validação da Thamires",
+    "versao": "Versão 3 · 04/11/2026 · aplicação do modelo R2 Tech · proposta para validação da Thamires",
     "ciclo": "1º semestre de 2027",
     "pessoas": PESSOAS_SURCIN,
     "lideranca": ["Júlia"],
@@ -171,7 +172,7 @@ ORGANOGRAMA_SURCIN = {
         "Thamires": ("Direção", None, "socio", None),
         "Júlia": ("Secretaria, atendimento e entrada de clientes", "Thamires", "nao_informado", None),
         "Vitória": ("Financeiro", "Thamires", "nao_informado", None),
-        "Tamara": ("Departamento Pessoal", "Thamires", "nao_informado", None),
+        "Thamara": ("Departamento Pessoal", "Thamires", "nao_informado", None),
         "Alana": ("Estágio no jurídico e no societário (dois dias por semana)", "Thamires", "estagio",
                   "Dois dias por semana (quarta e sexta)"),
     },

@@ -124,6 +124,21 @@
       "ativo": true
     },
     {
+      "id": "0daf1714-ee29-5a58-afec-a905fb65af9a",
+      "empresa_id": null,
+      "tipo": "comportamental",
+      "area_biblioteca": null,
+      "codigo": "C9",
+      "nome": "Integridade e sigilo",
+      "definicao": "É honesta sobre o próprio trabalho, assume os erros e protege os dados de clientes, colegas e da empresa.",
+      "nivel_1": "Esconde ou justifica erros, comenta dados de clientes ou de colegas fora de quem precisa saber.",
+      "nivel_3": "Avisa o erro assim que percebe e corrige, guarda documentos e senhas no lugar combinado, fala de clientes só com quem cuida deles.",
+      "nivel_5": "É referência de confiança: aponta riscos de sigilo nos processos e ajuda a corrigir antes que virem problema.",
+      "evidencia_sugerida": null,
+      "origem": null,
+      "ativo": true
+    },
+    {
       "id": "849c9afd-0bba-5c0f-a8e4-d37daaf61ee2",
       "empresa_id": null,
       "tipo": "tecnica",

@@ -8,9 +8,9 @@ O que é próprio de cada cliente fica em casos.py.
 
 ESCALA = [
     (1, "Não atende", "O comportamento esperado raramente aparece; precisa de acompanhamento constante."),
-    (2, "Atende em parte", "Aparece às vezes ou só com orientação frequente."),
+    (2, "Atende em parte", "Já faz parte do nível 3, mas ainda precisa de lembrete ou de correção com frequência."),
     (3, "Atende", "Faz de forma consistente o que se espera da função. É a nota de quem está bem no cargo."),
-    (4, "Supera", "Vai além do esperado com frequência e é referência nas situações do dia a dia."),
+    (4, "Supera", "Cumpre o nível 3 sempre, sem lembrete, e já mostra parte do nível 5 em pelo menos uma situação registrada."),
     (5, "Referência", "Supera de forma consistente, ensina outras pessoas e melhora o processo."),
 ]
 
@@ -63,7 +63,25 @@ COMUNS = [
      "Repete os mesmos erros e não busca aprender.",
      "Aplica o feedback e cumpre as ações combinadas no plano de desenvolvimento.",
      "Busca aprender por conta própria, aplica e ensina o que aprendeu."),
+    ("C9", "Integridade e sigilo",
+     "É honesta sobre o próprio trabalho, assume os erros e protege os dados de clientes, colegas e da empresa.",
+     "Esconde ou justifica erros, comenta dados de clientes ou de colegas fora de quem precisa saber.",
+     "Avisa o erro assim que percebe e corrige, guarda documentos e senhas no lugar combinado, fala de clientes só com quem cuida deles.",
+     "É referência de confiança: aponta riscos de sigilo nos processos e ajuda a corrigir antes que virem problema."),
 ]
+
+# Sinal de uso em excesso por competência comum: alerta para a conversa e o PDI, não reduz a nota.
+EXCESSO = {
+    "C1": "Confere tanto que atrasa a entrega, ou trava quando o procedimento não cobre o caso.",
+    "C2": "Entrega no prazo sacrificando a conferência.",
+    "C3": "Age sem combinar e gera retrabalho ou atropela a tarefa de outra pessoa.",
+    "C4": "Não pede ajuda nem quando o caso pede e decide sozinha o que deveria ir {ao_gestor}.",
+    "C5": "Promete ao cliente o que a empresa não combinou entregar.",
+    "C6": "Assume tudo, não repassa e acumula até esgotar.",
+    "C7": "Ajuda os outros e deixa as próprias entregas para trás.",
+    "C8": "Busca curso atrás de curso sem aplicar no trabalho.",
+    "C9": "Dificulta o acesso de quem precisa da informação para trabalhar.",
+}
 
 # Indicadores objetivos comuns
 ASSIDUIDADE = [
